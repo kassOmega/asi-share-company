@@ -1,11 +1,11 @@
 import { Grid, Stack, Button } from "@mui/material";
-import { useGetCustomersQuery } from "../../api";
+import { useGetUnpaidCustomersQuery } from "../../api";
 import { useParams, Link } from "react-router-dom";
 import { useMemo } from "react";
 import { Display, FilterMenu, SimpleDialog } from "./common";
 
-export const CustomerList = () => {
-  const { data: customers } = useGetCustomersQuery();
+export const UnpaidCustomerList = () => {
+  const { data: customers } = useGetUnpaidCustomersQuery();
   console.table(customers?.data);
   const { id } = useParams();
 
