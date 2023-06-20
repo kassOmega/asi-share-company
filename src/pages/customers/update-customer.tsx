@@ -7,16 +7,32 @@ import {
   Typography,
 } from "@mui/material";
 import { useForm, UseFormRegister } from "react-hook-form";
-import { useNavigate } from "react-router-dom";
-import { CustomersRequest, useRegisterCustomerMutation } from "../../api";
+import { useNavigate, useParams } from "react-router-dom";
+import {
+  CustomersRequest,
+  useGetCustomerByIdQuery,
+  useUpdateCustomerMutation,
+} from "../../api";
+import { useEffect, useMemo } from "react";
 
-export function AddCustomer() {
-  const { handleSubmit, register, formState } = useForm<CustomersRequest>({
+interface updateRequest {
+  totalSharePaid: number;
+}
+
+export function UpdateCustomer() {
+  const { id } = useParams();
+  const { data: result } = useGetCustomerByIdQuery(parseInt(id ?? ""));
+  const { handleSubmit, register, formState, reset } = useForm<updateRequest>({
     mode: "onChange",
     reValidateMode: "onBlur",
+    // defaultValues: useMemo(() => ({ ...result?.data }), [result]),
   });
 
-  const registerUpgraded: UseFormRegister<CustomersRequest> = (
+  useEffect(() => {
+    reset(result?.data);
+  }, [result?.data, reset]);
+
+  const registerUpgraded: UseFormRegister<updateRequest> = (
     name,
     ...params
   ) => {
@@ -32,21 +48,20 @@ export function AddCustomer() {
     mutateAsync: registerCustomer,
     isLoading,
     error,
-  } = useRegisterCustomerMutation();
-  const onSubmit = async (data: CustomersRequest) => {
+  } = useUpdateCustomerMutation();
+
+  const onSubmit = async (data: updateRequest) => {
     console.log("data:", data);
-    const { totalSharePaid, totalSharePromised, ...other } = data;
     try {
       await registerCustomer({
-        ...other,
-        totalSharePaid: parseInt("" + totalSharePaid),
-        totalSharePromised: parseInt("" + totalSharePromised),
+        ...data,
       });
       navigate("/customers");
     } catch {
       // wrong username or password
     }
   };
+
   return (
     <Grid container spacing={2} alignItems={"center"}>
       <Grid item xs={12} md={6}>
@@ -80,8 +95,12 @@ export function AddCustomer() {
             spacing={3}
           >
             <Typography>Register Customer </Typography>
+            <Typography>
+              {result?.data.totalSharePaid} of {result?.data.totalSharePromised}{" "}
+              total shares has been previously paid{" "}
+            </Typography>
             <Grid container spacing={2}>
-              <Grid item md={6} xs={12}>
+              {/* <Grid item md={6} xs={12}>
                 <TextField
                   size="small"
                   label="Full Name"
@@ -118,28 +137,47 @@ export function AddCustomer() {
                     required: "Password is required",
                   })}
                 />
-              </Grid>
+              </Grid> */}
               <Grid item md={6} xs={12}>
                 <TextField
+                  fullWidth
                   size="small"
-                  InputProps={{}}
                   type="number"
                   label="Paid Share"
-                  {...registerUpgraded("totalSharePaid", {
-                    required: "Password is required",
-                  })}
+                  InputProps={{
+                    inputProps: {
+                      max:
+                        (result?.data.totalSharePromised ?? 0) -
+                        (result?.data.totalSharePaid ?? 0),
+                    },
+                  }}
+                  {...changeRef(
+                    registerUpgraded("totalSharePaid", {
+                      required: "Password is required",
+                    })
+                  )}
                 />
               </Grid>
             </Grid>
             {!!error && (
               <Typography>Something went wrong! Please try again</Typography>
             )}
-            <Button type="submit" variant="contained" disabled={isLoading}>
-              {isLoading ? <CircularProgress size="20px" /> : "Login"}
+            <Button
+              type="submit"
+              variant="contained"
+              disabled={isLoading}
+              fullWidth
+            >
+              {isLoading ? <CircularProgress size="20px" /> : "Update"}
             </Button>
           </Stack>
         </form>
       </Grid>
     </Grid>
   );
+}
+
+function changeRef({ ref, ...data }: any): any {
+  return { ref, ...data };
+  return { inputRef: ref, ...data };
 }

@@ -12,9 +12,9 @@ import {
 import { useNavigate, Link } from "react-router-dom";
 import { ReactNode } from "react";
 import FilterAltIcon from "@mui/icons-material/FilterAlt";
-import { CustomersResponse } from "../../api";
+import { BoardResponse } from "../../api";
 
-export const Display = ({ user }: { user: CustomersResponse }) => {
+export const Display = ({ user }: { user: BoardResponse }) => {
   const navigate = useNavigate();
 
   return (
@@ -66,48 +66,25 @@ export const Display = ({ user }: { user: CustomersResponse }) => {
                 justifyItems: "center",
               }}
             >
-              <Box
-                sx={{
-                  backgroundColor: `${user.fullyPayed ? "green" : "red"}`,
-                  borderRadius: 100,
-                  height: 24,
-                  width: 24,
-                }}
-              />
-              <Typography>
-                {`${
-                  user.fullyPayed
-                    ? "Fully Paid"
-                    : `Unpaid  ${user.totalSharePromised - user.totalSharePaid}`
-                }`}
-              </Typography>
-              <Box flex={1} />
               <Button
                 variant="outlined"
                 size="small"
                 sx={{ cursor: "pointer" }}
                 component={Link}
-                to={`/customers/${user.id}`}
+                to={`/board/${user.id}`}
               >
                 Detail
               </Button>
             </Stack>
           </Grid>
         </Grid>
-        <Button
-          onClick={() => navigate(`/customers/update/${user.id}`)}
-          variant="outlined"
-          size="small"
-        >
-          update payment
-        </Button>
       </Stack>
     </Stack>
   );
 };
 
 export interface SimpleDialogProps {
-  user?: CustomersResponse;
+  user?: BoardResponse;
 }
 
 export function SimpleDialog(props: SimpleDialogProps) {
@@ -115,7 +92,7 @@ export function SimpleDialog(props: SimpleDialogProps) {
 
   const navigate = useNavigate();
   const handleClose = () => {
-    navigate("/customers");
+    navigate("/board");
   };
 
   return (
@@ -204,7 +181,7 @@ export function FilterMenu() {
   );
 }
 
-export const CustomerListLayout = ({
+export const BoardListLayout = ({
   header,
   children,
 }: {
@@ -223,14 +200,9 @@ export const CustomerListLayout = ({
               },
             }}
           >
-            <Button
-              component={Link}
-              to="/customers/register"
-              variant="outlined"
-            >
-              Register Customer
+            <Button component={Link} to="/board/register" variant="outlined">
+              Register new Member
             </Button>
-            <FilterMenu />
           </Stack>
         </Grid>
         <Grid xs={12} md={9} minHeight={"100vh"}>

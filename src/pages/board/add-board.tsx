@@ -8,18 +8,15 @@ import {
 } from "@mui/material";
 import { useForm, UseFormRegister } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
-import { CustomersRequest, useRegisterCustomerMutation } from "../../api";
+import { BoardRequest, useRegisterBoardMutation } from "../../api";
 
-export function AddCustomer() {
-  const { handleSubmit, register, formState } = useForm<CustomersRequest>({
+export function AddBoard() {
+  const { handleSubmit, register, formState } = useForm<BoardRequest>({
     mode: "onChange",
     reValidateMode: "onBlur",
   });
 
-  const registerUpgraded: UseFormRegister<CustomersRequest> = (
-    name,
-    ...params
-  ) => {
+  const registerUpgraded: UseFormRegister<BoardRequest> = (name, ...params) => {
     const error = formState.errors[name]?.message;
     return {
       ...register(name, ...params),
@@ -29,20 +26,17 @@ export function AddCustomer() {
 
   const navigate = useNavigate();
   const {
-    mutateAsync: registerCustomer,
+    mutateAsync: registerBoard,
     isLoading,
     error,
-  } = useRegisterCustomerMutation();
-  const onSubmit = async (data: CustomersRequest) => {
+  } = useRegisterBoardMutation();
+  const onSubmit = async (data: BoardRequest) => {
     console.log("data:", data);
-    const { totalSharePaid, totalSharePromised, ...other } = data;
     try {
-      await registerCustomer({
-        ...other,
-        totalSharePaid: parseInt("" + totalSharePaid),
-        totalSharePromised: parseInt("" + totalSharePromised),
+      await registerBoard({
+        ...data,
       });
-      navigate("/customers");
+      navigate("/board");
     } catch {
       // wrong username or password
     }
@@ -79,14 +73,14 @@ export function AddCustomer() {
             }}
             spacing={3}
           >
-            <Typography>Register Customer </Typography>
+            <Typography>Register Board Member </Typography>
             <Grid container spacing={2}>
               <Grid item md={6} xs={12}>
                 <TextField
                   size="small"
                   label="Full Name"
                   {...registerUpgraded("fullName", {
-                    required: "Username is required",
+                    required: "Full name is required",
                   })}
                 />
               </Grid>
@@ -95,37 +89,34 @@ export function AddCustomer() {
                   size="small"
                   label="Phone Number"
                   {...registerUpgraded("phoneNumber", {
-                    required: "Password is required",
+                    required: "Phone number is required",
+                  })}
+                />
+              </Grid>
+              <Grid item md={12} xs={12}>
+                <TextField
+                  size="small"
+                  label="Address"
+                  fullWidth
+                  {...registerUpgraded("address", {
+                    required: "Address is required",
                   })}
                 />
               </Grid>
               <Grid item md={6} xs={12}>
                 <TextField
                   size="small"
-                  label="Address"
-                  {...registerUpgraded("address", {
+                  label="Username"
+                  {...registerUpgraded("userName", {
                     required: "Username is required",
                   })}
                 />
               </Grid>
-
               <Grid item md={6} xs={12}>
                 <TextField
                   size="small"
-                  label="Promised Share"
-                  type="number"
-                  {...registerUpgraded("totalSharePromised", {
-                    required: "Password is required",
-                  })}
-                />
-              </Grid>
-              <Grid item md={6} xs={12}>
-                <TextField
-                  size="small"
-                  InputProps={{}}
-                  type="number"
-                  label="Paid Share"
-                  {...registerUpgraded("totalSharePaid", {
+                  label="password"
+                  {...registerUpgraded("password", {
                     required: "Password is required",
                   })}
                 />

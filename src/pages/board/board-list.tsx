@@ -1,33 +1,28 @@
 import { Grid, Stack, Button, Typography } from "@mui/material";
-import { useGetCustomersQuery } from "../../api";
+import { useGetBoardQuery } from "../../api";
 import { useParams, Link } from "react-router-dom";
 import { useMemo } from "react";
 import ArrowBackIosNewIcon from "@mui/icons-material/ArrowBackIosNew";
 import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
-import {
-  CustomerListLayout,
-  Display,
-  FilterMenu,
-  SimpleDialog,
-} from "./common";
+import { BoardListLayout, Display, SimpleDialog } from "./common";
 
-export const CustomerList = () => {
-  const { data: customers } = useGetCustomersQuery();
-  console.table(customers?.data);
+export const BoardList = () => {
+  const { data: members } = useGetBoardQuery();
+  console.table(members?.data);
   const { id } = useParams();
 
   const selected = useMemo(
-    () => customers?.data.find((p) => p.id == id),
-    [customers?.data, id]
+    () => members?.data.find((p) => p.id == id),
+    [members?.data, id]
   );
   return (
     <Stack padding={2} spacing={2}>
-      <CustomerListLayout header="Share Holders List">
+      <BoardListLayout header="Board Members List">
         <SimpleDialog user={selected} />
         <Grid container spacing={1}>
-          {customers?.data.map((customer) => (
-            <Grid key={customer.id} item xs={12} md={4}>
-              <Display user={customer} key={customer.id} />
+          {members?.data.map((user) => (
+            <Grid key={user.id} item xs={12} md={4}>
+              <Display user={user} key={user.id} />
             </Grid>
           ))}
         </Grid>
@@ -38,14 +33,14 @@ export const CustomerList = () => {
           alignSelf={"end"}
           display="block"
         >
-          <Button disabled={customers?.data && customers?.data.length <= 20}>
+          <Button disabled={members?.data && members?.data.length <= 20}>
             <ArrowBackIosNewIcon /> Prev
           </Button>
-          <Button disabled={customers?.data && customers?.data.length <= 20}>
+          <Button disabled={members?.data && members?.data.length <= 20}>
             next <ArrowForwardIosIcon />
           </Button>
         </Stack>
-      </CustomerListLayout>
+      </BoardListLayout>
     </Stack>
   );
 };
