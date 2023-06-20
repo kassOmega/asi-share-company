@@ -12,10 +12,14 @@ import {
 import { useNavigate, Link } from "react-router-dom";
 import { ReactNode } from "react";
 import FilterAltIcon from "@mui/icons-material/FilterAlt";
-import { CustomersResponse } from "../../api";
+import { CustomersResponse, useUserToken } from "../../api";
+import jwt_decode from "jwt-decode";
 
 export const Display = ({ user }: { user: CustomersResponse }) => {
   const navigate = useNavigate();
+  const { isLoggedIn, token } = useUserToken();
+  let decoded: any;
+  if (isLoggedIn) decoded = jwt_decode(token ?? "");
 
   return (
     <Stack
@@ -94,13 +98,15 @@ export const Display = ({ user }: { user: CustomersResponse }) => {
             </Stack>
           </Grid>
         </Grid>
-        <Button
-          onClick={() => navigate(`/customers/update/${user.id}`)}
-          variant="outlined"
-          size="small"
-        >
-          update payment
-        </Button>
+        {decoded.role === "admin" && (
+          <Button
+            onClick={() => navigate(`/customers/update/${user.id}`)}
+            variant="outlined"
+            size="small"
+          >
+            update payment
+          </Button>
+        )}
       </Stack>
     </Stack>
   );
@@ -117,6 +123,9 @@ export function SimpleDialog(props: SimpleDialogProps) {
   const handleClose = () => {
     navigate("/customers");
   };
+  const { isLoggedIn, token } = useUserToken();
+  let decoded: any;
+  if (isLoggedIn) decoded = jwt_decode(token ?? "");
 
   return (
     <Dialog onClose={handleClose} open={!!user}>
@@ -143,11 +152,14 @@ export function SimpleDialog(props: SimpleDialogProps) {
               <Typography>{user?.phoneNumber}</Typography>
             </Grid>
           </Grid>
-          <Box alignItems={"flex-end"} alignSelf={"end"} display="block">
-            <Button variant="contained" color="error" size="small">
-              Delete
-            </Button>
-          </Box>
+
+          {decoded.role === "admin" && (
+            <Box alignItems={"flex-end"} alignSelf={"end"} display="block">
+              <Button variant="contained" color="error" size="small">
+                Delete
+              </Button>
+            </Box>
+          )}
         </Stack>
       </DialogContent>
     </Dialog>

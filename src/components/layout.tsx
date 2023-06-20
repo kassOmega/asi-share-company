@@ -16,7 +16,7 @@ export const ASILayout: React.FC<ASILayoutProps> = (props) => {
         <Toolbar>
           <Typography>ASI Share Company</Typography>
           <Box width={16} />
-          <Button component={Link} to="/board" variant="contained">
+          <Button component={Link} to="/" variant="contained">
             <HomeIcon sx={{ fontSize: 30 }} />
           </Button>
           <Button component={Link} to="/board" variant="contained">

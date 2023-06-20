@@ -55,7 +55,6 @@ export const Display = ({ user }: { user: BoardResponse }) => {
           <Grid item xs={6} md={7}>
             <Typography sx={{ fontSize: 12 }}>{user.phoneNumber}</Typography>
           </Grid>
-          <Grid></Grid>
           <Grid item xs={6} md={12} alignSelf="center">
             <Stack
               direction="row"
