@@ -1,11 +1,81 @@
 import { useClient } from "../../axios";
-import { ResultArray, customersResponse } from "../../models";
-import { useInfiniteQuery, useMutation, useQuery } from "@tanstack/react-query";
+import {
+  ResultArray,
+  CustomersRequest,
+  CustomersResponse,
+  CustomersStat,
+  ResultObject,
+} from "../../models";
+import { useMutation, useQuery } from "@tanstack/react-query";
 
 export const useGetCustomersQuery = () => {
   const client = useClient();
-  return useQuery<ResultArray<customersResponse>, string>({
+  return useQuery<ResultArray<CustomersResponse>, string>({
     queryKey: ["get customer"],
     queryFn: () => client.get("/api/admin/customers").then((res) => res.data),
+  });
+};
+export const useGetCustomerByIdQuery = (id: number) => {
+  const client = useClient();
+  return useQuery<ResultObject<CustomersResponse>>({
+    queryKey: ["get customer by id", id],
+    queryFn: () =>
+      client.get(`/api/admin/customers/profile/${id}`).then((res) => res.data),
+  });
+};
+export const useGetPaidCustomersQuery = () => {
+  const client = useClient();
+  return useQuery<ResultArray<CustomersResponse>, string>({
+    queryKey: ["get paid customer"],
+    queryFn: () =>
+      client.get("/api/admin/customers/fully-payed").then((res) => res.data),
+  });
+};
+export const useGetUnpaidCustomersQuery = () => {
+  const client = useClient();
+  return useQuery<ResultArray<CustomersResponse>, string>({
+    queryKey: ["get unpaid customer"],
+    queryFn: () =>
+      client
+        .get("/api/admin/customers/incomplete-payment")
+        .then((res) => res.data),
+  });
+};
+export const useGetCustomersStatQuery = () => {
+  const client = useClient();
+  return useQuery<CustomersStat>({
+    queryKey: ["get customer stat"],
+    queryFn: () =>
+      client.get("/api/admin/customers/stat").then((res) => res.data),
+  });
+};
+
+export const useRegisterCustomerMutation = () => {
+  const client = useClient();
+  return useMutation({
+    mutationFn: (data: CustomersRequest) => {
+      return client
+        .post("/api/admin/customer", data)
+        .then((d) => d.data)
+        .then((res) => {
+          return res;
+        });
+    },
+  });
+};
+interface updateRequest {
+  totalSharePaid: number;
+}
+export const useUpdateCustomerMutation = () => {
+  const client = useClient();
+  return useMutation({
+    mutationFn: (data: updateRequest) => {
+      return client
+        .put("/api/admin/customer", data)
+        .then((d) => d.data)
+        .then((res) => {
+          return res;
+        });
+    },
   });
 };

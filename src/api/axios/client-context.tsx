@@ -5,6 +5,7 @@ type AxiosContextType = {
   client: AxiosInstance;
   authBearer: (token?: string) => void;
   isLoggedIn: boolean;
+  token: string;
 };
 
 const AxiosContext = React.createContext<AxiosContextType | null>(null);
@@ -34,6 +35,7 @@ export const AxiosClientProvider = ({ children }: { children: ReactNode }) => {
           localStorage.removeItem("token");
         },
         isLoggedIn: !!token,
+        token: token ?? "",
       }}
     >
       {children}
@@ -45,4 +47,5 @@ export const useClient = () => useContext(AxiosContext)?.client!;
 export const useUserToken = () => ({
   isLoggedIn: useContext(AxiosContext)?.isLoggedIn,
   authBearer: useContext(AxiosContext)?.authBearer!,
+  token: useContext(AxiosContext)?.token,
 });

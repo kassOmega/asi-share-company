@@ -1,5 +1,5 @@
-import { Grid, Stack, Button, Typography } from "@mui/material";
-import { useGetCustomersQuery } from "../../api";
+import { Grid, Stack, Button } from "@mui/material";
+import { useGetUnpaidCustomersQuery } from "../../api";
 import { useParams, Link } from "react-router-dom";
 import { useMemo } from "react";
 import ArrowBackIosNewIcon from "@mui/icons-material/ArrowBackIosNew";
@@ -11,8 +11,8 @@ import {
   SimpleDialog,
 } from "./common";
 
-export const CustomerList = () => {
-  const { data: customers } = useGetCustomersQuery();
+export const UnpaidCustomerList = () => {
+  const { data: customers } = useGetUnpaidCustomersQuery();
   console.table(customers?.data);
   const { id } = useParams();
 
@@ -22,7 +22,7 @@ export const CustomerList = () => {
   );
   return (
     <Stack padding={2} spacing={2}>
-      <CustomerListLayout header="Share Holders List">
+      <CustomerListLayout header="Share Holders List with remaining payment">
         <SimpleDialog user={selected} />
         <Grid container spacing={1}>
           {customers?.data.map((customer) => (
@@ -35,7 +35,7 @@ export const CustomerList = () => {
           spacing={2}
           direction={"row"}
           alignItems={"flex-end"}
-          alignSelf={"end"}
+          alignSelf={"flex-end"}
           display="block"
         >
           <Button disabled={customers?.data && customers?.data.length <= 20}>
