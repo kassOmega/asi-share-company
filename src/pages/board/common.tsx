@@ -196,7 +196,7 @@ export const BoardListLayout = ({
                 position: "fixed",
               },
               "@media (max-width: 600px)": {
-                paddingTop: 20,
+                paddingTop: 12,
               },
             }}
           >
