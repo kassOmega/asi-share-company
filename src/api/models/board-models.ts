@@ -4,6 +4,7 @@ export interface BoardResponse {
   phoneNumber: string;
   address: string;
   userName: string;
+  role: string;
 }
 export interface BoardRequest {
   fullName: string;

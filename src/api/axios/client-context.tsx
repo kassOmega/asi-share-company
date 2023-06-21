@@ -1,5 +1,7 @@
 import axios, { AxiosInstance } from "axios";
 import React, { ReactNode, useContext, useMemo, useState } from "react";
+import jwt_decode from "jwt-decode";
+import { BoardResponse } from "../models";
 
 type AxiosContextType = {
   client: AxiosInstance;
@@ -48,4 +50,5 @@ export const useUserToken = () => ({
   isLoggedIn: useContext(AxiosContext)?.isLoggedIn,
   authBearer: useContext(AxiosContext)?.authBearer!,
   token: useContext(AxiosContext)?.token,
+  user: jwt_decode(useContext(AxiosContext)?.token ?? "") as BoardResponse,
 });

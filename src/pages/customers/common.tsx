@@ -13,13 +13,10 @@ import { useNavigate, Link } from "react-router-dom";
 import { ReactNode } from "react";
 import FilterAltIcon from "@mui/icons-material/FilterAlt";
 import { CustomersResponse, useUserToken } from "../../api";
-import jwt_decode from "jwt-decode";
 
 export const Display = ({ user }: { user: CustomersResponse }) => {
   const navigate = useNavigate();
-  const { isLoggedIn, token } = useUserToken();
-  let decoded: any;
-  if (isLoggedIn) decoded = jwt_decode(token ?? "");
+  const { user: userRole } = useUserToken();
 
   return (
     <Stack
@@ -98,7 +95,7 @@ export const Display = ({ user }: { user: CustomersResponse }) => {
             </Stack>
           </Grid>
         </Grid>
-        {decoded.role === "admin" && (
+        {userRole.role === "admin" && (
           <Button
             onClick={() => navigate(`/customers/update/${user.id}`)}
             variant="outlined"
@@ -123,9 +120,7 @@ export function SimpleDialog(props: SimpleDialogProps) {
   const handleClose = () => {
     navigate("/customers");
   };
-  const { isLoggedIn, token } = useUserToken();
-  let decoded: any;
-  if (isLoggedIn) decoded = jwt_decode(token ?? "");
+  const { user: useRole } = useUserToken();
 
   return (
     <Dialog onClose={handleClose} open={!!user}>
@@ -153,7 +148,7 @@ export function SimpleDialog(props: SimpleDialogProps) {
             </Grid>
           </Grid>
 
-          {decoded.role === "admin" && (
+          {useRole.role === "admin" && (
             <Box alignItems={"flex-end"} alignSelf={"end"} display="block">
               <Button variant="contained" color="error" size="small">
                 Delete
