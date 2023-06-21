@@ -228,6 +228,9 @@ export const CustomerListLayout = ({
               "@media (min-width: 600px)": {
                 position: "fixed",
               },
+              "@media (max-width: 600px)": {
+                Padding: 4,
+              },
             }}
           >
             <Button
