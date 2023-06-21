@@ -1,4 +1,4 @@
-import { Grid, Stack, Button } from "@mui/material";
+import { Grid, Stack, Button, Typography } from "@mui/material";
 import { useGetPaidCustomersQuery } from "../../api";
 import { useParams } from "react-router-dom";
 import { useMemo } from "react";
@@ -18,28 +18,40 @@ export const PaidCustomerList = () => {
   return (
     <Stack padding={2} spacing={2}>
       <CustomerListLayout header="Share Holders List with completed payment">
-        <SimpleDialog user={selected} />
-        <Grid container spacing={1}>
-          {customers?.data.map((customer) => (
-            <Grid key={customer.id} item xs={12} md={4}>
-              <Display user={customer} key={customer.id} />
+        {!customers?.data.length ? (
+          <Typography sx={{ fontSize: 12 }}>
+            No Customers Registered Yet
+          </Typography>
+        ) : (
+          <>
+            <SimpleDialog user={selected} />
+            <Grid container spacing={1}>
+              {customers?.data.map((customer) => (
+                <Grid key={customer.id} item xs={12} md={4}>
+                  <Display user={customer} key={customer.id} />
+                </Grid>
+              ))}
             </Grid>
-          ))}
-        </Grid>
-        <Stack
-          spacing={2}
-          direction={"row"}
-          alignItems={"flex-end"}
-          alignSelf={"end"}
-          display="block"
-        >
-          <Button disabled={customers?.data && customers?.data.length <= 20}>
-            <ArrowBackIosNewIcon /> Prev
-          </Button>
-          <Button disabled={customers?.data && customers?.data.length <= 20}>
-            next <ArrowForwardIosIcon />
-          </Button>
-        </Stack>
+            <Stack
+              spacing={2}
+              direction={"row"}
+              alignItems={"flex-end"}
+              alignSelf={"end"}
+              display="block"
+            >
+              <Button
+                disabled={customers?.data && customers?.data.length <= 20}
+              >
+                <ArrowBackIosNewIcon /> Prev
+              </Button>
+              <Button
+                disabled={customers?.data && customers?.data.length <= 20}
+              >
+                next <ArrowForwardIosIcon />
+              </Button>
+            </Stack>
+          </>
+        )}
       </CustomerListLayout>
     </Stack>
   );
