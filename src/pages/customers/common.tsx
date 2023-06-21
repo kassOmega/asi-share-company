@@ -229,7 +229,7 @@ export const CustomerListLayout = ({
                 position: "fixed",
               },
               "@media (max-width: 600px)": {
-                paddingTop: 12,
+                paddingTop: 8,
               },
             }}
           >

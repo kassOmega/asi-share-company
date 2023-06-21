@@ -20,7 +20,7 @@ export const BoardList = () => {
       <BoardListLayout header="Board Members List">
         {!members?.data.length ? (
           <Typography sx={{ fontSize: 12 }} padding={10}>
-            No Members Registered Yet
+            No Registered Members Yet
           </Typography>
         ) : (
           <>

@@ -20,7 +20,7 @@ export const UnpaidCustomerList = () => {
       <CustomerListLayout header="Share Holders List with remaining payment">
         {!customers?.data.length ? (
           <Typography sx={{ fontSize: 12 }} padding={10}>
-            No Customers Registered Yet
+            No Registered Customers Yet
           </Typography>
         ) : (
           <>
