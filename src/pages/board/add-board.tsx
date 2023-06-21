@@ -126,7 +126,7 @@ export function AddBoard() {
               <Typography>Something went wrong! Please try again</Typography>
             )}
             <Button type="submit" variant="contained" disabled={isLoading}>
-              {isLoading ? <CircularProgress size="20px" /> : "Login"}
+              {isLoading ? <CircularProgress size="20px" /> : "Register"}
             </Button>
           </Stack>
         </form>
