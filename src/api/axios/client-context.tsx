@@ -46,9 +46,12 @@ export const AxiosClientProvider = ({ children }: { children: ReactNode }) => {
 };
 
 export const useClient = () => useContext(AxiosContext)?.client!;
-export const useUserToken = () => ({
-  isLoggedIn: useContext(AxiosContext)?.isLoggedIn,
-  authBearer: useContext(AxiosContext)?.authBearer!,
-  token: useContext(AxiosContext)?.token,
-  user: jwt_decode(useContext(AxiosContext)?.token ?? "") as BoardResponse,
-});
+export const useUserToken = () => {
+  const { isLoggedIn, token, authBearer } = useContext(AxiosContext)!;
+  return {
+    isLoggedIn,
+    token,
+    authBearer,
+    user: (token ? jwt_decode(token) : undefined) as BoardResponse | undefined,
+  };
+};

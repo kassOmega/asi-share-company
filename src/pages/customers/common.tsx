@@ -95,7 +95,7 @@ export const Display = ({ user }: { user: CustomersResponse }) => {
             </Stack>
           </Grid>
         </Grid>
-        {userRole.role === "admin" && (
+        {userRole?.role === "admin" && (
           <Button
             onClick={() => navigate(`/customers/update/${user.id}`)}
             variant="outlined"
@@ -148,7 +148,7 @@ export function SimpleDialog(props: SimpleDialogProps) {
             </Grid>
           </Grid>
 
-          {useRole.role === "admin" && (
+          {useRole?.role === "admin" && (
             <Box alignItems={"flex-end"} alignSelf={"end"} display="block">
               <Button variant="contained" color="error" size="small">
                 Delete
