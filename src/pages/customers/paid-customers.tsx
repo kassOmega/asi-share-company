@@ -1,15 +1,10 @@
 import { Grid, Stack, Button } from "@mui/material";
 import { useGetPaidCustomersQuery } from "../../api";
-import { useParams, Link } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { useMemo } from "react";
 import ArrowBackIosNewIcon from "@mui/icons-material/ArrowBackIosNew";
 import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
-import {
-  CustomerListLayout,
-  Display,
-  FilterMenu,
-  SimpleDialog,
-} from "./common";
+import { CustomerListLayout, Display, SimpleDialog } from "./common";
 
 export const PaidCustomerList = () => {
   const { data: customers } = useGetPaidCustomersQuery();
@@ -17,7 +12,7 @@ export const PaidCustomerList = () => {
   const { id } = useParams();
 
   const selected = useMemo(
-    () => customers?.data.find((p) => p.id == id),
+    () => customers?.data.find((p) => p.id === id),
     [customers?.data, id]
   );
   return (

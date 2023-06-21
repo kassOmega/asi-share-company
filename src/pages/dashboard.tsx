@@ -1,8 +1,8 @@
-import { Box, Grid, LinearProgress, Stack, Typography } from "@mui/material";
+import { Grid, LinearProgress, Stack, Typography } from "@mui/material";
 import { useGetCustomersStatQuery } from "../api";
 
 export const Dashboard = () => {
-  const { data: stat, isLoading } = useGetCustomersStatQuery();
+  const { data: stat } = useGetCustomersStatQuery();
   console.log(stat);
   const data = linearBar(
     stat?.data.totalShareHolders ?? 0,

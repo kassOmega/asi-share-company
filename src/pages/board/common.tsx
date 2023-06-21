@@ -15,8 +15,6 @@ import FilterAltIcon from "@mui/icons-material/FilterAlt";
 import { BoardResponse } from "../../api";
 
 export const Display = ({ user }: { user: BoardResponse }) => {
-  const navigate = useNavigate();
-
   return (
     <Stack
       boxShadow={2}

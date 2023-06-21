@@ -8,12 +8,8 @@ import {
 } from "@mui/material";
 import { useForm, UseFormRegister } from "react-hook-form";
 import { useNavigate, useParams } from "react-router-dom";
-import {
-  CustomersRequest,
-  useGetCustomerByIdQuery,
-  useUpdateCustomerMutation,
-} from "../../api";
-import { useEffect, useMemo } from "react";
+import { useGetCustomerByIdQuery, useUpdateCustomerMutation } from "../../api";
+import { useEffect } from "react";
 
 interface updateRequest {
   totalSharePaid: number;
@@ -151,11 +147,9 @@ export function UpdateCustomer() {
                         (result?.data.totalSharePaid ?? 0),
                     },
                   }}
-                  {...changeRef(
-                    registerUpgraded("totalSharePaid", {
-                      required: "Password is required",
-                    })
-                  )}
+                  {...registerUpgraded("totalSharePaid", {
+                    required: "Password is required",
+                  })}
                 />
               </Grid>
             </Grid>
@@ -175,9 +169,4 @@ export function UpdateCustomer() {
       </Grid>
     </Grid>
   );
-}
-
-function changeRef({ ref, ...data }: any): any {
-  return { ref, ...data };
-  return { inputRef: ref, ...data };
 }

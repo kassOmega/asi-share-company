@@ -1,6 +1,6 @@
-import { Grid, Stack, Button, Typography } from "@mui/material";
+import { Grid, Stack, Button } from "@mui/material";
 import { useGetBoardQuery } from "../../api";
-import { useParams, Link } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { useMemo } from "react";
 import ArrowBackIosNewIcon from "@mui/icons-material/ArrowBackIosNew";
 import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
@@ -12,7 +12,7 @@ export const BoardList = () => {
   const { id } = useParams();
 
   const selected = useMemo(
-    () => members?.data.find((p) => p.id == id),
+    () => members?.data.find((p) => p.id === id),
     [members?.data, id]
   );
   return (

@@ -1,5 +1,4 @@
-import React from "react";
-import { Stack, ThemeProvider } from "@mui/material";
+import { ThemeProvider } from "@mui/material";
 import { BrowserRouter } from "react-router-dom";
 import { AxiosClientProvider } from "./api";
 import { theme } from "./theme";
