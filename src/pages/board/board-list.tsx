@@ -19,8 +19,8 @@ export const BoardList = () => {
     <Stack padding={2} spacing={2}>
       <BoardListLayout header="Board Members List">
         {!members?.data.length ? (
-          <Typography sx={{ fontSize: 12 }}>
-            No Customers Registered Yet
+          <Typography sx={{ fontSize: 12 }} padding={10}>
+            No Members Registered Yet
           </Typography>
         ) : (
           <>
