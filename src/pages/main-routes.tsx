@@ -11,12 +11,9 @@ import { ASILayout } from "../components";
 import { Dashboard } from "./dashboard";
 import { UpdateCustomer } from "./customers/update-customer";
 import { AddBoard, BoardList } from "./board";
-import jwt_decode from "jwt-decode";
 
 export function MainRoutes() {
-  const { isLoggedIn, token } = useUserToken();
-  let decoded: any;
-  if (isLoggedIn) decoded = jwt_decode(token ?? "");
+  const { isLoggedIn, user } = useUserToken();
   if (!isLoggedIn) {
     return (
       <Switch>
@@ -26,7 +23,7 @@ export function MainRoutes() {
     );
   }
 
-  if (decoded.role === "admin") {
+  if (user?.role === "admin") {
     return (
       <ASILayout>
         <Switch>
