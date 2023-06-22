@@ -12,7 +12,11 @@ import {
 import { useNavigate, Link } from "react-router-dom";
 import { ReactNode } from "react";
 import FilterAltIcon from "@mui/icons-material/FilterAlt";
-import { CustomersResponse, useUserToken } from "../../api";
+import {
+  CustomersResponse,
+  useDeleteEquipmentMutation,
+  useUserToken,
+} from "../../api";
 
 export const Display = ({ user }: { user: CustomersResponse }) => {
   const navigate = useNavigate();
@@ -115,7 +119,7 @@ export interface SimpleDialogProps {
 
 export function SimpleDialog(props: SimpleDialogProps) {
   const { user } = props;
-
+  const deleteCustomer = useDeleteEquipmentMutation();
   const navigate = useNavigate();
   const handleClose = () => {
     navigate("/customers");
@@ -131,6 +135,14 @@ export function SimpleDialog(props: SimpleDialogProps) {
       lastName.charAt(0).toUpperCase() + lastName.slice(1);
 
     return `${capitalizedFirstName} ${capitalizedLastName}`;
+  }
+
+  function handleDelete() {
+    deleteCustomer.mutate(user?.id ?? "", {
+      onSuccess: () => {
+        navigate("/customers");
+      },
+    });
   }
 
   return (
@@ -163,7 +175,12 @@ export function SimpleDialog(props: SimpleDialogProps) {
 
           {useRole?.role === "admin" && (
             <Box alignItems={"flex-end"} alignSelf={"end"} display="block">
-              <Button variant="contained" color="error" size="small">
+              <Button
+                variant="contained"
+                color="error"
+                size="small"
+                onClick={handleDelete}
+              >
                 Delete
               </Button>
             </Box>
