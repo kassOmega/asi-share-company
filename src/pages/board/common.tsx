@@ -16,6 +16,10 @@ import { BoardResponse, useDeleteBoardMutation } from "../../api";
 import { capitalizeFullName } from "../../common";
 
 export const Display = ({ user }: { user: BoardResponse }) => {
+  const deleteCustomer = useDeleteBoardMutation();
+  function handleDelete() {
+    deleteCustomer.mutate(user?.id ?? "");
+  }
   return (
     <Stack
       boxShadow={2}
@@ -75,6 +79,15 @@ export const Display = ({ user }: { user: BoardResponse }) => {
               >
                 Detail
               </Button>
+              <Button
+                variant="outlined"
+                size="small"
+                color="error"
+                sx={{ cursor: "pointer" }}
+                onClick={handleDelete}
+              >
+                Delete
+              </Button>
             </Stack>
           </Grid>
         </Grid>
@@ -90,17 +103,13 @@ export interface SimpleDialogProps {
 export function SimpleDialog(props: SimpleDialogProps) {
   const { user } = props;
 
-  const deleteCustomer = useDeleteBoardMutation();
   const navigate = useNavigate();
   const handleClose = () => {
     navigate("/board");
   };
+  const deleteCustomer = useDeleteBoardMutation();
   function handleDelete() {
-    deleteCustomer.mutate(user?.id ?? "", {
-      onSuccess: () => {
-        navigate("/customers");
-      },
-    });
+    deleteCustomer.mutate(user?.id ?? "");
   }
 
   return (
