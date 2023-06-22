@@ -125,10 +125,14 @@ export function SimpleDialog(props: SimpleDialogProps) {
     navigate("/customers");
   };
   const { user: useRole } = useUserToken();
-  function capitalizeFullName(fullName: string) {
-    const firstName = fullName.split(" ")[0];
-    const lastName = fullName.split(" ")[1];
 
+  function capitalizeFullName(fullName: string) {
+    let firstName = "";
+    let lastName = "";
+    if (fullName.includes(" ")) {
+      firstName = fullName.split(" ")[0];
+      lastName = fullName.split(" ")[1];
+    }
     const capitalizedFirstName =
       firstName.charAt(0).toUpperCase() + firstName.slice(1);
     const capitalizedLastName = lastName
