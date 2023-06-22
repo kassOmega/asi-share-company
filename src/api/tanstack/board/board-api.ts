@@ -15,6 +15,14 @@ export const useGetBoardQuery = () => {
       client.get("/api/admin/board-members").then((res) => res.data),
   });
 };
+
+export const useDeleteBoardMutation = () => {
+  const client = useClient();
+  return useMutation<unknown, string, string>({
+    mutationFn: (id: string) =>
+      client.delete(`/api/admin/board/${id}`).then((res) => res.data),
+  });
+};
 export const useGetBoardByIdQuery = (id: number) => {
   const client = useClient();
   return useQuery<ResultObject<BoardResponse>>({

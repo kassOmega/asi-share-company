@@ -12,7 +12,8 @@ import {
 import { useNavigate, Link } from "react-router-dom";
 import { ReactNode } from "react";
 import FilterAltIcon from "@mui/icons-material/FilterAlt";
-import { BoardResponse } from "../../api";
+import { BoardResponse, useDeleteBoardMutation } from "../../api";
+import { capitalizeFullName } from "../../common";
 
 export const Display = ({ user }: { user: BoardResponse }) => {
   return (
@@ -87,10 +88,18 @@ export interface SimpleDialogProps {
 export function SimpleDialog(props: SimpleDialogProps) {
   const { user } = props;
 
+  const deleteCustomer = useDeleteBoardMutation();
   const navigate = useNavigate();
   const handleClose = () => {
     navigate("/board");
   };
+  function handleDelete() {
+    deleteCustomer.mutate(user?.id ?? "", {
+      onSuccess: () => {
+        navigate("/customers");
+      },
+    });
+  }
 
   return (
     <Dialog onClose={handleClose} open={!!user}>
@@ -102,7 +111,9 @@ export function SimpleDialog(props: SimpleDialogProps) {
               <Typography>Full Name</Typography>
             </Grid>
             <Grid item xs={6} md={6}>
-              <Typography>{user?.fullName}</Typography>
+              <Typography>
+                {capitalizeFullName(user?.fullName ?? "")}
+              </Typography>
             </Grid>
             <Grid item xs={6} md={6}>
               <Typography>Address</Typography>
@@ -118,7 +129,12 @@ export function SimpleDialog(props: SimpleDialogProps) {
             </Grid>
           </Grid>
           <Box alignItems={"flex-end"} alignSelf={"end"} display="block">
-            <Button variant="contained" color="error" size="small">
+            <Button
+              variant="contained"
+              color="error"
+              size="small"
+              onClick={handleDelete}
+            >
               Delete
             </Button>
           </Box>

@@ -14,9 +14,10 @@ import { ReactNode } from "react";
 import FilterAltIcon from "@mui/icons-material/FilterAlt";
 import {
   CustomersResponse,
-  useDeleteEquipmentMutation,
+  useDeleteCustomerMutation,
   useUserToken,
 } from "../../api";
+import { capitalizeFullName } from "../../common";
 
 export const Display = ({ user }: { user: CustomersResponse }) => {
   const navigate = useNavigate();
@@ -119,28 +120,12 @@ export interface SimpleDialogProps {
 
 export function SimpleDialog(props: SimpleDialogProps) {
   const { user } = props;
-  const deleteCustomer = useDeleteEquipmentMutation();
+  const deleteCustomer = useDeleteCustomerMutation();
   const navigate = useNavigate();
   const handleClose = () => {
     navigate("/customers");
   };
   const { user: useRole } = useUserToken();
-
-  function capitalizeFullName(fullName: string) {
-    let firstName = fullName;
-    let lastName = "";
-    if (fullName.includes(" ")) {
-      firstName = fullName.split(" ")[0];
-      lastName = fullName.split(" ")[1];
-    }
-    const capitalizedFirstName =
-      firstName.charAt(0).toUpperCase() + firstName.slice(1);
-    const capitalizedLastName = lastName
-      ? lastName.charAt(0).toUpperCase() + lastName.slice(1)
-      : "";
-
-    return `${capitalizedFirstName} ${capitalizedLastName}`;
-  }
 
   function handleDelete() {
     deleteCustomer.mutate(user?.id ?? "", {
