@@ -82,6 +82,7 @@ export function LoginPage() {
               })}
             />
             <TextField
+              type="password"
               label="Password"
               {...registerUpgraded("password", {
                 required: "Password is required",
