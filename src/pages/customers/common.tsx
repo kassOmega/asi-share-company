@@ -41,7 +41,9 @@ export const Display = ({ user }: { user: CustomersResponse }) => {
             <Typography sx={{ fontSize: 12 }}>:</Typography>
           </Grid>
           <Grid item xs={6} md={7}>
-            <Typography sx={{ fontSize: 12 }}>{user.fullName}</Typography>
+            <Typography sx={{ fontSize: 12 }}>
+              {capitalizeFullName(user?.fullName ?? "")}
+            </Typography>
           </Grid>
           <Grid item xs={5} md={4}>
             <Typography sx={{ fontSize: 12 }}>Address</Typography>
