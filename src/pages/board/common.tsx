@@ -12,11 +12,12 @@ import {
 import { useNavigate, Link } from "react-router-dom";
 import { ReactNode } from "react";
 import FilterAltIcon from "@mui/icons-material/FilterAlt";
-import { BoardResponse, useDeleteBoardMutation } from "../../api";
+import { BoardResponse, useDeleteBoardMutation, useUserToken } from "../../api";
 import { capitalizeFullName } from "../../common";
 
 export const Display = ({ user }: { user: BoardResponse }) => {
   const deleteCustomer = useDeleteBoardMutation();
+  const { user: userRole } = useUserToken();
   function handleDelete() {
     deleteCustomer.mutate(user?.id ?? "");
   }
@@ -79,15 +80,18 @@ export const Display = ({ user }: { user: BoardResponse }) => {
               >
                 Detail
               </Button>
-              <Button
-                variant="outlined"
-                size="small"
-                color="error"
-                sx={{ cursor: "pointer" }}
-                onClick={handleDelete}
-              >
-                Delete
-              </Button>
+
+              {userRole?.role === "admin" && (
+                <Button
+                  variant="outlined"
+                  size="small"
+                  color="error"
+                  sx={{ cursor: "pointer" }}
+                  onClick={handleDelete}
+                >
+                  Delete
+                </Button>
+              )}
             </Stack>
           </Grid>
         </Grid>
