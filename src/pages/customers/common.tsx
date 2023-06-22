@@ -121,6 +121,17 @@ export function SimpleDialog(props: SimpleDialogProps) {
     navigate("/customers");
   };
   const { user: useRole } = useUserToken();
+  function capitalizeFullName(fullName: string) {
+    const firstName = fullName.split(" ")[0];
+    const lastName = fullName.split(" ")[1];
+
+    const capitalizedFirstName =
+      firstName.charAt(0).toUpperCase() + firstName.slice(1);
+    const capitalizedLastName =
+      lastName.charAt(0).toUpperCase() + lastName.slice(1);
+
+    return `${capitalizedFirstName} ${capitalizedLastName}`;
+  }
 
   return (
     <Dialog onClose={handleClose} open={!!user}>
@@ -132,7 +143,9 @@ export function SimpleDialog(props: SimpleDialogProps) {
               <Typography>Full Name</Typography>
             </Grid>
             <Grid item xs={6} md={6}>
-              <Typography>{user?.fullName}</Typography>
+              <Typography>
+                {capitalizeFullName(user?.fullName ?? "")}
+              </Typography>
             </Grid>
             <Grid item xs={6} md={6}>
               <Typography>Address</Typography>
