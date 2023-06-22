@@ -127,7 +127,7 @@ export function SimpleDialog(props: SimpleDialogProps) {
   const { user: useRole } = useUserToken();
 
   function capitalizeFullName(fullName: string) {
-    let firstName = "";
+    let firstName = fullName;
     let lastName = "";
     if (fullName.includes(" ")) {
       firstName = fullName.split(" ")[0];
