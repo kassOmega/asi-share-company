@@ -24,7 +24,7 @@ export const CustomerList = () => {
           </Typography>
         ) : (
           <>
-            <SimpleDialog user={selected} />
+            {/* <SimpleDialog user={selected} /> */}
             <Grid container spacing={1}>
               {customers?.data.map((customer) => (
                 <Grid key={customer.id} item xs={12} md={4}>
