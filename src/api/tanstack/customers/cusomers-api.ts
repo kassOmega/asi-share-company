@@ -20,7 +20,7 @@ export const useDeleteCustomerMutation = () => {
   const client = useClient();
   return useMutation<unknown, string, string>({
     mutationFn: (id: string) =>
-      client.delete(`/api/admin/customers/${id}`).then((res) => res.data),
+      client.delete(`/api/admin/customer/${id}`).then((res) => res.data),
   });
 };
 
