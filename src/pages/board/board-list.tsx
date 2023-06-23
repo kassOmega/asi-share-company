@@ -1,4 +1,10 @@
-import { Grid, Stack, Button, Typography } from "@mui/material";
+import {
+  Grid,
+  Stack,
+  Button,
+  Typography,
+  CircularProgress,
+} from "@mui/material";
 import { useGetBoardQuery } from "../../api";
 import { useParams } from "react-router-dom";
 import { useMemo } from "react";
@@ -7,7 +13,7 @@ import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 import { BoardListLayout, Display, SimpleDialog } from "./common";
 
 export const BoardList = () => {
-  const { data: members } = useGetBoardQuery();
+  const { data: members, isLoading } = useGetBoardQuery();
   console.table(members?.data);
   const { id } = useParams();
 
@@ -18,7 +24,9 @@ export const BoardList = () => {
   return (
     <Stack padding={2} spacing={2}>
       <BoardListLayout header="Board Members List">
-        {!members?.data.length ? (
+        {isLoading ? (
+          <CircularProgress />
+        ) : !members?.data.length ? (
           <Typography sx={{ fontSize: 12 }} padding={10}>
             No Registered Members Yet
           </Typography>

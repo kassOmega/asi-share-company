@@ -1,4 +1,10 @@
-import { Grid, Stack, Button, Typography } from "@mui/material";
+import {
+  Grid,
+  Stack,
+  Button,
+  Typography,
+  CircularProgress,
+} from "@mui/material";
 import { useGetPaidCustomersQuery } from "../../api";
 import { useParams } from "react-router-dom";
 import { useMemo } from "react";
@@ -7,7 +13,7 @@ import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 import { CustomerListLayout, Display, SimpleDialog } from "./common";
 
 export const PaidCustomerList = () => {
-  const { data: customers } = useGetPaidCustomersQuery();
+  const { data: customers, isLoading } = useGetPaidCustomersQuery();
   console.table(customers?.data);
   const { id } = useParams();
 
@@ -18,7 +24,9 @@ export const PaidCustomerList = () => {
   return (
     <Stack padding={2} spacing={2}>
       <CustomerListLayout header="Share Holders List with completed payment">
-        {!customers?.data.length ? (
+        {isLoading ? (
+          <CircularProgress />
+        ) : !customers?.data.length ? (
           <Typography sx={{ fontSize: 12 }} padding={10}>
             No Registered Customers Yet
           </Typography>

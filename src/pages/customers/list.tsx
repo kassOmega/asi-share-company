@@ -1,4 +1,10 @@
-import { Grid, Stack, Button, Typography } from "@mui/material";
+import {
+  Grid,
+  Stack,
+  Button,
+  Typography,
+  CircularProgress,
+} from "@mui/material";
 import { useGetCustomersQuery } from "../../api";
 // import { useParams } from "react-router-dom";
 import ArrowBackIosNewIcon from "@mui/icons-material/ArrowBackIosNew";
@@ -6,7 +12,7 @@ import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 import { CustomerListLayout, Display } from "./common";
 
 export const CustomerList = () => {
-  const { data: customers } = useGetCustomersQuery();
+  const { data: customers, isLoading } = useGetCustomersQuery();
   console.table(customers?.data);
   // const { id } = useParams();
 
@@ -17,7 +23,9 @@ export const CustomerList = () => {
   return (
     <Stack padding={2} spacing={2}>
       <CustomerListLayout header="Share Holders List">
-        {!customers?.data.length ? (
+        {isLoading ? (
+          <CircularProgress />
+        ) : !customers?.data.length ? (
           <Typography sx={{ fontSize: 12 }} padding={10}>
             No Registered Customers Yet
           </Typography>
