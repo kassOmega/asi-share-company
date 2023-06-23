@@ -1,20 +1,19 @@
 import { Grid, Stack, Button, Typography } from "@mui/material";
 import { useGetCustomersQuery } from "../../api";
 import { useParams } from "react-router-dom";
-import { useMemo } from "react";
 import ArrowBackIosNewIcon from "@mui/icons-material/ArrowBackIosNew";
 import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
-import { CustomerListLayout, Display, SimpleDialog } from "./common";
+import { CustomerListLayout, Display } from "./common";
 
 export const CustomerList = () => {
   const { data: customers } = useGetCustomersQuery();
   console.table(customers?.data);
   const { id } = useParams();
 
-  const selected = useMemo(
-    () => customers?.data.find((p) => p.id === id),
-    [customers?.data, id]
-  );
+  // const selected = useMemo(
+  //   () => customers?.data.find((p) => p.id === id),
+  //   [customers?.data, id]
+  // );
   return (
     <Stack padding={2} spacing={2}>
       <CustomerListLayout header="Share Holders List">
