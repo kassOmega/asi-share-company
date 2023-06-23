@@ -15,6 +15,7 @@ export const useGetCustomersQuery = () => {
     queryFn: () => client.get("/api/admin/customers").then((res) => res.data),
   });
 };
+
 export const useDeleteCustomerMutation = () => {
   const client = useClient();
   return useMutation<unknown, string, string>({

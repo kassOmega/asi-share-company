@@ -8,6 +8,8 @@ import {
   DialogTitle,
   DialogContent,
   Button,
+  TextField,
+  InputAdornment,
 } from "@mui/material";
 import { useNavigate, Link } from "react-router-dom";
 import { ReactNode } from "react";
@@ -164,6 +166,7 @@ export function FilterMenu() {
 
   return (
     <Stack alignItems="flex-start" paddingLeft={4}>
+      <TextField fullWidth />
       <Stack alignItems={"center"} direction="row">
         <Typography>
           <FilterAltIcon sx={{ fontSize: 40 }} />
