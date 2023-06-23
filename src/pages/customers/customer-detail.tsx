@@ -22,14 +22,15 @@ export const CustomerDetail = () => {
     });
   }
   return (
-    <Stack
-      padding={2}
-      spacing={2}
-      alignItems={"center"}
-      justifyContent={"center"}
-    >
+    <Stack padding={2} spacing={2}>
       <CustomerListLayout header="Share Holders List">
-        <Stack spacing={4}>
+        <Stack
+          spacing={4}
+          alignItems={"center"}
+          justifyContent={"center"}
+          borderRadius={2}
+          boxShadow={2}
+        >
           <Grid container>
             <Grid item xs={6} md={6}>
               <Typography>Full Name</Typography>
