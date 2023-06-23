@@ -22,7 +22,12 @@ export const CustomerDetail = () => {
     });
   }
   return (
-    <Stack padding={2} spacing={2}>
+    <Stack
+      padding={2}
+      spacing={2}
+      alignItems={"center"}
+      justifyContent={"center"}
+    >
       <CustomerListLayout header="Share Holders List">
         <Stack spacing={4}>
           <Grid container>
@@ -45,6 +50,18 @@ export const CustomerDetail = () => {
             </Grid>
             <Grid item xs={6} md={6}>
               <Typography>{user?.data.phoneNumber}</Typography>
+            </Grid>
+            <Grid item xs={6} md={6}>
+              <Typography>Promised Share To Buy</Typography>
+            </Grid>
+            <Grid item xs={6} md={6}>
+              <Typography>{user?.data.totalSharePromised}</Typography>
+            </Grid>
+            <Grid item xs={6} md={6}>
+              <Typography>Paid Share</Typography>
+            </Grid>
+            <Grid item xs={6} md={6}>
+              <Typography>{user?.data.totalSharePaid}</Typography>
             </Grid>
           </Grid>
 
