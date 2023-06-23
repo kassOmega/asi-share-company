@@ -114,7 +114,11 @@ export function SimpleDialog(props: SimpleDialogProps) {
   };
   const deleteCustomer = useDeleteBoardMutation();
   function handleDelete() {
-    deleteCustomer.mutate(user?.id ?? "");
+    deleteCustomer.mutate(user?.id ?? "", {
+      onSuccess: () => {
+        navigate("/board");
+      },
+    });
   }
 
   return (
