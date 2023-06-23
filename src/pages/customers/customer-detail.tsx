@@ -2,14 +2,10 @@ import { Grid, Stack, Button, Typography, Box } from "@mui/material";
 import {
   useDeleteCustomerMutation,
   useGetCustomerByIdQuery,
-  useGetCustomersQuery,
   useUserToken,
 } from "../../api";
 import { useNavigate, useParams } from "react-router-dom";
-import { useMemo } from "react";
-import ArrowBackIosNewIcon from "@mui/icons-material/ArrowBackIosNew";
-import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
-import { CustomerListLayout, Display, SimpleDialog } from "./common";
+import { CustomerListLayout } from "./common";
 import { capitalizeFullName } from "../../common";
 
 export const CustomerDetail = () => {
