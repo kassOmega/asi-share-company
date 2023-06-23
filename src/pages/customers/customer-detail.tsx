@@ -42,7 +42,7 @@ export const CustomerDetail = () => {
             <Grid item xs={6} md={6}>
               <Typography>Full Name</Typography>
             </Grid>
-            <Grid item xs={6} md={6}>
+            <Grid item xs={6} md={6} left={-8}>
               <Typography>
                 {capitalizeFullName(user?.data.fullName ?? "")}
               </Typography>
