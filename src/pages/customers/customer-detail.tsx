@@ -30,6 +30,7 @@ export const CustomerDetail = () => {
           justifyContent={"center"}
           borderRadius={2}
           boxShadow={2}
+          p={8}
         >
           <Grid container>
             <Grid item xs={6} md={6}>
