@@ -6,6 +6,7 @@ import {
   AddCustomer,
   PaidCustomerList,
   UnpaidCustomerList,
+  CustomerDetail,
 } from "./customers";
 import { ASILayout } from "../components";
 import { Dashboard } from "./dashboard";
