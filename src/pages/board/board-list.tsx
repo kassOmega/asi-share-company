@@ -13,7 +13,7 @@ import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 import { BoardListLayout, Display, SimpleDialog } from "./common";
 
 export const BoardList = () => {
-  const { data: members, isLoading } = useGetBoardQuery();
+  const { data: members, isLoading, refetch } = useGetBoardQuery();
   console.table(members?.data);
   const { id } = useParams();
 
@@ -36,7 +36,7 @@ export const BoardList = () => {
             <Grid container spacing={1}>
               {members?.data.map((customer) => (
                 <Grid key={customer.id} item xs={12} md={4}>
-                  <Display user={customer} key={customer.id} />
+                  <Display user={customer} reload={refetch} key={customer.id} />
                 </Grid>
               ))}
             </Grid>

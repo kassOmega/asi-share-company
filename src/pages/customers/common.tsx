@@ -8,6 +8,7 @@ import {
   DialogTitle,
   DialogContent,
   Button,
+  TextField,
 } from "@mui/material";
 import { useNavigate, Link } from "react-router-dom";
 import { ReactNode } from "react";
@@ -236,14 +237,16 @@ export function FilterMenu() {
 export const CustomerListLayout = ({
   header,
   children,
+  onChange,
 }: {
   header: string;
   children: ReactNode;
+  onChange?: (e: string) => void;
 }) => {
   return (
     <Stack spacing={2} sx={{ backgroundColor: "#ffff" }}>
       <Grid container spacing={2}>
-        <Grid xs={12} md={3} pt={2} sx={{ backgroundColor: "#e4e4e4" }}>
+        <Grid item xs={12} md={3} pt={2} sx={{ backgroundColor: "#e4e4e4" }}>
           <Stack
             spacing={1}
             sx={{
@@ -262,10 +265,16 @@ export const CustomerListLayout = ({
             >
               Register Customer
             </Button>
+            <TextField
+              placeholder="Search"
+              onChange={(e) => onChange?.(e.target.value)}
+              size="small"
+              fullWidth
+            />
             <FilterMenu />
           </Stack>
         </Grid>
-        <Grid xs={12} md={9} minHeight={"100vh"}>
+        <Grid item xs={12} md={9} minHeight={"100vh"}>
           <Stack padding={2} spacing={2}>
             <Typography variant="h4" textAlign="center" paddingTop={2}>
               {header}

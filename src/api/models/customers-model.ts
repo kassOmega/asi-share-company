@@ -26,3 +26,6 @@ export interface CustomersStat {
     totalShareHoldersCompletelyPaid: number;
   };
 }
+export interface SearchParams {
+  name?: string;
+}

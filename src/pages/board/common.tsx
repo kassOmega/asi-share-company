@@ -16,11 +16,23 @@ import FilterAltIcon from "@mui/icons-material/FilterAlt";
 import { BoardResponse, useDeleteBoardMutation, useUserToken } from "../../api";
 import { capitalizeFullName } from "../../common";
 
-export const Display = ({ user }: { user: BoardResponse }) => {
+export const Display = ({
+  user,
+  reload,
+}: {
+  user: BoardResponse;
+  reload?: () => void;
+}) => {
   const deleteCustomer = useDeleteBoardMutation();
   const { user: userRole } = useUserToken();
+  const navigate = useNavigate();
   function handleDelete() {
-    deleteCustomer.mutate(user?.id ?? "");
+    deleteCustomer.mutate(user?.id ?? "", {
+      onSuccess: () => {
+        reload?.();
+        navigate("/board");
+      },
+    });
   }
   return (
     <Stack

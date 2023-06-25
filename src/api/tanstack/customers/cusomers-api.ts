@@ -5,14 +5,18 @@ import {
   CustomersResponse,
   CustomersStat,
   ResultObject,
+  SearchParams,
 } from "../../models";
 import { useMutation, useQuery } from "@tanstack/react-query";
 
-export const useGetCustomersQuery = () => {
+export const useGetCustomersQuery = (params?: SearchParams) => {
   const client = useClient();
   return useQuery<ResultArray<CustomersResponse>, string>({
-    queryKey: ["get customer"],
-    queryFn: () => client.get("/api/admin/customers").then((res) => res.data),
+    queryKey: ["get customer", params?.name],
+    queryFn: () =>
+      client
+        .get("/api/admin/customers", { params: { name: params?.name } })
+        .then((res) => res.data),
   });
 };
 
