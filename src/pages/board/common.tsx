@@ -11,11 +11,11 @@ import {
   TextField,
 } from "@mui/material";
 import { useNavigate, Link } from "react-router-dom";
-import { ReactNode } from "react";
+import { ReactNode, useState } from "react";
 import FilterAltIcon from "@mui/icons-material/FilterAlt";
 import { BoardResponse, useDeleteBoardMutation, useUserToken } from "../../api";
-import { capitalizeFullName } from "../../common";
-
+import { DeleteDialog, capitalizeFullName } from "../../common";
+import { useSnackbar } from "notistack";
 export const Display = ({
   user,
   reload,
@@ -26,11 +26,14 @@ export const Display = ({
   const deleteCustomer = useDeleteBoardMutation();
   const { user: userRole } = useUserToken();
   const navigate = useNavigate();
+  const { enqueueSnackbar } = useSnackbar();
+  const [confirmDelete, setConfirmDelete] = useState(false);
   function handleDelete() {
     deleteCustomer.mutate(user?.id ?? "", {
       onSuccess: () => {
         reload?.();
         navigate("/board");
+        enqueueSnackbar("User Successfully Deleted", { variant: "success" });
       },
     });
   }
@@ -100,12 +103,17 @@ export const Display = ({
                   size="small"
                   color="error"
                   sx={{ cursor: "pointer" }}
-                  onClick={handleDelete}
+                  onClick={() => setConfirmDelete(true)}
                 >
                   Delete
                 </Button>
               )}
             </Stack>
+            <DeleteDialog
+              onClose={() => setConfirmDelete(false)}
+              open={confirmDelete}
+              onDelete={handleDelete}
+            />
           </Grid>
         </Grid>
       </Stack>

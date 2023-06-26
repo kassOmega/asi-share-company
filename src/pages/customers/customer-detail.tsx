@@ -13,11 +13,15 @@ import {
 } from "../../api";
 import { useNavigate, useParams } from "react-router-dom";
 import { CustomerListLayout } from "./common";
-import { capitalizeFullName } from "../../common";
+import { DeleteDialog, capitalizeFullName } from "../../common";
+import { useState } from "react";
+import { useSnackbar } from "notistack";
 
 export const CustomerDetail = () => {
   const { user: useRole } = useUserToken();
   const { id } = useParams();
+  const [confirmDelete, setConfirmDelete] = useState(false);
+  const { enqueueSnackbar } = useSnackbar();
   const deleteCustomer = useDeleteCustomerMutation();
   const navigate = useNavigate();
   const { data: user, isLoading } = useGetCustomerByIdQuery(parseInt(id ?? ""));
@@ -25,12 +29,13 @@ export const CustomerDetail = () => {
     deleteCustomer.mutate(id ?? "", {
       onSuccess: () => {
         navigate("/customers");
+        enqueueSnackbar("User Successfully Deleted", { variant: "success" });
       },
     });
   }
   return (
     <Stack padding={2} spacing={2}>
-      <CustomerListLayout header={"Customer Detail "}>
+      <CustomerListLayout header={"Customer Detail "} isDetail>
         {isLoading ? (
           <CircularProgress />
         ) : (
@@ -89,7 +94,7 @@ export const CustomerDetail = () => {
                   variant="contained"
                   color="error"
                   size="small"
-                  onClick={handleDelete}
+                  onClick={() => setConfirmDelete(true)}
                 >
                   Delete
                 </Button>
@@ -97,6 +102,11 @@ export const CustomerDetail = () => {
             )}
           </Stack>
         )}
+        <DeleteDialog
+          onClose={() => setConfirmDelete(false)}
+          open={confirmDelete}
+          onDelete={handleDelete}
+        />
       </CustomerListLayout>
     </Stack>
   );

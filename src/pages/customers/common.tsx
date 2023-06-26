@@ -184,7 +184,7 @@ export function SimpleDialog(props: SimpleDialogProps) {
   );
 }
 
-export function FilterMenu() {
+export function FilterMenu({ isDetail }: { isDetail?: boolean }) {
   const navigate = useNavigate();
 
   return (
@@ -238,14 +238,16 @@ export const CustomerListLayout = ({
   header,
   children,
   onChange,
+  isDetail,
 }: {
   header: string;
   children: ReactNode;
   onChange?: (e: string) => void;
+  isDetail?: boolean;
 }) => {
   return (
-    <Stack spacing={2} sx={{ backgroundColor: "#ffff" }}>
-      <Grid container spacing={2}>
+    <Stack sx={{ backgroundColor: "#ffff" }}>
+      <Grid container>
         <Grid item xs={12} md={3} pt={2} sx={{ backgroundColor: "#e4e4e4" }}>
           <Stack
             spacing={1}
@@ -265,21 +267,39 @@ export const CustomerListLayout = ({
             >
               Register Customer
             </Button>
-            <TextField
-              placeholder="Search"
-              onChange={(e) => onChange?.(e.target.value)}
-              size="small"
-              fullWidth
-            />
+            {!isDetail && (
+              <TextField
+                placeholder="Search"
+                onChange={(e) => onChange?.(e.target.value)}
+                size="small"
+                fullWidth
+              />
+            )}
             <FilterMenu />
           </Stack>
         </Grid>
         <Grid item xs={12} md={9} minHeight={"100vh"}>
-          <Stack padding={2} spacing={2}>
-            <Typography variant="h4" textAlign="center" paddingTop={2}>
-              {header}
-            </Typography>
-            {children}
+          <Stack spacing={2}>
+            <Stack direction={"row"} justifyContent={"center"}>
+              <Typography
+                variant="h4"
+                textAlign="center"
+                sx={{
+                  "@media (min-width: 600px)": {
+                    position: "fixed",
+                    paddingTop: 2,
+                  },
+                  "@media (max-width: 600px)": {
+                    paddingTop: 2,
+                  },
+                }}
+              >
+                {header}
+              </Typography>
+            </Stack>
+            <Stack padding={2} pt={8}>
+              {children}
+            </Stack>
           </Stack>
         </Grid>
       </Grid>

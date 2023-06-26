@@ -33,8 +33,8 @@ export const useGetBoardByIdQuery = (id: number) => {
 };
 export const useRegisterBoardMutation = () => {
   const client = useClient();
-  return useMutation({
-    mutationFn: (data: BoardRequest) => {
+  return useMutation<any, any, BoardRequest>({
+    mutationFn: (data) => {
       return client
         .post("/api/admin/board-member", data)
         .then((d) => d.data)

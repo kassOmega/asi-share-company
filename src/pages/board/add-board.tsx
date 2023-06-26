@@ -123,7 +123,16 @@ export function AddBoard() {
               </Grid>
             </Grid>
             {!!error && (
-              <Typography>Something went wrong! Please try again</Typography>
+              <Typography
+                alignItems={"center"}
+                justifyContent={"center"}
+                color={"red"}
+                flex={1}
+                pl={8}
+              >
+                {" "}
+                {error?.response?.data?.message}
+              </Typography>
             )}
             <Button type="submit" variant="contained" disabled={isLoading}>
               {isLoading ? <CircularProgress size="20px" /> : "Register"}
