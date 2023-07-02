@@ -52,7 +52,11 @@ export const CustomerDetail = () => {
               container
               alignItems={"center"}
               justifyContent={"center"}
-              pl={8}
+              sx={{
+                "@media (min-width: 600px)": {
+                  paddingLeft: 8,
+                },
+              }}
             >
               <Grid item xs={6} md={6}>
                 <Typography>Full Name</Typography>
