@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { useUserToken } from "../api";
 import { ReactNode } from "react";
 import HomeIcon from "@mui/icons-material/Home";
+import { ReactComponent as Logo } from "../pages/logo.svg";
 
 export type ASILayoutProps = {
   children: ReactNode;
@@ -14,11 +15,13 @@ export const ASILayout: React.FC<ASILayoutProps> = (props) => {
     <Stack height="100vh">
       <AppBar position="fixed">
         <Toolbar>
-          <Typography>ASI Share Company</Typography>
+          <Box component={Link} to="/">
+            <Logo height={50} width={50} />
+          </Box>
           <Box width={16} />
-          <Button component={Link} to="/" variant="contained">
+          {/* <Button to="/" variant="contained">
             <HomeIcon sx={{ fontSize: 30 }} />
-          </Button>
+          </Button> */}
           <Button component={Link} to="/board" variant="contained">
             Boards
           </Button>

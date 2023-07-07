@@ -1,4 +1,5 @@
 import {
+  Box,
   Button,
   CircularProgress,
   Grid,
@@ -9,6 +10,8 @@ import {
 import { useForm, UseFormRegister } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import { useLoginMutation } from "../api";
+import { ReactComponent as LogoSvg } from "./logo.svg";
+import { ReactComponent as SidePanelSvg } from "./side-panel.svg";
 
 type FormModel = {
   userName: string;
@@ -43,58 +46,63 @@ export function LoginPage() {
     }
   };
   return (
-    <Grid container spacing={2} alignItems={"center"}>
-      <Grid item xs={12} md={6}>
-        <Stack
-          sx={{
-            padding: 10,
-            "@media (max-width: 600px)": {
-              padding: "10px",
-            },
-            "@media (max-width: 900px)": {
-              padding: 10,
-            },
-          }}
-          spacing={3}
-        >
-          <Typography>Welcome To ASI</Typography>
-        </Stack>
-      </Grid>
-      <Grid item xs={12} md={6}>
-        <form onSubmit={handleSubmit(onSubmit)}>
-          <Stack
-            sx={{
-              padding: 10,
-              "@media (max-width: 600px)": {
-                padding: "10px",
-              },
-              "@media (max-width: 900px)": {
+    <Stack justifyContent={"center"} alignItems={"center"}>
+      <Grid container>
+        <Grid item xs={12} md={6} alignItems="center">
+          <Logo />
+          <form onSubmit={handleSubmit(onSubmit)}>
+            <Stack
+              sx={{
                 padding: 10,
-              },
-            }}
-            spacing={3}
-          >
-            <Typography>Login </Typography>
-            <TextField
-              label="Username"
-              {...registerUpgraded("userName", {
-                required: "Username is required",
-              })}
-            />
-            <TextField
-              type="password"
-              label="Password"
-              {...registerUpgraded("password", {
-                required: "Password is required",
-              })}
-            />
-            {!!error && <Typography>Wrong username or password</Typography>}
-            <Button type="submit" variant="contained" disabled={isLoading}>
-              {isLoading ? <CircularProgress size="20px" /> : "Login"}
-            </Button>
+                "@media (max-width: 600px)": {
+                  padding: "10px",
+                },
+                "@media (max-width: 900px)": {
+                  padding: 10,
+                },
+              }}
+              spacing={3}
+            >
+              <Typography alignSelf="center" variant="h1">
+                Welcome to ASI
+              </Typography>
+              <TextField
+                label="Username"
+                {...registerUpgraded("userName", {
+                  required: "Username is required",
+                })}
+              />
+              <TextField
+                type="password"
+                label="Password"
+                {...registerUpgraded("password", {
+                  required: "Password is required",
+                })}
+              />
+              {!!error && <Typography>Wrong username or password</Typography>}
+              <Button type="submit" variant="contained" disabled={isLoading}>
+                {isLoading ? <CircularProgress size="20px" /> : "Login"}
+              </Button>
+            </Stack>
+          </form>
+        </Grid>{" "}
+        <Grid item xs={12} md={6}>
+          <Stack direction="row" justifyContent="flex-end">
+            <ShareImage />
           </Stack>
-        </form>
+        </Grid>
       </Grid>
-    </Grid>
+    </Stack>
   );
 }
+
+const ShareImage = () => {
+  return <SidePanelSvg height="100vh" />;
+};
+const Logo = () => {
+  return (
+    <Box p={2}>
+      <LogoSvg width={100} height={100} />
+    </Box>
+  );
+};
