@@ -46,7 +46,7 @@ export function LoginPage() {
     }
   };
   return (
-    <Stack justifyContent={"center"} alignItems={"center"}>
+    <Stack justifyContent={"center"}>
       <Grid container>
         <Grid item xs={12} md={6} alignItems="center">
           <Logo />

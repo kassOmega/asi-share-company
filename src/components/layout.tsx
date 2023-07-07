@@ -14,22 +14,28 @@ export const ASILayout: React.FC<ASILayoutProps> = (props) => {
     <Stack height="100vh">
       <AppBar position="fixed">
         <Toolbar>
-          <Box component={Link} to="/">
-            <Logo height={50} width={50} />
-          </Box>
-          <Box width={16} />
-          {/* <Button to="/" variant="contained">
-            <HomeIcon sx={{ fontSize: 30 }} />
-          </Button> */}
-          <Button component={Link} to="/board" variant="contained">
-            Boards
-          </Button>
-          <Button component={Link} to="/customers" variant="contained">
-            Customers
-          </Button>
-          <Button onClick={() => authBearer()} variant="contained">
-            Logout
-          </Button>
+          <Stack direction="row" justifyContent="space-between" flex={1}>
+            <Stack direction="row" spacing={2}>
+              <Box component={Link} to="/">
+                <Logo height={50} width={50} />
+              </Box>
+              <Box width={16} />
+              {/* <Button to="/" variant="contained">
+                <HomeIcon sx={{ fontSize: 30 }} />
+              </Button> */}
+              <Button component={Link} to="/board" variant="contained">
+                Boards
+              </Button>
+              <Button component={Link} to="/customers" variant="contained">
+                Customers
+              </Button>
+            </Stack>
+            <Stack direction="row">
+              <Button onClick={() => authBearer()} variant="contained">
+                Logout
+              </Button>
+            </Stack>
+          </Stack>
         </Toolbar>
       </AppBar>
       <Box height="64px" />
