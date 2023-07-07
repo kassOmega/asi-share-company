@@ -1,8 +1,7 @@
-import { AppBar, Button, Box, Stack, Toolbar, Typography } from "@mui/material";
+import { AppBar, Button, Box, Stack, Toolbar } from "@mui/material";
 import { Link } from "react-router-dom";
 import { useUserToken } from "../api";
 import { ReactNode } from "react";
-import HomeIcon from "@mui/icons-material/Home";
 import { ReactComponent as Logo } from "../pages/logo.svg";
 
 export type ASILayoutProps = {
