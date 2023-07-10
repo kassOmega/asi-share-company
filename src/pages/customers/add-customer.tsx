@@ -9,12 +9,14 @@ import {
 import { useForm, UseFormRegister } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import { CustomersRequest, useRegisterCustomerMutation } from "../../api";
+import { useState } from "react";
 
 export function AddCustomer() {
   const { handleSubmit, register, formState } = useForm<CustomersRequest>({
     mode: "onChange",
     reValidateMode: "onBlur",
   });
+  const [formError, setError] = useState("");
 
   const registerUpgraded: UseFormRegister<CustomersRequest> = (
     name,
@@ -36,6 +38,10 @@ export function AddCustomer() {
   const onSubmit = async (data: CustomersRequest) => {
     console.log("data:", data);
     const { totalSharePaid, totalSharePromised, ...other } = data;
+    if (totalSharePaid > totalSharePromised) {
+      setError("Paid share should not exceed the promised share");
+      return;
+    }
     try {
       await registerCustomer({
         ...other,
@@ -95,7 +101,7 @@ export function AddCustomer() {
                   size="small"
                   label="Phone Number"
                   {...registerUpgraded("phoneNumber", {
-                    required: "Password is required",
+                    required: "Phone Number is required",
                   })}
                 />
               </Grid>
@@ -108,6 +114,15 @@ export function AddCustomer() {
                   })}
                 />
               </Grid>
+              <Grid item md={6} xs={12}>
+                <TextField
+                  size="small"
+                  label="Customer Id"
+                  {...registerUpgraded("customerID", {
+                    required: "Customer Id is required",
+                  })}
+                />
+              </Grid>
 
               <Grid item md={6} xs={12}>
                 <TextField
@@ -115,7 +130,7 @@ export function AddCustomer() {
                   label="Promised Share"
                   type="number"
                   {...registerUpgraded("totalSharePromised", {
-                    required: "Password is required",
+                    required: "Promised Share is required",
                   })}
                 />
               </Grid>
@@ -124,16 +139,24 @@ export function AddCustomer() {
                   size="small"
                   InputProps={{}}
                   type="number"
+                  defaultValue={0}
                   label="Paid Share"
                   {...registerUpgraded("totalSharePaid", {
-                    required: "Password is required",
+                    required: "Paid Share is required",
                   })}
                 />
               </Grid>
             </Grid>
-            {!!error && (
-              <Typography>Something went wrong! Please try again</Typography>
-            )}
+            <Stack>
+              {!!error && (
+                <Typography sx={{ color: "red" }}>
+                  Something went wrong! Please try again
+                </Typography>
+              )}
+              {!!formError && (
+                <Typography sx={{ color: "red" }}>{formError}</Typography>
+              )}
+            </Stack>
             <Button type="submit" variant="contained" disabled={isLoading}>
               {isLoading ? <CircularProgress size="20px" /> : "Register"}
             </Button>
