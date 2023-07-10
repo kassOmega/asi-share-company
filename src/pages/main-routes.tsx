@@ -40,7 +40,14 @@ export function MainRoutes() {
             element={<UnpaidCustomerList />}
           />
           <Route path="/customers/:id" element={<CustomerDetail />} />
-          <Route path="/customers/update/:id" element={<UpdateCustomer />} />
+          <Route
+            path="/customers/update-payment/:id"
+            element={<UpdateCustomer />}
+          />
+          <Route
+            path="/customers/update/:id"
+            element={<UpdateCustomer isFullUpdate />}
+          />
           <Route path="*" element={<Navigate to="/" />} />
         </Switch>
       </ASILayout>

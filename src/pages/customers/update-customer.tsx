@@ -8,27 +8,34 @@ import {
 } from "@mui/material";
 import { useForm, UseFormRegister } from "react-hook-form";
 import { useNavigate, useParams } from "react-router-dom";
-import { useGetCustomerByIdQuery, useUpdateCustomerMutation } from "../../api";
+import {
+  CustomersRequest,
+  useGetCustomerByIdQuery,
+  useUpdateCustomerMutation,
+  useUpdateCustomerPaymentMutation,
+} from "../../api";
 import { useEffect } from "react";
-
+import { ReactComponent as Logo } from "../logo.svg";
+import { CustomerListLayout } from "./common";
 interface updateRequest {
   totalSharePaid: number;
 }
 
-export function UpdateCustomer() {
+export function UpdateCustomer({ isFullUpdate }: { isFullUpdate?: boolean }) {
   const { id } = useParams();
   const { data: result } = useGetCustomerByIdQuery(parseInt(id ?? ""));
-  const { handleSubmit, register, formState, reset } = useForm<updateRequest>({
-    mode: "onChange",
-    reValidateMode: "onBlur",
-    // defaultValues: useMemo(() => ({ ...result?.data }), [result]),
-  });
+  const { handleSubmit, register, formState, reset } =
+    useForm<CustomersRequest>({
+      mode: "onChange",
+      reValidateMode: "onBlur",
+      // defaultValues: useMemo(() => ({ ...result?.data }), [result]),
+    });
 
   useEffect(() => {
     reset(result?.data);
   }, [result?.data, reset]);
 
-  const registerUpgraded: UseFormRegister<updateRequest> = (
+  const registerUpgraded: UseFormRegister<CustomersRequest> = (
     name,
     ...params
   ) => {
@@ -41,15 +48,20 @@ export function UpdateCustomer() {
 
   const navigate = useNavigate();
   const {
-    mutateAsync: registerCustomer,
-    isLoading,
-    error,
+    mutateAsync: updateCustomerPayment,
+    isLoading: paymentLoading,
+    error: paymentError,
+  } = useUpdateCustomerPaymentMutation();
+  const {
+    mutateAsync: updateCustomer,
+    isLoading: updateLoading,
+    error: updateError,
   } = useUpdateCustomerMutation();
 
-  const onSubmit = async (data: updateRequest) => {
+  const onPaymentSubmit = async (data: updateRequest) => {
     console.log("data:", data);
     try {
-      await registerCustomer({
+      await updateCustomerPayment({
         ...data,
       });
       navigate("/customers");
@@ -57,32 +69,176 @@ export function UpdateCustomer() {
       // wrong username or password
     }
   };
-
-  return (
-    <Grid container spacing={2} alignItems={"center"}>
-      <Grid item xs={12} md={6}>
-        <Stack
-          sx={{
+  const onUpdateSubmit = async (data: CustomersRequest) => {
+    console.log("data:", data);
+    try {
+      // await updateCustomer({
+      //   ...data,
+      // });
+      navigate("/customers");
+    } catch {
+      // wrong username or password
+    }
+  };
+  const paymentUpdate = (
+    <form onSubmit={handleSubmit(onPaymentSubmit)}>
+      <Stack
+        sx={{
+          padding: 10,
+          "@media (max-width: 600px)": {
+            padding: "10px",
+          },
+          "@media (max-width: 900px)": {
             padding: 10,
-            "@media (max-width: 600px)": {
-              padding: "10px",
-            },
-            "@media (max-width: 900px)": {
-              padding: 10,
-            },
-          }}
-          spacing={3}
+          },
+        }}
+        spacing={3}
+      >
+        <Typography>
+          {result?.data.totalSharePaid} of {result?.data.totalSharePromised}{" "}
+          total shares has been previously paid{" "}
+        </Typography>
+        <Grid container spacing={2}>
+          <Grid item md={12} xs={12}>
+            <TextField
+              fullWidth
+              size="small"
+              type="number"
+              label="Paid Share"
+              InputProps={{
+                inputProps: {
+                  max:
+                    (result?.data.totalSharePromised ?? 0) -
+                    (result?.data.totalSharePaid ?? 0),
+                },
+              }}
+              {...registerUpgraded("totalSharePaid", {
+                required: "Paid Share is required",
+              })}
+            />
+          </Grid>
+        </Grid>
+        {!!paymentError && (
+          <Typography color="red">
+            Something went wrong! Please try again
+          </Typography>
+        )}
+        <Button type="submit" variant="contained" disabled={paymentLoading}>
+          {paymentLoading ? <CircularProgress size="20px" /> : "Update"}
+        </Button>
+      </Stack>
+    </form>
+  );
+
+  const fullUpdate = (
+    <form onSubmit={handleSubmit(onUpdateSubmit)}>
+      <Stack
+        sx={{
+          padding: 10,
+          "@media (max-width: 600px)": {
+            padding: "10px",
+          },
+          "@media (max-width: 900px)": {
+            padding: 10,
+          },
+        }}
+        spacing={3}
+      >
+        {/* <Typography>Register Customer </Typography>
+        <Typography>
+          {result?.data.totalSharePaid} of {result?.data.totalSharePromised}{" "}
+          total shares has been previously paid{" "}
+        </Typography> */}
+        <Grid container spacing={2}>
+          <Grid item md={6} xs={12}>
+            <TextField
+              size="small"
+              label="Full Name"
+              {...registerUpgraded("fullName", {
+                required: "Full Name is required",
+              })}
+            />
+          </Grid>
+          <Grid item md={6} xs={12}>
+            <TextField
+              size="small"
+              label="Phone Number"
+              {...registerUpgraded("phoneNumber", {
+                required: "Phone Number is required",
+              })}
+            />
+          </Grid>
+          <Grid item md={6} xs={12}>
+            <TextField
+              size="small"
+              label="Address"
+              {...registerUpgraded("address", {
+                required: "Address is required",
+              })}
+            />
+          </Grid>
+
+          <Grid item md={6} xs={12}>
+            <TextField
+              size="small"
+              label="Customer Id"
+              {...registerUpgraded("customerID", {
+                required: "Customer Id is required",
+              })}
+            />
+          </Grid>
+          <Grid item md={6} xs={12}>
+            <TextField
+              size="small"
+              label="Promised Share"
+              type="number"
+              {...registerUpgraded("totalSharePromised", {
+                required: "Promised Share is required",
+              })}
+            />
+          </Grid>
+          <Grid item md={6} xs={12}>
+            <TextField
+              size="small"
+              type="number"
+              label="Paid Share"
+              InputProps={{
+                inputProps: {
+                  max:
+                    (result?.data.totalSharePromised ?? 0) -
+                    (result?.data.totalSharePaid ?? 0),
+                },
+              }}
+              {...registerUpgraded("totalSharePaid", {
+                required: "Paid Share is required",
+              })}
+            />
+          </Grid>
+        </Grid>
+        {!!updateError && (
+          <Typography color="red">
+            Something went wrong! Please try again
+          </Typography>
+        )}
+        <Button
+          type="submit"
+          variant="contained"
+          disabled={updateLoading}
+          fullWidth
         >
-          <Typography>Welcome To ASI</Typography>
-        </Stack>
-      </Grid>
-      <Grid item xs={12} md={6}>
-        <form onSubmit={handleSubmit(onSubmit)}>
+          {updateLoading ? <CircularProgress size="20px" /> : "Update"}
+        </Button>
+      </Stack>
+    </form>
+  );
+  return (
+    <CustomerListLayout header="Register Customer">
+      <Grid container spacing={2} alignItems={"center"}>
+        <Grid item xs={12} md={4}>
           <Stack
             sx={{
-              padding: 10,
               "@media (max-width: 600px)": {
-                padding: "10px",
+                padding: 10,
               },
               "@media (max-width: 900px)": {
                 padding: 10,
@@ -90,83 +246,13 @@ export function UpdateCustomer() {
             }}
             spacing={3}
           >
-            <Typography>Register Customer </Typography>
-            <Typography>
-              {result?.data.totalSharePaid} of {result?.data.totalSharePromised}{" "}
-              total shares has been previously paid{" "}
-            </Typography>
-            <Grid container spacing={2}>
-              {/* <Grid item md={6} xs={12}>
-                <TextField
-                  size="small"
-                  label="Full Name"
-                  {...registerUpgraded("fullName", {
-                    required: "Username is required",
-                  })}
-                />
-              </Grid>
-              <Grid item md={6} xs={12}>
-                <TextField
-                  size="small"
-                  label="Phone Number"
-                  {...registerUpgraded("phoneNumber", {
-                    required: "Password is required",
-                  })}
-                />
-              </Grid>
-              <Grid item md={6} xs={12}>
-                <TextField
-                  size="small"
-                  label="Address"
-                  {...registerUpgraded("address", {
-                    required: "Username is required",
-                  })}
-                />
-              </Grid>
-
-              <Grid item md={6} xs={12}>
-                <TextField
-                  size="small"
-                  label="Promised Share"
-                  type="number"
-                  {...registerUpgraded("totalSharePromised", {
-                    required: "Password is required",
-                  })}
-                />
-              </Grid> */}
-              <Grid item md={6} xs={12}>
-                <TextField
-                  fullWidth
-                  size="small"
-                  type="number"
-                  label="Paid Share"
-                  InputProps={{
-                    inputProps: {
-                      max:
-                        (result?.data.totalSharePromised ?? 0) -
-                        (result?.data.totalSharePaid ?? 0),
-                    },
-                  }}
-                  {...registerUpgraded("totalSharePaid", {
-                    required: "Password is required",
-                  })}
-                />
-              </Grid>
-            </Grid>
-            {!!error && (
-              <Typography>Something went wrong! Please try again</Typography>
-            )}
-            <Button
-              type="submit"
-              variant="contained"
-              disabled={isLoading}
-              fullWidth
-            >
-              {isLoading ? <CircularProgress size="20px" /> : "Update"}
-            </Button>
+            <Logo height={200} width={200} />
           </Stack>
-        </form>
+        </Grid>
+        <Grid item xs={12} md={8}>
+          {isFullUpdate ? fullUpdate : paymentUpdate}
+        </Grid>
       </Grid>
-    </Grid>
+    </CustomerListLayout>
   );
 }

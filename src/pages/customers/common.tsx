@@ -105,7 +105,7 @@ export const Display = ({ user }: { user: CustomersResponse }) => {
         </Grid>
         {userRole?.role === "admin" && (
           <Button
-            onClick={() => navigate(`/customers/update/${user.id}`)}
+            onClick={() => navigate(`/customers/update-payment/${user.id}`)}
             variant="outlined"
             size="small"
           >
