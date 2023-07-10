@@ -8,6 +8,7 @@ export interface CustomersResponse {
   fullyPayed: string;
 }
 export interface CustomersRequest {
+  customerID: string;
   fullName: string;
   phoneNumber: string;
   address: string;
