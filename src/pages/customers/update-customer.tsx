@@ -72,9 +72,9 @@ export function UpdateCustomer({ isFullUpdate }: { isFullUpdate?: boolean }) {
   const onUpdateSubmit = async (data: CustomersRequest) => {
     console.log("data:", data);
     try {
-      // await updateCustomer({
-      //   ...data,
-      // });
+      await updateCustomer({
+        ...data,
+      });
       navigate("/customers");
     } catch {
       // wrong username or password
