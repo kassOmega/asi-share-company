@@ -11,7 +11,7 @@ import {
   useGetCustomerByIdQuery,
   useUserToken,
 } from "../../api";
-import { Link, useNavigate, useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { CustomerListLayout } from "./common";
 import { DeleteDialog, capitalizeFullName } from "../../common";
 import { useState } from "react";
