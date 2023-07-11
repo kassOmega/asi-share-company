@@ -66,7 +66,7 @@ export function MainRoutes() {
           path="/customers/fully-unpaid"
           element={<UnpaidCustomerList />}
         />
-        <Route path="/customers/:id" element={<CustomerList />} />
+        <Route path="/customers/:id" element={<CustomerDetail />} />
         <Route path="*" element={<Navigate to="/" />} />
       </Switch>
     </ASILayout>
