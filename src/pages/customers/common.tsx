@@ -30,8 +30,19 @@ export const Display = ({ user }: { user: CustomersResponse }) => {
       borderRadius={4}
       padding={2}
       alignItems="center"
+      position="relative"
       sx={{ backgroundColor: "#f2f2f2" }}
     >
+      <Box sx={{ position: "absolute", right: 4, top: 2 }} padding={0.5}>
+        <Button
+          component={Link}
+          to={`/customers/update/${user.id}`}
+          variant="outlined"
+          size="small"
+        >
+          Edit
+        </Button>
+      </Box>
       <Stack alignItems="center" justifyItems="center" px={4}>
         <Avatar src={user.fullName} sx={{ m: 2, width: 90, height: 90 }} />
         <Grid container>
@@ -75,22 +86,6 @@ export const Display = ({ user }: { user: CustomersResponse }) => {
                 justifyItems: "center",
               }}
             >
-              <Box
-                sx={{
-                  backgroundColor: `${user.fullyPayed ? "green" : "red"}`,
-                  borderRadius: 100,
-                  height: 24,
-                  width: 24,
-                }}
-              />
-              <Typography>
-                {`${
-                  user.fullyPayed
-                    ? "Fully Paid"
-                    : `Unpaid  ${user.totalSharePromised - user.totalSharePaid}`
-                }`}
-              </Typography>
-              <Box flex={1} />
               <Button
                 variant="outlined"
                 size="small"
@@ -100,6 +95,22 @@ export const Display = ({ user }: { user: CustomersResponse }) => {
               >
                 Detail
               </Button>
+              <Typography>
+                {`${
+                  user.fullyPayed
+                    ? "Fully Paid"
+                    : `Unpaid  ${user.totalSharePromised - user.totalSharePaid}`
+                }`}
+              </Typography>
+              <Box
+                sx={{
+                  backgroundColor: `${user.fullyPayed ? "green" : "red"}`,
+                  borderRadius: 100,
+                  height: 24,
+                  width: 24,
+                }}
+              />
+              <Box flex={1} />
             </Stack>
           </Grid>
         </Grid>

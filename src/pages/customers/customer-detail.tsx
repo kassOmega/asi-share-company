@@ -11,11 +11,12 @@ import {
   useGetCustomerByIdQuery,
   useUserToken,
 } from "../../api";
-import { useNavigate, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import { CustomerListLayout } from "./common";
 import { DeleteDialog, capitalizeFullName } from "../../common";
 import { useState } from "react";
 import { useSnackbar } from "notistack";
+import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 
 export const CustomerDetail = () => {
   const { user: useRole } = useUserToken();
@@ -36,6 +37,12 @@ export const CustomerDetail = () => {
   return (
     <Stack padding={2} spacing={2}>
       <CustomerListLayout header={"Customer Detail "} isDetail>
+        <Box flexDirection={"row"} alignItems="center">
+          <ArrowBackIcon
+            sx={{ fontSize: 30, cursor: "pointer" }}
+            onClick={() => navigate("/customers")}
+          />
+        </Box>
         {isLoading ? (
           <CircularProgress />
         ) : (
@@ -46,7 +53,6 @@ export const CustomerDetail = () => {
             borderRadius={2}
             boxShadow={2}
             p={8}
-            pt={4}
           >
             <Grid
               container

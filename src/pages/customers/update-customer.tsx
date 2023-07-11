@@ -1,4 +1,5 @@
 import {
+  Box,
   Button,
   CircularProgress,
   Grid,
@@ -10,19 +11,27 @@ import { useForm, UseFormRegister } from "react-hook-form";
 import { useNavigate, useParams } from "react-router-dom";
 import {
   CustomersRequest,
+  useDeleteCustomerMutation,
   useGetCustomerByIdQuery,
   useUpdateCustomerMutation,
   useUpdateCustomerPaymentMutation,
+  useUserToken,
 } from "../../api";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { ReactComponent as Logo } from "../logo.svg";
 import { CustomerListLayout } from "./common";
+import { DeleteDialog } from "../../common";
+import { useSnackbar } from "notistack";
 interface updateRequest {
   totalSharePaid: number;
 }
 
 export function UpdateCustomer({ isFullUpdate }: { isFullUpdate?: boolean }) {
   const { id } = useParams();
+  const [confirmDelete, setConfirmDelete] = useState(false);
+  const { enqueueSnackbar } = useSnackbar();
+  const deleteCustomer = useDeleteCustomerMutation();
+  const { user: useRole } = useUserToken();
   const { data: result } = useGetCustomerByIdQuery(parseInt(id ?? ""));
   const { handleSubmit, register, formState, reset } =
     useForm<CustomersRequest>({
@@ -80,6 +89,14 @@ export function UpdateCustomer({ isFullUpdate }: { isFullUpdate?: boolean }) {
       // wrong username or password
     }
   };
+  function handleDelete() {
+    deleteCustomer.mutate(id ?? "", {
+      onSuccess: () => {
+        navigate("/customers");
+        enqueueSnackbar("User Successfully Deleted", { variant: "success" });
+      },
+    });
+  }
   const paymentUpdate = (
     <form onSubmit={handleSubmit(onPaymentSubmit)}>
       <Stack
@@ -220,12 +237,7 @@ export function UpdateCustomer({ isFullUpdate }: { isFullUpdate?: boolean }) {
             Something went wrong! Please try again
           </Typography>
         )}
-        <Button
-          type="submit"
-          variant="contained"
-          disabled={updateLoading}
-          fullWidth
-        >
+        <Button type="submit" variant="contained" disabled fullWidth>
           {updateLoading ? <CircularProgress size="20px" /> : "Update"}
         </Button>
       </Stack>
@@ -233,6 +245,23 @@ export function UpdateCustomer({ isFullUpdate }: { isFullUpdate?: boolean }) {
   );
   return (
     <CustomerListLayout header="Register Customer">
+      {isFullUpdate && useRole?.role === "admin" && (
+        <Box alignSelf={"end"}>
+          <Button
+            variant="contained"
+            color="error"
+            size="small"
+            onClick={() => setConfirmDelete(true)}
+          >
+            Delete Customer
+          </Button>
+        </Box>
+      )}
+      <DeleteDialog
+        onClose={() => setConfirmDelete(false)}
+        open={confirmDelete}
+        onDelete={handleDelete}
+      />
       <Grid container spacing={2} alignItems={"center"}>
         <Grid item xs={12} md={4}>
           <Stack
