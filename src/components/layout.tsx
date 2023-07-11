@@ -26,7 +26,7 @@ export const ASILayout: React.FC<ASILayoutProps> = (props) => {
             }}
             flex={1}
           >
-            <Stack direction="row" spacing={2}>
+            <Stack direction="row" spacing={0}>
               <Box component={Link} to="/">
                 <Logo height={50} width={50} />
               </Box>
@@ -34,10 +34,20 @@ export const ASILayout: React.FC<ASILayoutProps> = (props) => {
               {/* <Button to="/" variant="contained">
                 <HomeIcon sx={{ fontSize: 30 }} />
               </Button> */}
-              <Button component={Link} to="/board" variant="contained">
+              <Button
+                sx={{ p: 2 }}
+                component={Link}
+                to="/board"
+                variant="contained"
+              >
                 Boards
               </Button>
-              <Button component={Link} to="/customers" variant="contained">
+              <Button
+                sx={{ p: 2 }}
+                component={Link}
+                to="/customers"
+                variant="contained"
+              >
                 Customers
               </Button>
             </Stack>
