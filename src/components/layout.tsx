@@ -14,7 +14,18 @@ export const ASILayout: React.FC<ASILayoutProps> = (props) => {
     <Stack height="100vh">
       <AppBar position="fixed">
         <Toolbar>
-          <Stack direction="row" justifyContent="space-between" flex={1}>
+          <Stack
+            direction="row"
+            sx={{
+              "@media (min-width: 600px)": {
+                justifyContent: "space-between",
+              },
+              "@media (max-width: 600px)": {
+                paddingTop: 2,
+              },
+            }}
+            flex={1}
+          >
             <Stack direction="row" spacing={2}>
               <Box component={Link} to="/">
                 <Logo height={50} width={50} />
