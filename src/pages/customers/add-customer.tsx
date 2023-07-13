@@ -60,7 +60,7 @@ export function AddCustomer() {
     <CustomerListLayout header="Register Customer">
       <Grid container spacing={2} alignItems={"center"}>
         <Grid item xs={12} md={4}>
-          <Stack>
+          <Stack alignItems="center" justifyContent="center">
             <Logo height={200} width={200} />
           </Stack>
         </Grid>
