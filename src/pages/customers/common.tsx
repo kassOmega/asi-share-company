@@ -29,7 +29,7 @@ export const Display = ({ user }: { user: CustomersResponse }) => {
       boxShadow={2}
       borderRadius={4}
       padding={2}
-      alignItems="center"
+      spacing={2}
       position="relative"
       sx={{ backgroundColor: "#f2f2f2" }}
     >
@@ -75,49 +75,44 @@ export const Display = ({ user }: { user: CustomersResponse }) => {
           <Grid item xs={6} md={7}>
             <Typography sx={{ fontSize: 12 }}>{user.phoneNumber}</Typography>
           </Grid>
-          <Grid></Grid>
-          <Grid item xs={6} md={12} alignSelf="center">
-            <Stack
-              direction="row"
-              alignItems="center"
-              spacing={2}
-              paddingTop={4}
+          <Grid item xs={8} md={8}>
+            <Typography>
+              {`${
+                user.fullyPayed
+                  ? "Fully Paid"
+                  : `Unpaid Share   ${
+                      user.totalSharePromised - user.totalSharePaid
+                    }`
+              }`}
+            </Typography>
+          </Grid>
+          <Grid item xs={4} md={4}>
+            <Box
               sx={{
-                justifyItems: "center",
+                backgroundColor: `${user.fullyPayed ? "green" : "red"}`,
+                borderRadius: 100,
+                height: 24,
+                width: 24,
               }}
-            >
-              <Button
-                variant="outlined"
-                size="small"
-                sx={{ cursor: "pointer" }}
-                component={Link}
-                to={`/customers/${user.id}`}
-              >
-                Detail
-              </Button>
-              <Typography>
-                {`${
-                  user.fullyPayed
-                    ? "Fully Paid"
-                    : `Unpaid  ${user.totalSharePromised - user.totalSharePaid}`
-                }`}
-              </Typography>
-              <Box
-                sx={{
-                  backgroundColor: `${user.fullyPayed ? "green" : "red"}`,
-                  borderRadius: 100,
-                  height: 24,
-                  width: 24,
-                }}
-              />
-              <Box flex={1} />
-            </Stack>
+            />
           </Grid>
         </Grid>
+      </Stack>
+      <Stack direction="row" sx={{ justifyContent: "space-between" }}>
+        <Button
+          variant="outlined"
+          size="small"
+          sx={{ p: 0.5, alignSelf: "flex-start" }}
+          component={Link}
+          to={`/customers/${user.id}`}
+        >
+          Detail
+        </Button>
         {userRole?.role === "admin" && (
           <Button
             onClick={() => navigate(`/customers/update-payment/${user.id}`)}
             variant="outlined"
+            sx={{ p: 0.5, px: 1, alignSelf: "flex-end" }}
             size="small"
           >
             update payment

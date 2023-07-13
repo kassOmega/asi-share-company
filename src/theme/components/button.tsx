@@ -8,7 +8,7 @@ export const MuiButton: Components["MuiButton"] = {
   styleOverrides: {
     root: {
       borderRadius: "1000px",
-      padding: baseTheme.spacing(1.5, 5),
+      padding: baseTheme.spacing(1, 1),
       fontWeight: 600,
     },
   },
