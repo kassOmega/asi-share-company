@@ -141,7 +141,7 @@ export function AddCustomer() {
                       required: "Paid Share is required",
                       validate: {
                         positiveNumber: (value) =>
-                          parseInt(value + "") <
+                          parseInt(value + "") <=
                             parseInt(watch("totalSharePromised") + "") &&
                           parseInt(value + "") >= 0,
                       },
@@ -175,7 +175,7 @@ export function AddCustomer() {
                       required: "Paid Share is required",
                       validate: {
                         positiveNumber: (value) =>
-                          parseInt(value + "") <
+                          parseInt(value + "") <=
                             parseInt(watch("totalSharePromisedAmount") + "") &&
                           parseInt(value + "") >= 0,
                       },

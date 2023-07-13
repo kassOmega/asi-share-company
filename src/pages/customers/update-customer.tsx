@@ -236,12 +236,6 @@ export function UpdateCustomer({ isFullUpdate }: { isFullUpdate?: boolean }) {
               }}
               {...registerUpgraded("totalSharePaid", {
                 required: "Paid Share is required",
-                validate: {
-                  positiveNumber: (value) =>
-                    parseInt(value + "") <
-                      parseInt(watch("totalSharePromised") + "") &&
-                    parseInt(value + "") >= (result?.data.totalSharePaid ?? 0),
-                },
               })}
             />
           </Grid>
