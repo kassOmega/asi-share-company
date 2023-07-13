@@ -247,7 +247,7 @@ export function UpdateCustomer({ isFullUpdate }: { isFullUpdate?: boolean }) {
                 required: "Paid Share is required",
                 validate: {
                   positiveNumber: (value) =>
-                    parseInt(value + "") <
+                    parseInt(value + "") <=
                       parseInt(watch("totalSharePromisedAmount") + "") &&
                     parseInt(value + "") >= 0,
                 },
