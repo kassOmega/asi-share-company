@@ -125,7 +125,7 @@ export function AddCustomer() {
                     {...registerUpgraded("totalSharePromised", {
                       required: "Promised Share is required",
                       validate: {
-                        positiveNumber: (value) => parseInt(value + "") > 5,
+                        positiveNumber: (value) => parseInt(value + "") >= 5,
                       },
                     })}
                   />
