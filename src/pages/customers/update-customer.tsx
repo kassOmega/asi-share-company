@@ -33,7 +33,7 @@ export function UpdateCustomer({ isFullUpdate }: { isFullUpdate?: boolean }) {
   const deleteCustomer = useDeleteCustomerMutation();
   const { user: useRole } = useUserToken();
   const { data: result } = useGetCustomerByIdQuery(parseInt(id ?? ""));
-  const { handleSubmit, register, formState, reset } =
+  const { handleSubmit, register, formState, reset, watch } =
     useForm<CustomersRequest>({
       mode: "onChange",
       reValidateMode: "onBlur",
@@ -65,13 +65,14 @@ export function UpdateCustomer({ isFullUpdate }: { isFullUpdate?: boolean }) {
     mutateAsync: updateCustomer,
     isLoading: updateLoading,
     error: updateError,
-  } = useUpdateCustomerMutation();
+  } = useUpdateCustomerMutation(id ?? "");
 
   const onPaymentSubmit = async (data: updateRequest) => {
     console.log("data:", data);
+    const { totalSharePaid } = data;
     try {
       await updateCustomerPayment({
-        ...data,
+        totalSharePaid: parseInt("" + totalSharePaid),
       });
       navigate("/customers");
     } catch {
@@ -80,9 +81,13 @@ export function UpdateCustomer({ isFullUpdate }: { isFullUpdate?: boolean }) {
   };
   const onUpdateSubmit = async (data: CustomersRequest) => {
     console.log("data:", data);
+
+    const { totalSharePaid, totalSharePromised, ...other } = data;
     try {
       await updateCustomer({
-        ...data,
+        ...other,
+        totalSharePaid: parseInt("" + totalSharePaid),
+        totalSharePromised: parseInt("" + totalSharePromised),
       });
       navigate("/customers");
     } catch {
@@ -211,6 +216,9 @@ export function UpdateCustomer({ isFullUpdate }: { isFullUpdate?: boolean }) {
               type="number"
               {...registerUpgraded("totalSharePromised", {
                 required: "Promised Share is required",
+                validate: {
+                  positiveNumber: (value) => parseInt(value + "") > 5,
+                },
               })}
             />
           </Grid>
@@ -228,6 +236,46 @@ export function UpdateCustomer({ isFullUpdate }: { isFullUpdate?: boolean }) {
               }}
               {...registerUpgraded("totalSharePaid", {
                 required: "Paid Share is required",
+                validate: {
+                  positiveNumber: (value) =>
+                    parseInt(value + "") <
+                      parseInt(watch("totalSharePromised") + "") &&
+                    parseInt(value + "") >= (result?.data.totalSharePaid ?? 0),
+                },
+              })}
+            />
+          </Grid>
+          <Grid item md={6} xs={12}>
+            <TextField
+              size="small"
+              label="Promised Birr"
+              defaultValue={
+                parseInt(watch("totalSharePromisedAmount") + "") * 2000
+              }
+              type="number"
+              {...registerUpgraded("totalSharePromisedAmount", {
+                required: "Promised Share is required",
+                validate: {
+                  positiveNumber: (value) => parseInt(value + "") > 5,
+                },
+              })}
+            />
+          </Grid>
+          <Grid item md={6} xs={12}>
+            <TextField
+              size="small"
+              InputProps={{}}
+              type="number"
+              defaultValue={0}
+              label="Paid Birr"
+              {...registerUpgraded("totalSharePaidAmount", {
+                required: "Paid Share is required",
+                validate: {
+                  positiveNumber: (value) =>
+                    parseInt(value + "") <
+                      parseInt(watch("totalSharePromisedAmount") + "") &&
+                    parseInt(value + "") >= 0,
+                },
               })}
             />
           </Grid>
@@ -237,7 +285,12 @@ export function UpdateCustomer({ isFullUpdate }: { isFullUpdate?: boolean }) {
             Something went wrong! Please try again
           </Typography>
         )}
-        <Button type="submit" variant="contained" disabled fullWidth>
+        <Button
+          type="submit"
+          variant="contained"
+          disabled={updateLoading}
+          fullWidth
+        >
           {updateLoading ? <CircularProgress size="20px" /> : "Update"}
         </Button>
       </Stack>

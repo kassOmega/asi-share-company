@@ -14,10 +14,11 @@ import { CustomerListLayout } from "./common";
 import { ReactComponent as Logo } from "../logo.svg";
 
 export function AddCustomer() {
-  const { handleSubmit, register, formState } = useForm<CustomersRequest>({
-    mode: "onChange",
-    reValidateMode: "onBlur",
-  });
+  const { handleSubmit, register, formState, watch } =
+    useForm<CustomersRequest>({
+      mode: "onChange",
+      reValidateMode: "onBlur",
+    });
   const [formError, setError] = useState("");
 
   const registerUpgraded: UseFormRegister<CustomersRequest> = (
@@ -119,9 +120,13 @@ export function AddCustomer() {
                   <TextField
                     size="small"
                     label="Promised Share"
+                    defaultValue={5}
                     type="number"
                     {...registerUpgraded("totalSharePromised", {
                       required: "Promised Share is required",
+                      validate: {
+                        positiveNumber: (value) => parseInt(value + "") > 5,
+                      },
                     })}
                   />
                 </Grid>
@@ -134,6 +139,46 @@ export function AddCustomer() {
                     label="Paid Share"
                     {...registerUpgraded("totalSharePaid", {
                       required: "Paid Share is required",
+                      validate: {
+                        positiveNumber: (value) =>
+                          parseInt(value + "") <
+                            parseInt(watch("totalSharePromised") + "") &&
+                          parseInt(value + "") >= 0,
+                      },
+                    })}
+                  />
+                </Grid>
+                <Grid item md={6} xs={12}>
+                  <TextField
+                    size="small"
+                    label="Promised Birr"
+                    defaultValue={
+                      parseInt(watch("totalSharePromised") + "") * 2000
+                    }
+                    type="number"
+                    {...registerUpgraded("totalSharePromisedAmount", {
+                      required: "Promised Share is required",
+                      validate: {
+                        positiveNumber: (value) => parseInt(value + "") > 5,
+                      },
+                    })}
+                  />
+                </Grid>
+                <Grid item md={6} xs={12}>
+                  <TextField
+                    size="small"
+                    InputProps={{}}
+                    type="number"
+                    defaultValue={0}
+                    label="Paid Birr"
+                    {...registerUpgraded("totalSharePaidAmount", {
+                      required: "Paid Share is required",
+                      validate: {
+                        positiveNumber: (value) =>
+                          parseInt(value + "") <
+                            parseInt(watch("totalSharePromisedAmount") + "") &&
+                          parseInt(value + "") >= 0,
+                      },
                     })}
                   />
                 </Grid>

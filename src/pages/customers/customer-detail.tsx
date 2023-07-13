@@ -96,6 +96,18 @@ export const CustomerDetail = () => {
               <Grid item xs={6} md={6}>
                 <Typography>{user?.data.totalSharePaid}</Typography>
               </Grid>
+              <Grid item xs={6} md={6}>
+                <Typography>Promised Share in Birr</Typography>
+              </Grid>
+              <Grid item xs={6} md={6}>
+                <Typography>{user?.data.totalSharePromisedAmount}</Typography>
+              </Grid>
+              <Grid item xs={6} md={6}>
+                <Typography>Paid Share in Birr</Typography>
+              </Grid>
+              <Grid item xs={6} md={6}>
+                <Typography>{user?.data.totalSharePaidAmount}</Typography>
+              </Grid>
             </Grid>
 
             {useRole?.role === "admin" && (

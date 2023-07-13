@@ -5,6 +5,8 @@ export interface CustomersResponse {
   address: string;
   totalSharePromised: number;
   totalSharePaid: number;
+  totalSharePromisedAmount: number;
+  totalSharePaidAmount: number;
   fullyPayed: string;
 }
 export interface CustomersRequest {
@@ -14,6 +16,8 @@ export interface CustomersRequest {
   address: string;
   totalSharePromised: number;
   totalSharePaid: number;
+  totalSharePromisedAmount: number;
+  totalSharePaidAmount: number;
 }
 export interface UpdateCustomersRequest {
   CustomersRequest: CustomersRequest;

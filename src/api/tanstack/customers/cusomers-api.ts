@@ -92,12 +92,12 @@ export const useUpdateCustomerPaymentMutation = () => {
     },
   });
 };
-export const useUpdateCustomerMutation = () => {
+export const useUpdateCustomerMutation = (id: string) => {
   const client = useClient();
   return useMutation({
     mutationFn: (data: CustomersRequest) => {
       return client
-        .put("/api/admin/customer", data)
+        .put("/api/admin/customer/" + id, data)
         .then((d) => d.data)
         .then((res) => {
           return res;
