@@ -217,7 +217,7 @@ export function UpdateCustomer({ isFullUpdate }: { isFullUpdate?: boolean }) {
               {...registerUpgraded("totalSharePromised", {
                 required: "Promised Share is required",
                 validate: {
-                  positiveNumber: (value) => parseInt(value + "") > 5,
+                  positiveNumber: (value) => parseInt(value + "") >= 5,
                 },
               })}
             />
