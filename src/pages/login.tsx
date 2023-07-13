@@ -48,8 +48,10 @@ export function LoginPage() {
   return (
     <Stack justifyContent={"center"}>
       <Grid container>
-        <Grid item xs={12} md={6} alignItems="center">
-          <Logo />
+        <Grid item xs={12} md={6}>
+          <Stack alignItems="center" justifyContent="center">
+            <Logo />
+          </Stack>
           <form onSubmit={handleSubmit(onSubmit)}>
             <Stack
               sx={{

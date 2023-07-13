@@ -60,7 +60,7 @@ export function UpdateCustomer({ isFullUpdate }: { isFullUpdate?: boolean }) {
     mutateAsync: updateCustomerPayment,
     isLoading: paymentLoading,
     error: paymentError,
-  } = useUpdateCustomerPaymentMutation();
+  } = useUpdateCustomerPaymentMutation(id ?? "");
   const {
     mutateAsync: updateCustomer,
     isLoading: updateLoading,
@@ -219,23 +219,6 @@ export function UpdateCustomer({ isFullUpdate }: { isFullUpdate?: boolean }) {
                 validate: {
                   positiveNumber: (value) => parseInt(value + "") >= 5,
                 },
-              })}
-            />
-          </Grid>
-          <Grid item md={6} xs={12}>
-            <TextField
-              size="small"
-              type="number"
-              label="Paid Share"
-              InputProps={{
-                inputProps: {
-                  max:
-                    (result?.data.totalSharePromised ?? 0) -
-                    (result?.data.totalSharePaid ?? 0),
-                },
-              }}
-              {...registerUpgraded("totalSharePaid", {
-                required: "Paid Share is required",
               })}
             />
           </Grid>
