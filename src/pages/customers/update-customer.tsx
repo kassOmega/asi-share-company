@@ -226,14 +226,12 @@ export function UpdateCustomer({ isFullUpdate }: { isFullUpdate?: boolean }) {
             <TextField
               size="small"
               label="Promised Birr"
-              defaultValue={
-                parseInt(watch("totalSharePromisedAmount") + "") * 2000
-              }
+              defaultValue={parseInt(watch("totalSharePromised") + "") * 2000}
               type="number"
               {...registerUpgraded("totalSharePromisedAmount", {
                 required: "Promised Share is required",
                 validate: {
-                  positiveNumber: (value) => parseInt(value + "") > 5,
+                  positiveNumber: (value) => parseInt(value + "") >= 0,
                 },
               })}
             />
