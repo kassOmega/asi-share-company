@@ -43,6 +43,9 @@ export function UpdateCustomer({ isFullUpdate }: { isFullUpdate?: boolean }) {
   useEffect(() => {
     reset(result?.data);
   }, [result?.data, reset]);
+  const isReset = result?.data.totalSharePaid
+    ? result?.data.totalSharePaid > 0
+    : false;
 
   const registerUpgraded: UseFormRegister<CustomersRequest> = (
     name,
@@ -150,7 +153,7 @@ export function UpdateCustomer({ isFullUpdate }: { isFullUpdate?: boolean }) {
             Something went wrong! Please try again
           </Typography>
         )}
-        <Stack flex={1} direction="row" justifyContent="space-between">
+        <Stack flex={1} direction="row" justifyContent="space-evenly">
           <Button
             type="submit"
             size="small"
@@ -160,15 +163,24 @@ export function UpdateCustomer({ isFullUpdate }: { isFullUpdate?: boolean }) {
           >
             {paymentLoading ? <CircularProgress size="20px" /> : "Update"}
           </Button>
-          <Button
-            onClick={async () => await resetPayment({ totalSharePaid: 0 })}
-            variant="contained"
-            disabled={resetLoading}
-            size="small"
-            sx={{ p: 1, alignSelf: "flex-end" }}
-          >
-            {resetLoading ? <CircularProgress size="20px" /> : "Reset to zero"}
-          </Button>
+          {isReset && (
+            <Button
+              onClick={async () => {
+                await resetPayment({ totalSharePaid: 0 });
+                navigate("/customers");
+              }}
+              variant="contained"
+              disabled={resetLoading}
+              size="small"
+              sx={{ p: 1, alignSelf: "flex-end" }}
+            >
+              {resetLoading ? (
+                <CircularProgress size="20px" />
+              ) : (
+                "Reset to zero"
+              )}
+            </Button>
+          )}
         </Stack>
       </Stack>
     </form>
