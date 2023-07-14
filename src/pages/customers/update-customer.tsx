@@ -265,6 +265,24 @@ export function UpdateCustomer({ isFullUpdate }: { isFullUpdate?: boolean }) {
           </Grid>
           <Grid item md={6} xs={12}>
             <TextField
+              size="small"
+              InputProps={{}}
+              type="number"
+              defaultValue={0}
+              label="Paid Share"
+              {...registerUpgraded("totalSharePaid", {
+                required: "Paid Share is required",
+                validate: {
+                  positiveNumber: (value) =>
+                    parseInt(value + "") <=
+                      parseInt(watch("totalSharePromised") + "") &&
+                    parseInt(value + "") >= 0,
+                },
+              })}
+            />
+          </Grid>
+          <Grid item md={6} xs={12}>
+            <TextField
               focused
               size="small"
               label="Promised Birr"
