@@ -69,6 +69,31 @@ export const Dashboard = () => {
               <LinearProgress value={40} color="success" />
             </Stack>
           </Grid>
+
+          <Grid item xs={12} md={6}>
+            <Stack
+              boxShadow={5}
+              borderRadius={10}
+              alignItems="center"
+              justifyContent="center"
+            >
+              <Typography>Total Amount of Promised Money</Typography>
+              <Typography>ETB {stat?.data.totalSharePromisedAmount}</Typography>
+              <LinearProgress value={40} color="success" />
+            </Stack>
+          </Grid>
+          <Grid item xs={12} md={6}>
+            <Stack
+              boxShadow={5}
+              borderRadius={10}
+              alignItems="center"
+              justifyContent="center"
+            >
+              <Typography>Total Amount of Completely Paid Money</Typography>
+              <Typography>{stat?.data.totalSharePaidAmount}</Typography>
+              <LinearProgress value={40} color="success" />
+            </Stack>
+          </Grid>
         </Grid>
       </Stack>
     </Stack>
