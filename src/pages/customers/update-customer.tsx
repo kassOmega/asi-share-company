@@ -62,6 +62,11 @@ export function UpdateCustomer({ isFullUpdate }: { isFullUpdate?: boolean }) {
     error: paymentError,
   } = useUpdateCustomerPaymentMutation(id ?? "");
   const {
+    mutateAsync: resetPayment,
+    isLoading: resetLoading,
+    error: ressetError,
+  } = useUpdateCustomerPaymentMutation(id ?? "", true);
+  const {
     mutateAsync: updateCustomer,
     isLoading: updateLoading,
     error: updateError,
@@ -145,9 +150,18 @@ export function UpdateCustomer({ isFullUpdate }: { isFullUpdate?: boolean }) {
             Something went wrong! Please try again
           </Typography>
         )}
-        <Button type="submit" variant="contained" disabled={paymentLoading}>
-          {paymentLoading ? <CircularProgress size="20px" /> : "Update"}
-        </Button>
+        <Box sx={{ flexDirection: "row", justifyContent: "space-between" }}>
+          <Button type="submit" variant="contained" disabled={paymentLoading}>
+            {paymentLoading ? <CircularProgress size="20px" /> : "Update"}
+          </Button>
+          <Button
+            onClick={async () => await resetPayment({ totalSharePaid: 0 })}
+            variant="contained"
+            disabled={resetLoading}
+          >
+            {resetLoading ? <CircularProgress size="20px" /> : "Reset to zero"}
+          </Button>
+        </Box>
       </Stack>
     </form>
   );
