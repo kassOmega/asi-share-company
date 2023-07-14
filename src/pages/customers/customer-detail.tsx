@@ -73,6 +73,12 @@ export const CustomerDetail = () => {
                 </Typography>
               </Grid>
               <Grid item xs={6} md={6}>
+                <Typography>Customer ID</Typography>
+              </Grid>
+              <Grid item xs={6} md={6} left={-8}>
+                <Typography>{user?.data.customerID}</Typography>
+              </Grid>
+              <Grid item xs={6} md={6}>
                 <Typography>Address</Typography>
               </Grid>
               <Grid item xs={6} md={6}>
