@@ -132,6 +132,7 @@ export function UpdateCustomer({ isFullUpdate }: { isFullUpdate?: boolean }) {
         <Grid container spacing={2}>
           <Grid item md={12} xs={12}>
             <TextField
+              focused
               fullWidth
               size="small"
               type="number"
@@ -209,6 +210,7 @@ export function UpdateCustomer({ isFullUpdate }: { isFullUpdate?: boolean }) {
         <Grid container spacing={2}>
           <Grid item md={6} xs={12}>
             <TextField
+              focused
               size="small"
               label="Full Name"
               {...registerUpgraded("fullName", {
@@ -218,6 +220,7 @@ export function UpdateCustomer({ isFullUpdate }: { isFullUpdate?: boolean }) {
           </Grid>
           <Grid item md={6} xs={12}>
             <TextField
+              focused
               size="small"
               label="Phone Number"
               {...registerUpgraded("phoneNumber", {
@@ -227,6 +230,7 @@ export function UpdateCustomer({ isFullUpdate }: { isFullUpdate?: boolean }) {
           </Grid>
           <Grid item md={6} xs={12}>
             <TextField
+              focused
               size="small"
               label="Address"
               {...registerUpgraded("address", {
@@ -237,6 +241,7 @@ export function UpdateCustomer({ isFullUpdate }: { isFullUpdate?: boolean }) {
 
           <Grid item md={6} xs={12}>
             <TextField
+              focused
               size="small"
               label="Customer Id"
               {...registerUpgraded("customerID", {
@@ -246,6 +251,7 @@ export function UpdateCustomer({ isFullUpdate }: { isFullUpdate?: boolean }) {
           </Grid>
           <Grid item md={6} xs={12}>
             <TextField
+              focused
               size="small"
               label="Promised Share"
               type="number"
@@ -259,6 +265,7 @@ export function UpdateCustomer({ isFullUpdate }: { isFullUpdate?: boolean }) {
           </Grid>
           <Grid item md={6} xs={12}>
             <TextField
+              focused
               size="small"
               label="Promised Birr"
               defaultValue={parseInt(watch("totalSharePromised") + "") * 2000}
@@ -273,6 +280,7 @@ export function UpdateCustomer({ isFullUpdate }: { isFullUpdate?: boolean }) {
           </Grid>
           <Grid item md={6} xs={12}>
             <TextField
+              focused
               size="small"
               InputProps={{}}
               type="number"
