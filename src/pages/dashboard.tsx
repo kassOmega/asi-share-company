@@ -1,8 +1,14 @@
-import { Grid, LinearProgress, Stack, Typography } from "@mui/material";
+import {
+  CircularProgress,
+  Grid,
+  LinearProgress,
+  Stack,
+  Typography,
+} from "@mui/material";
 import { useGetCustomersStatQuery } from "../api";
 
 export const Dashboard = () => {
-  const { data: stat } = useGetCustomersStatQuery();
+  const { data: stat, isLoading } = useGetCustomersStatQuery();
   console.log(stat);
   const data = linearBar(
     stat?.data.totalShareHolders ?? 0,
@@ -16,86 +22,98 @@ export const Dashboard = () => {
         <Typography variant="h5">ASI Share Company</Typography>
         <Typography variant="body1">Users Statistics </Typography>
       </Stack>
-      <Stack paddingTop={4}>
-        <Grid container spacing={2}>
-          <Grid item xs={12} md={6}>
-            <Stack
-              boxShadow={5}
-              borderRadius={10}
-              alignItems="center"
-              justifyContent="center"
-            >
-              <Typography>Total Share Holders</Typography>
-              <Typography>{stat?.data.totalShareHolders}</Typography>
-            </Stack>
-          </Grid>
-          <Grid item xs={12} md={6}>
-            <Stack
-              boxShadow={5}
-              borderRadius={10}
-              alignItems="center"
-              justifyContent="center"
-            >
-              <Typography>Total Promised Share To Buy</Typography>
-              <Typography>{stat?.data.totalRequestedShare}</Typography>
-            </Stack>
-          </Grid>
-          <Grid item xs={12} md={6}>
-            <Stack
-              boxShadow={5}
-              borderRadius={10}
-              alignItems="center"
-              justifyContent="center"
-            >
-              {" "}
-              <Typography>Total Paid Share Of Promised Share</Typography>
-              <Typography>{stat?.data.totalPaidShare}</Typography>
-              <LinearProgress value={data.totalPaidShare} />
-            </Stack>
-          </Grid>
-          <Grid item xs={12} md={6}>
-            <Stack
-              boxShadow={5}
-              borderRadius={10}
-              alignItems="center"
-              justifyContent="center"
-            >
-              <Typography>
-                Total Share Holders With Completed Payment
-              </Typography>
-              <Typography>
-                {stat?.data.totalShareHoldersCompletelyPaid}
-              </Typography>
-              <LinearProgress value={40} color="success" />
-            </Stack>
-          </Grid>
+      {isLoading ? (
+        <CircularProgress />
+      ) : (
+        <>
+          <Typography sx={{ fontSize: 12 }} padding={10}>
+            No Registered Customers Yet
+          </Typography>
 
-          <Grid item xs={12} md={6}>
-            <Stack
-              boxShadow={5}
-              borderRadius={10}
-              alignItems="center"
-              justifyContent="center"
-            >
-              <Typography>Total Amount of Promised Money</Typography>
-              <Typography>ETB {stat?.data.totalSharePromisedAmount}</Typography>
-              <LinearProgress value={40} color="success" />
-            </Stack>
-          </Grid>
-          <Grid item xs={12} md={6}>
-            <Stack
-              boxShadow={5}
-              borderRadius={10}
-              alignItems="center"
-              justifyContent="center"
-            >
-              <Typography>Total Amount of Completely Paid Money</Typography>
-              <Typography>{stat?.data.totalSharePaidAmount}</Typography>
-              <LinearProgress value={40} color="success" />
-            </Stack>
-          </Grid>
-        </Grid>
-      </Stack>
+          <Stack paddingTop={4}>
+            <Grid container spacing={2}>
+              <Grid item xs={12} md={6}>
+                <Stack
+                  boxShadow={5}
+                  borderRadius={10}
+                  alignItems="center"
+                  justifyContent="center"
+                >
+                  <Typography>Total Share Holders</Typography>
+                  <Typography>{stat?.data.totalShareHolders}</Typography>
+                </Stack>
+              </Grid>
+              <Grid item xs={12} md={6}>
+                <Stack
+                  boxShadow={5}
+                  borderRadius={10}
+                  alignItems="center"
+                  justifyContent="center"
+                >
+                  <Typography>Total Promised Share To Buy</Typography>
+                  <Typography>{stat?.data.totalRequestedShare}</Typography>
+                </Stack>
+              </Grid>
+              <Grid item xs={12} md={6}>
+                <Stack
+                  boxShadow={5}
+                  borderRadius={10}
+                  alignItems="center"
+                  justifyContent="center"
+                >
+                  {" "}
+                  <Typography>Total Paid Share Of Promised Share</Typography>
+                  <Typography>{stat?.data.totalPaidShare}</Typography>
+                  <LinearProgress value={data.totalPaidShare} />
+                </Stack>
+              </Grid>
+              <Grid item xs={12} md={6}>
+                <Stack
+                  boxShadow={5}
+                  borderRadius={10}
+                  alignItems="center"
+                  justifyContent="center"
+                >
+                  <Typography>
+                    Total Share Holders With Completed Payment
+                  </Typography>
+                  <Typography>
+                    {stat?.data.totalShareHoldersCompletelyPaid}
+                  </Typography>
+                  <LinearProgress value={40} color="success" />
+                </Stack>
+              </Grid>
+
+              <Grid item xs={12} md={6}>
+                <Stack
+                  boxShadow={5}
+                  borderRadius={10}
+                  alignItems="center"
+                  justifyContent="center"
+                >
+                  <Typography>Total Amount of Promised Money</Typography>
+                  <Typography>
+                    ETB {stat?.data.totalSharePromisedAmount}
+                  </Typography>
+                  <LinearProgress value={40} color="success" />
+                </Stack>
+              </Grid>
+              <Grid item xs={12} md={6}>
+                <Stack
+                  boxShadow={5}
+                  borderRadius={10}
+                  alignItems="center"
+                  justifyContent="center"
+                >
+                  <Typography>Total Amount of Completely Paid Money</Typography>
+                  <Typography>ETB {stat?.data.totalSharePaidAmount}</Typography>
+                  <LinearProgress value={40} color="success" />
+                </Stack>
+              </Grid>
+            </Grid>
+          </Stack>
+        </>
+      )}
     </Stack>
   );
 };
