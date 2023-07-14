@@ -26,10 +26,6 @@ export const Dashboard = () => {
         <CircularProgress />
       ) : (
         <>
-          <Typography sx={{ fontSize: 12 }} padding={10}>
-            No Registered Customers Yet
-          </Typography>
-
           <Stack paddingTop={4}>
             <Grid container spacing={2}>
               <Grid item xs={12} md={6}>
