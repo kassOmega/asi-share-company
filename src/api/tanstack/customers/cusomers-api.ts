@@ -87,7 +87,7 @@ export const useUpdateCustomerPaymentMutation = (
   return useMutation({
     mutationFn: (data: updateRequest) => {
       return client
-        .put("/api/admin/customer/pay/" + id + reset, data)
+        .put("/api/admin/customer/pay/" + id + "/" + reset, data)
         .then((d) => d.data)
         .then((res) => {
           return res;

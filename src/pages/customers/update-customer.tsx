@@ -150,7 +150,7 @@ export function UpdateCustomer({ isFullUpdate }: { isFullUpdate?: boolean }) {
             Something went wrong! Please try again
           </Typography>
         )}
-        <Box sx={{ flexDirection: "row", justifyContent: "space-between" }}>
+        <Stack flex={1} direction="row" justifyContent="space-between">
           <Button
             type="submit"
             size="small"
@@ -169,7 +169,7 @@ export function UpdateCustomer({ isFullUpdate }: { isFullUpdate?: boolean }) {
           >
             {resetLoading ? <CircularProgress size="20px" /> : "Reset to zero"}
           </Button>
-        </Box>
+        </Stack>
       </Stack>
     </form>
   );
