@@ -64,7 +64,7 @@ export function UpdateCustomer({ isFullUpdate }: { isFullUpdate?: boolean }) {
   const {
     mutateAsync: resetPayment,
     isLoading: resetLoading,
-    error: ressetError,
+    error: resetError,
   } = useUpdateCustomerPaymentMutation(id ?? "", true);
   const {
     mutateAsync: updateCustomer,
@@ -145,19 +145,27 @@ export function UpdateCustomer({ isFullUpdate }: { isFullUpdate?: boolean }) {
             />
           </Grid>
         </Grid>
-        {!!paymentError && (
+        {!!paymentError && !!resetError && (
           <Typography color="red">
             Something went wrong! Please try again
           </Typography>
         )}
         <Box sx={{ flexDirection: "row", justifyContent: "space-between" }}>
-          <Button type="submit" variant="contained" disabled={paymentLoading}>
+          <Button
+            type="submit"
+            size="small"
+            sx={{ p: 1, alignSelf: "flex-start" }}
+            variant="contained"
+            disabled={paymentLoading}
+          >
             {paymentLoading ? <CircularProgress size="20px" /> : "Update"}
           </Button>
           <Button
             onClick={async () => await resetPayment({ totalSharePaid: 0 })}
             variant="contained"
             disabled={resetLoading}
+            size="small"
+            sx={{ p: 1, alignSelf: "flex-end" }}
           >
             {resetLoading ? <CircularProgress size="20px" /> : "Reset to zero"}
           </Button>
