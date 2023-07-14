@@ -79,15 +79,26 @@ export const useRegisterCustomerMutation = () => {
 interface updateRequest {
   totalSharePaid: number;
 }
-export const useUpdateCustomerPaymentMutation = (
-  id: string,
-  reset?: boolean
-) => {
+export const useUpdateCustomerPaymentMutation = (id: string) => {
   const client = useClient();
   return useMutation({
     mutationFn: (data: updateRequest) => {
       return client
-        .put("/api/admin/customer/pay/" + id + "/" + reset, data)
+        .put("/api/admin/customer/pay/" + id, data)
+        .then((d) => d.data)
+        .then((res) => {
+          return res;
+        });
+    },
+  });
+};
+
+export const useUpdateCustomerResetPaymentMutation = (id: string) => {
+  const client = useClient();
+  return useMutation({
+    mutationFn: (data: updateRequest) => {
+      return client
+        .put("/api/admin//customer/reset/" + id, data)
         .then((d) => d.data)
         .then((res) => {
           return res;

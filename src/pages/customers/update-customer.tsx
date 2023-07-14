@@ -15,6 +15,7 @@ import {
   useGetCustomerByIdQuery,
   useUpdateCustomerMutation,
   useUpdateCustomerPaymentMutation,
+  useUpdateCustomerResetPaymentMutation,
   useUserToken,
 } from "../../api";
 import { useEffect, useState } from "react";
@@ -68,7 +69,7 @@ export function UpdateCustomer({ isFullUpdate }: { isFullUpdate?: boolean }) {
     mutateAsync: resetPayment,
     isLoading: resetLoading,
     error: resetError,
-  } = useUpdateCustomerPaymentMutation(id ?? "", true);
+  } = useUpdateCustomerResetPaymentMutation(id ?? "");
   const {
     mutateAsync: updateCustomer,
     isLoading: updateLoading,
