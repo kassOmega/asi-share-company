@@ -71,7 +71,7 @@ export const Dashboard = () => {
                   justifyContent="center"
                 >
                   <Typography>
-                    Total Share Holders With Payment
+                    Total Share Holders With Completely Payment
                   </Typography>
                   <Typography>
                     {stat?.data.totalShareHoldersCompletelyPaid}
@@ -101,7 +101,7 @@ export const Dashboard = () => {
                   alignItems="center"
                   justifyContent="center"
                 >
-                  <Typography>Total Amount of Completely Paid Money</Typography>
+                  <Typography>Total Amount of Paid Money</Typography>
                   <Typography>ETB {stat?.data.totalSharePaidAmount}</Typography>
                   <LinearProgress value={40} color="success" />
                 </Stack>
