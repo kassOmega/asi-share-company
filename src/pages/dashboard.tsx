@@ -71,7 +71,7 @@ export const Dashboard = () => {
                   justifyContent="center"
                 >
                   <Typography>
-                    Total Share Holders With Completed Payment
+                    Total Share Holders With Payment
                   </Typography>
                   <Typography>
                     {stat?.data.totalShareHoldersCompletelyPaid}
