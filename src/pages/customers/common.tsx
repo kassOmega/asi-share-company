@@ -75,6 +75,28 @@ export const Display = ({ user }: { user: CustomersResponse }) => {
           <Grid item xs={6} md={7}>
             <Typography sx={{ fontSize: 12 }}>{user.phoneNumber}</Typography>
           </Grid>
+          <Grid item xs={5} md={4}>
+            <Typography sx={{ fontSize: 12 }}>promised share</Typography>
+          </Grid>
+          <Grid item xs={1} md={1}>
+            <Typography sx={{ fontSize: 12 }}>:</Typography>
+          </Grid>
+          <Grid item xs={6} md={7}>
+            <Typography sx={{ fontSize: 12 }}>
+              {user.totalSharePromised}
+            </Typography>
+          </Grid>
+          <Grid item xs={5} md={4}>
+            <Typography sx={{ fontSize: 12 }}>Promised birr</Typography>
+          </Grid>
+          <Grid item xs={1} md={1}>
+            <Typography sx={{ fontSize: 12 }}>:</Typography>
+          </Grid>
+          <Grid item xs={6} md={7}>
+            <Typography sx={{ fontSize: 12 }}>
+              {user.totalSharePromisedAmount}
+            </Typography>
+          </Grid>
           <Grid item xs={8} md={8}>
             <Typography>
               {`${
