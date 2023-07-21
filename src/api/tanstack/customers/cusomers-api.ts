@@ -119,3 +119,19 @@ export const useUpdateCustomerMutation = (id: string) => {
     },
   });
 };
+
+export const useUpdateCustomerProfilePictureMutation = (id: string) => {
+  const client = useClient();
+  return useMutation({
+    mutationFn: (data: File) => {
+      const formData = new FormData();
+      formData.append("pic", data);
+      return client
+        .put("/api/admin/customer/picture/" + id, formData)
+        .then((d) => d.data)
+        .then((res) => {
+          return res;
+        });
+    },
+  });
+};
