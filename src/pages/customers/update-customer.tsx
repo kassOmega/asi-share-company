@@ -244,7 +244,10 @@ export function UpdateCustomer({ isFullUpdate }: { isFullUpdate?: boolean }) {
           total shares has been previously paid{" "}
         </Typography> */}
         <Stack alignItems="center">
-          <Avatar src={result?.data.fullName} sx={{ width: 90, height: 90 }} />
+          <Avatar
+            src={result?.data.profilePicture}
+            sx={{ width: 90, height: 90 }}
+          />
           <input
             accept="image/*"
             style={{ display: "none" }}
