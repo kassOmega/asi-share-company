@@ -6,7 +6,6 @@ import {
   CircularProgress,
 } from "@mui/material";
 import { useGetCustomersQuery } from "../../api";
-// import { useParams } from "react-router-dom";
 import ArrowBackIosNewIcon from "@mui/icons-material/ArrowBackIosNew";
 import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 import { CustomerListLayout, Display } from "./common";
