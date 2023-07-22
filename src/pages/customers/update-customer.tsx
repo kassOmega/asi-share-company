@@ -379,7 +379,7 @@ export function UpdateCustomer({ isFullUpdate }: { isFullUpdate?: boolean }) {
             <Box sx={{ flexWrap: "wrap", flexDirection: "row", gap: 2 }}>
               {result.data.attachments.map((img) => (
                 <img
-                  src={img}
+                  src={"/" + img}
                   key={img}
                   alt="profile"
                   style={{
