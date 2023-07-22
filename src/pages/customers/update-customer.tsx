@@ -406,7 +406,6 @@ export function UpdateCustomer({ isFullUpdate }: { isFullUpdate?: boolean }) {
           <label htmlFor="attachments-file">
             <Typography
               variant="button"
-              component="span"
               color={"green"}
               sx={{
                 border: 1,
