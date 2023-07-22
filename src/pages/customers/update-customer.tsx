@@ -387,7 +387,7 @@ export function UpdateCustomer({ isFullUpdate }: { isFullUpdate?: boolean }) {
               sx={{
                 border: 1,
                 borderRadius: 5,
-                paddingY: 2,
+                paddingY: 0.5,
                 px: 8,
                 cursor: "pointer",
               }}

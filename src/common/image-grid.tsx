@@ -12,7 +12,7 @@ export function ImageGrid({
       {images?.map((image, index) => (
         <Grid item xs={12} md={4} key={index}>
           <SquareImage
-            src={`${image}`}
+            src={image}
             sx={{
               border: "1px solid",
               borderColor: "primary.main",
