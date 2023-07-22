@@ -56,7 +56,7 @@ export const CustomerDetail = () => {
           >
             <Stack sx={{ alignContent: "center", justifyContent: "center" }}>
               <img
-                src={user?.data.profilePicture}
+                src={user?.data.profilePicture ? user?.data.profilePicture : ""}
                 alt="profile"
                 style={{
                   borderRadius: 200,

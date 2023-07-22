@@ -375,7 +375,23 @@ export function UpdateCustomer({ isFullUpdate }: { isFullUpdate?: boolean }) {
         {result?.data.attachments && (
           <Stack>
             <Typography> Uploaded Documents</Typography>
-            <ImageGrid images={result?.data.attachments ?? []} />
+
+            <Box sx={{ flexWrap: "wrap", flexDirection: "row", gap: 2 }}>
+              {result.data.attachments.map((img) => (
+                <img
+                  src={img}
+                  key={img}
+                  alt="profile"
+                  style={{
+                    borderRadius: 200,
+                    width: 200,
+                    height: 200,
+                    objectFit: "cover",
+                    objectPosition: "center",
+                  }}
+                />
+              ))}
+            </Box>
           </Stack>
         )}
         <Stack alignItems="center">
