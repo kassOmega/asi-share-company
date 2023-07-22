@@ -64,6 +64,17 @@ export const CustomerDetail = () => {
                 },
               }}
             >
+              <img
+                src={user?.data.profilePicture}
+                alt="profile"
+                style={{
+                  borderRadius: 200,
+                  width: 200,
+                  height: 200,
+                  objectFit: "cover",
+                  objectPosition: "center",
+                }}
+              />
               <Grid item xs={6} md={6}>
                 <Typography>Full Name</Typography>
               </Grid>
