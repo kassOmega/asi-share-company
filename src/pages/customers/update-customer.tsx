@@ -103,7 +103,8 @@ export function UpdateCustomer({ isFullUpdate }: { isFullUpdate?: boolean }) {
     }
   };
   const [selectedFile, setSelectedFile] = useState<File>();
-  const [attachments, setAttachments] = useState<File[]>([]);
+  const [selectedAttachments, setSelectedAttachments] = useState<File[]>([]);
+
   const [preview, setPreview] = useState<string[]>([]);
   console.log("selectedFile", selectedFile);
   const onUpdateSubmit = async (data: CustomersRequest) => {
@@ -117,7 +118,8 @@ export function UpdateCustomer({ isFullUpdate }: { isFullUpdate?: boolean }) {
         totalSharePromised: parseInt("" + totalSharePromised),
       });
       if (selectedFile) await updateProfile(selectedFile);
-      if (attachments.length) await updateAttachments([...attachments]);
+      if (selectedAttachments.length)
+        await updateAttachments([...selectedAttachments]);
       navigate("/customers");
     } catch {
       // wrong username or password
@@ -133,16 +135,16 @@ export function UpdateCustomer({ isFullUpdate }: { isFullUpdate?: boolean }) {
   }
   const onImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e?.target?.files?.[0];
-    const newImages = [...attachments];
+    const newImages = [...selectedAttachments];
     if (file) {
       newImages.push(file);
       setPreview([...preview, URL.createObjectURL(file)]);
     }
 
-    setAttachments(newImages);
+    setSelectedAttachments(newImages);
   };
   const handleImageRemove = useCallback((selectedIndex: number) => {
-    setAttachments((prev) =>
+    setSelectedAttachments((prev) =>
       prev.filter((p, index) => index !== selectedIndex)
     );
     setPreview((prev) => prev.filter((p, index) => index !== selectedIndex));
