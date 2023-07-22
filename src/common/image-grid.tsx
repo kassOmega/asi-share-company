@@ -11,6 +11,11 @@ export function ImageGrid({
     <Grid container spacing={2}>
       {images?.map((image, index) => (
         <Grid item xs={12} md={4} key={index}>
+          {onRemove && (
+            <IconButton onClick={() => onRemove?.(index)}>
+              <CloseIcon />
+            </IconButton>
+          )}
           <SquareImage
             src={image}
             sx={{
@@ -19,11 +24,6 @@ export function ImageGrid({
               borderRadius: 2,
             }}
           />
-          {onRemove && (
-            <IconButton onClick={() => onRemove?.(index)}>
-              <CloseIcon />
-            </IconButton>
-          )}
         </Grid>
       ))}
     </Grid>
