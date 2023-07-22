@@ -91,7 +91,7 @@ export const PictureDialog = (props: ImageProps) => {
   };
   return (
     <Modal onClose={handleClose} open={open} sx={{ background: "#c4c4c4" }}>
-      <Stack justifyContent={"center"} alignItems={"center"} padding={2}>
+      <Stack alignItems={"center"} padding={2}>
         <Box
           sx={{
             borderRadius: 10,
@@ -102,14 +102,14 @@ export const PictureDialog = (props: ImageProps) => {
         >
           <SquareImage src={"/" + image[0]} height={400} width={700} />
         </Box>
-        <Box justifyContent="space-between" flex={1}>
+        <Stack justifyContent="space-between" flex={1}>
           <Button onClick={handlePrev} variant="contained">
             <ArrowBackIosIcon />
           </Button>
           <Button onClick={handleNext} variant="contained">
             <ArrowForwardIosIcon />
           </Button>
-        </Box>
+        </Stack>
         <Box sx={{ width: 300, height: 250 }}>
           <ImageList cols={4} rowHeight={164}>
             {image.map((item, index) => (
