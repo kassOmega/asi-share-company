@@ -9,24 +9,23 @@ export function ImageGrid({
 }) {
   return (
     <Grid container spacing={2}>
-      {images.length &&
-        images?.map((image, index) => (
-          <Grid item xs={12} md={2} key={index}>
-            <SquareImage
-              src={image}
-              sx={{
-                border: "1px solid",
-                borderColor: "primary.main",
-                borderRadius: 2,
-              }}
-            />
-            {onRemove && (
-              <IconButton onClick={() => onRemove?.(index)}>
-                <CloseIcon />
-              </IconButton>
-            )}
-          </Grid>
-        ))}
+      {images?.map((image, index) => (
+        <Grid item xs={12} md={4} key={index}>
+          <SquareImage
+            src={`${image}`}
+            sx={{
+              border: "1px solid",
+              borderColor: "primary.main",
+              borderRadius: 2,
+            }}
+          />
+          {onRemove && (
+            <IconButton onClick={() => onRemove?.(index)}>
+              <CloseIcon />
+            </IconButton>
+          )}
+        </Grid>
+      ))}
     </Grid>
   );
 }
