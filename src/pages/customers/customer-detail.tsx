@@ -116,7 +116,7 @@ export const CustomerDetail = () => {
               </Grid>
             </Grid>
             <Stack>
-              <ImageGrid images={user?.data?.attachments ?? []} />
+              {/* <ImageGrid images={user?.data?.attachments ?? []} /> */}
             </Stack>
             {useRole?.role === "admin" && (
               <Box alignItems={"flex-end"} alignSelf={"end"} display="block">
