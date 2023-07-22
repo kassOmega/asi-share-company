@@ -446,7 +446,7 @@ export function UpdateCustomer({ isFullUpdate }: { isFullUpdate?: boolean }) {
     </form>
   );
   return (
-    <CustomerListLayout header="Update Customer">
+    <CustomerListLayout header="Update Customer" isDetail>
       {isFullUpdate && useRole?.role === "admin" && (
         <Box alignSelf={"end"}>
           <Button
