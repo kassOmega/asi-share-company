@@ -80,14 +80,14 @@ export function UpdateCustomer({ isFullUpdate }: { isFullUpdate?: boolean }) {
   } = useUpdateCustomerMutation(id ?? "");
   const {
     mutateAsync: updateProfile,
-    isLoading: profileLoading,
-    error: profileError,
+    // isLoading: profileLoading,
+    // error: profileError,
   } = useUpdateCustomerProfilePictureMutation(id ?? "");
 
   const {
     mutateAsync: updateAttachments,
-    isLoading: attachmentsLoading,
-    error: attachmentsError,
+    // isLoading: attachmentsLoading,
+    // error: attachmentsError,
   } = useUpdateCustomerAttachmentsMutation(id ?? "");
 
   const onPaymentSubmit = async (data: updateRequest) => {
