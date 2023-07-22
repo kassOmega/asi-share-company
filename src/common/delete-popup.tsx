@@ -100,7 +100,7 @@ export const PictureDialog = (props: ImageProps) => {
             cursor: "pointer",
           }}
         >
-          <SquareImage src={"/" + image[0]} height={350} width={350} />
+          <SquareImage src={"/" + image[0]} height={500} width={600} />
         </Box>
         <Box justifyContent="space-between" flex={1}>
           <Button onClick={handlePrev}>
