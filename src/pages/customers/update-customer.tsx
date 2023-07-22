@@ -24,7 +24,7 @@ import {
 import { useCallback, useEffect, useState } from "react";
 import { ReactComponent as Logo } from "../logo.svg";
 import { CustomerListLayout } from "./common";
-import { DeleteDialog, ImageGrid } from "../../common";
+import { DeleteDialog, ImageGrid, PictureDialog } from "../../common";
 import { useSnackbar } from "notistack";
 interface updateRequest {
   totalSharePaid: number;
@@ -33,6 +33,7 @@ interface updateRequest {
 export function UpdateCustomer({ isFullUpdate }: { isFullUpdate?: boolean }) {
   const { id } = useParams();
   const [confirmDelete, setConfirmDelete] = useState(false);
+  const [showImageDialog, setShowImageDialog] = useState(false);
   const { enqueueSnackbar } = useSnackbar();
   const deleteCustomer = useDeleteCustomerMutation();
   const { user: useRole } = useUserToken();
@@ -382,6 +383,7 @@ export function UpdateCustomer({ isFullUpdate }: { isFullUpdate?: boolean }) {
               {result.data.attachments.map((img) => (
                 <img
                   src={"/" + img}
+                  onClick={() => setShowImageDialog(true)}
                   key={img}
                   alt="profile"
                   style={{
@@ -396,6 +398,12 @@ export function UpdateCustomer({ isFullUpdate }: { isFullUpdate?: boolean }) {
             </Box>
           </Stack>
         )}
+
+        <PictureDialog
+          onClose={() => setShowImageDialog(false)}
+          open={showImageDialog}
+          image={result?.data.attachments ?? []}
+        />
         <Stack alignItems="center">
           <input
             accept="image/*"
