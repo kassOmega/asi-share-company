@@ -138,17 +138,15 @@ const SquareImage = ({
   width?: number | string;
   height?: number | string;
   src?: string;
-  rounded?: "none" | "sm" | "md" | "lg";
+  rounded?: number;
   onClick?: () => void;
 }) => {
   return (
-    <div>
-      <img
-        src={src}
-        alt=""
-        className={`w-${width} h-${height} rounded-${rounded}`}
-        onClick={handleClick}
-      />
-    </div>
+    <img
+      src={src}
+      alt=""
+      style={{ width: width, height: height, borderRadius: rounded }}
+      onClick={handleClick}
+    />
   );
 };

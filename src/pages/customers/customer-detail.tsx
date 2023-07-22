@@ -6,6 +6,8 @@ import {
   Box,
   CircularProgress,
   Avatar,
+  ImageList,
+  ImageListItem,
 } from "@mui/material";
 import {
   useDeleteCustomerMutation,
@@ -14,7 +16,12 @@ import {
 } from "../../api";
 import { useNavigate, useParams } from "react-router-dom";
 import { CustomerListLayout } from "./common";
-import { DeleteDialog, ImageGrid, capitalizeFullName } from "../../common";
+import {
+  DeleteDialog,
+  ImageGrid,
+  PictureDialog,
+  capitalizeFullName,
+} from "../../common";
 import { useState } from "react";
 import { useSnackbar } from "notistack";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
@@ -27,6 +34,7 @@ export const CustomerDetail = () => {
   const deleteCustomer = useDeleteCustomerMutation();
   const navigate = useNavigate();
   const { data: user, isLoading } = useGetCustomerByIdQuery(parseInt(id ?? ""));
+  const [showImageDialog, setShowImageDialog] = useState(false);
   function handleDelete() {
     deleteCustomer.mutate(id ?? "", {
       onSuccess: () => {
@@ -134,9 +142,37 @@ export const CustomerDetail = () => {
               </Grid>
             </Stack>
             <Stack>
-              {!!user?.data?.attachments && (
-                <ImageGrid images={user?.data?.attachments ?? []} />
-              )}{" "}
+              {user?.data.attachments && (
+                <Stack>
+                  <Typography> Uploaded Documents</Typography>
+
+                  <Stack
+                    sx={{ flexWrap: "wrap", flexDirection: "row", gap: 2 }}
+                  >
+                    <ImageList cols={4} rowHeight={40}>
+                      {user.data.attachments.map((img) => (
+                        <ImageListItem
+                          key={img}
+                          sx={{
+                            cursor: "pointer",
+                            backgroundColor: "#d4d4d4",
+                            borderRadius: 10,
+                          }}
+                          onClick={() => setShowImageDialog(true)}
+                        >
+                          <img src={"/" + img} alt={""} loading="lazy" />
+                        </ImageListItem>
+                      ))}
+                    </ImageList>
+                  </Stack>
+                </Stack>
+              )}
+
+              <PictureDialog
+                onClose={() => setShowImageDialog(false)}
+                open={showImageDialog}
+                image={user?.data.attachments ?? []}
+              />
             </Stack>
             {useRole?.role === "admin" && (
               <Box alignItems={"flex-end"} alignSelf={"end"} display="block">
