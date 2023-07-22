@@ -102,11 +102,19 @@ export const PictureDialog = (props: ImageProps) => {
         >
           <SquareImage src={"/" + image[0]} height={400} width={700} />
         </Box>
-        <Stack justifyContent="space-between" flex={1}>
-          <Button onClick={handlePrev} variant="contained">
+        <Stack justifyContent="space-between" flex={1} direction="row">
+          <Button
+            onClick={handlePrev}
+            variant="contained"
+            sx={{ alignSelf: "flex-start" }}
+          >
             <ArrowBackIosIcon />
           </Button>
-          <Button onClick={handleNext} variant="contained">
+          <Button
+            onClick={handleNext}
+            variant="contained"
+            sx={{ alignSelf: "flex-end" }}
+          >
             <ArrowForwardIosIcon />
           </Button>
         </Stack>
