@@ -4,6 +4,8 @@ import Dialog from "@mui/material/Dialog";
 import Typography from "@mui/material/Typography";
 import {
   Box,
+  Card,
+  CardMedia,
   DialogContent,
   ImageList,
   ImageListItem,
@@ -100,7 +102,14 @@ export const PictureDialog = (props: ImageProps) => {
               cursor: "pointer",
             }}
           >
-            <SquareImage src={"/" + image[0]} height={250} width={250} />
+            <Card sx={{ maxWidth: 345 }}>
+              <CardMedia
+                component="img"
+                alt="green iguana"
+                height="140"
+                image="/static/images/cards/contemplative-reptile.jpg"
+              />
+            </Card>
           </Box>
           <Box justifyContent="space-between" flex={1}>
             <Button onClick={handlePrev}>
@@ -128,7 +137,7 @@ export const PictureDialog = (props: ImageProps) => {
     </Dialog>
   );
 };
-const SquareImage = ({
+export const SquareImage = ({
   width,
   height,
   src,
