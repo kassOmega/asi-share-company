@@ -90,7 +90,7 @@ export const PictureDialog = (props: ImageProps) => {
     return setSelectedImage(image.length);
   };
   return (
-    <Modal onClose={handleClose} open={open}>
+    <Modal onClose={handleClose} open={open} sx={{ background: "#c4c4c4" }}>
       <Stack justifyContent={"center"} alignItems={"center"} padding={2}>
         <Box
           sx={{
