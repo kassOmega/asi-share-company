@@ -258,7 +258,7 @@ export function UpdateCustomer({ isFullUpdate }: { isFullUpdate?: boolean }) {
           />
           <label htmlFor="raised-button-file">
             <Button variant="outlined" component="span">
-              Upload
+              change profile picture
             </Button>
           </label>
         </Stack>
@@ -372,7 +372,12 @@ export function UpdateCustomer({ isFullUpdate }: { isFullUpdate?: boolean }) {
             />
           </Grid>
         </Grid>
-
+        {result?.data.attachments && (
+          <Stack>
+            <Typography> Uploaded Documents</Typography>
+            <ImageGrid images={result?.data.attachments ?? []} />
+          </Stack>
+        )}
         <Stack alignItems="center">
           <input
             accept="image/*"
@@ -400,8 +405,14 @@ export function UpdateCustomer({ isFullUpdate }: { isFullUpdate?: boolean }) {
           </label>
         </Stack>
         <Grid>
-          <ImageGrid images={preview ?? []} onRemove={handleImageRemove} />
+          {!!preview.length && (
+            <Stack>
+              <Typography> Preview</Typography>
+              <ImageGrid images={preview ?? []} onRemove={handleImageRemove} />
+            </Stack>
+          )}
         </Grid>
+
         {!!updateError && (
           <Typography color="red">
             Something went wrong! Please try again
