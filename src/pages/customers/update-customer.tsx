@@ -382,27 +382,8 @@ export function UpdateCustomer({ isFullUpdate }: { isFullUpdate?: boolean }) {
             <Typography> Uploaded Documents</Typography>
 
             <Stack sx={{ flexWrap: "wrap", flexDirection: "row", gap: 2 }}>
-              <ImageList
-                sx={{ width: 300, height: 250 }}
-                cols={4}
-                rowHeight={164}
-              >
+              <ImageList cols={4} rowHeight={40}>
                 {result.data.attachments.map((img) => (
-                  // <Box
-                  //   onClick={() => setShowImageDialog(true)}
-                  //   sx={{
-                  //     borderRadius: 200,
-                  //     width: 200,
-                  //     height: 200,
-                  //     objectFit: "cover",
-                  //     objectPosition: "center",
-                  //     cursor: "pointer",
-                  //   }}
-                  //   key={img}
-                  // >
-                  //   <img src={"/" + img} alt="profile" />
-                  // </Box>
-
                   <ImageListItem
                     key={img}
                     sx={{
@@ -425,6 +406,14 @@ export function UpdateCustomer({ isFullUpdate }: { isFullUpdate?: boolean }) {
           open={showImageDialog}
           image={result?.data.attachments ?? []}
         />
+        <Grid>
+          {!!preview.length && (
+            <Stack>
+              <Typography> Preview</Typography>
+              <ImageGrid images={preview ?? []} onRemove={handleImageRemove} />
+            </Stack>
+          )}
+        </Grid>
         <Stack alignItems="center">
           <input
             accept="image/*"
@@ -450,14 +439,6 @@ export function UpdateCustomer({ isFullUpdate }: { isFullUpdate?: boolean }) {
             </Typography>
           </label>
         </Stack>
-        <Grid>
-          {!!preview.length && (
-            <Stack>
-              <Typography> Preview</Typography>
-              <ImageGrid images={preview ?? []} onRemove={handleImageRemove} />
-            </Stack>
-          )}
-        </Grid>
 
         {!!updateError && (
           <Typography color="red">

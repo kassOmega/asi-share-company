@@ -102,7 +102,7 @@ export const PictureDialog = (props: ImageProps) => {
           >
             <SquareImage src={"/" + image[0]} height={250} width={250} />
           </Box>
-          <Box justifyContent="space-between">
+          <Box justifyContent="space-between" flex={1}>
             <Button onClick={handlePrev}>
               <ArrowBackIosIcon />
             </Button>
@@ -110,12 +110,8 @@ export const PictureDialog = (props: ImageProps) => {
               <ArrowForwardIosIcon />
             </Button>
           </Box>
-          <Box>
-            <ImageList
-              sx={{ width: 300, height: 250 }}
-              cols={4}
-              rowHeight={164}
-            >
+          <Box sx={{ width: 300, height: 250 }}>
+            <ImageList cols={4} rowHeight={164}>
               {image.map((item, index) => (
                 <ImageListItem
                   key={item}
