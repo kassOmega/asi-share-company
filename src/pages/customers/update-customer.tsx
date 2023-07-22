@@ -245,7 +245,7 @@ export function UpdateCustomer({ isFullUpdate }: { isFullUpdate?: boolean }) {
         </Typography> */}
         <Stack alignItems="center">
           <Avatar
-            src={result?.data.profilePicture}
+            src={"/" + result?.data.profilePicture}
             sx={{ width: 90, height: 90 }}
           />
           <input
