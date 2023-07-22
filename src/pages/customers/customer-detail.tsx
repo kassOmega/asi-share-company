@@ -5,6 +5,7 @@ import {
   Typography,
   Box,
   CircularProgress,
+  Avatar,
 } from "@mui/material";
 import {
   useDeleteCustomerMutation,
@@ -55,17 +56,21 @@ export const CustomerDetail = () => {
             p={8}
           >
             <Stack sx={{ alignContent: "center", justifyContent: "center" }}>
-              <img
-                src={user?.data.profilePicture ? user?.data.profilePicture : ""}
-                alt="profile"
-                style={{
-                  borderRadius: 200,
-                  width: 200,
-                  height: 200,
-                  objectFit: "cover",
-                  objectPosition: "center",
-                }}
-              />
+              {user?.data.profilePicture ? (
+                <img
+                  src={"/" + user?.data.profilePicture}
+                  alt="profile"
+                  style={{
+                    borderRadius: 200,
+                    width: 200,
+                    height: 200,
+                    objectFit: "cover",
+                    objectPosition: "center",
+                  }}
+                />
+              ) : (
+                <Avatar sx={{ width: 200, height: 200 }} />
+              )}
             </Stack>
             <Stack alignItems={"center"} justifyContent={"center"}>
               <Grid
