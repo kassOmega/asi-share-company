@@ -16,12 +16,7 @@ import {
 } from "../../api";
 import { useNavigate, useParams } from "react-router-dom";
 import { CustomerListLayout } from "./common";
-import {
-  DeleteDialog,
-  ImageGrid,
-  PictureDialog,
-  capitalizeFullName,
-} from "../../common";
+import { DeleteDialog, PictureDialog, capitalizeFullName } from "../../common";
 import { useState } from "react";
 import { useSnackbar } from "notistack";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
