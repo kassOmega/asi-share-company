@@ -8,6 +8,7 @@ import {
   ImageList,
   ImageListItem,
   Stack,
+  styled,
 } from "@mui/material";
 import ReportGmailerrorredIcon from "@mui/icons-material/ReportGmailerrorred";
 import { useState } from "react";
@@ -91,23 +92,16 @@ export const PictureDialog = (props: ImageProps) => {
   return (
     <Dialog onClose={handleClose} open={open}>
       <DialogContent>
-        <Stack
-          justifyContent={"center"}
-          alignItems={"center"}
-          spacing={8}
-          padding={2}
-        >
+        <Stack justifyContent={"center"} alignItems={"center"} padding={2}>
           <Box
             sx={{
               borderRadius: 10,
-              width: 600,
-              height: 600,
               objectFit: "cover",
               objectPosition: "center",
               cursor: "pointer",
             }}
           >
-            <img src={"/" + image[0]} alt="profile" />
+            <SquareImage src={"/" + image[0]} height={400} />
           </Box>
           <Box justifyContent="space-between">
             <Button onClick={handlePrev}>
@@ -139,3 +133,21 @@ export const PictureDialog = (props: ImageProps) => {
     </Dialog>
   );
 };
+const SquareImage = styled(Stack)<{
+  src: string;
+  mode?: "cover" | "contain";
+  scale?: number;
+  height?: number | string;
+}>(({ src, mode = "cover", scale, height }) => ({
+  width: "100%",
+  height: height ?? 0,
+  paddingBottom: "100%",
+  background: `url("${src}")`,
+  backgroundSize: mode,
+  backgroundPosition: "center",
+  backgroundRepeat: "no-repeat",
+  position: "relative",
+  boxSizing: "border-box",
+  transition: ".8s all ease-in-out",
+  "&:hover": { transform: `scale(${scale})` },
+}));
