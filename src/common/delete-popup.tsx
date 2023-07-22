@@ -8,7 +8,6 @@ import {
   ImageList,
   ImageListItem,
   Stack,
-  styled,
 } from "@mui/material";
 import ReportGmailerrorredIcon from "@mui/icons-material/ReportGmailerrorred";
 import { useState } from "react";
@@ -133,21 +132,27 @@ export const PictureDialog = (props: ImageProps) => {
     </Dialog>
   );
 };
-const SquareImage = styled(Stack)<{
-  src: string;
-  mode?: "cover" | "contain";
-  scale?: number;
+const SquareImage = ({
+  width,
+  height,
+  src,
+  rounded,
+  onClick: handleClick,
+}: {
+  width?: number | string;
   height?: number | string;
-}>(({ src, mode = "cover", scale, height }) => ({
-  width: "100%",
-  height: height ?? 0,
-  paddingBottom: "100%",
-  background: `url("${src}")`,
-  backgroundSize: mode,
-  backgroundPosition: "center",
-  backgroundRepeat: "no-repeat",
-  position: "relative",
-  boxSizing: "border-box",
-  transition: ".8s all ease-in-out",
-  "&:hover": { transform: `scale(${scale})` },
-}));
+  src?: string;
+  rounded?: "none" | "sm" | "md" | "lg";
+  onClick?: () => void;
+}) => {
+  return (
+    <div>
+      <img
+        src={src}
+        alt=""
+        className={`w-${width} h-${height} rounded-${rounded}`}
+        onClick={handleClick}
+      />
+    </div>
+  );
+};
