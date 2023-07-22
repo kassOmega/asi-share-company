@@ -4,11 +4,10 @@ import Dialog from "@mui/material/Dialog";
 import Typography from "@mui/material/Typography";
 import {
   Box,
-  Card,
-  CardMedia,
   DialogContent,
   ImageList,
   ImageListItem,
+  Modal,
   Stack,
 } from "@mui/material";
 import ReportGmailerrorredIcon from "@mui/icons-material/ReportGmailerrorred";
@@ -91,53 +90,44 @@ export const PictureDialog = (props: ImageProps) => {
     return setSelectedImage(image.length);
   };
   return (
-    <Dialog onClose={handleClose} open={open}>
-      <DialogContent>
-        <Stack justifyContent={"center"} alignItems={"center"} padding={2}>
-          <Box
-            sx={{
-              borderRadius: 10,
-              objectFit: "cover",
-              objectPosition: "center",
-              cursor: "pointer",
-            }}
-          >
-            <Card sx={{ maxWidth: 345 }}>
-              <CardMedia
-                component="img"
-                alt="green iguana"
-                height="140"
-                image="/static/images/cards/contemplative-reptile.jpg"
-              />
-            </Card>
-          </Box>
-          <Box justifyContent="space-between" flex={1}>
-            <Button onClick={handlePrev}>
-              <ArrowBackIosIcon />
-            </Button>
-            <Button onClick={handleNext}>
-              <ArrowForwardIosIcon />
-            </Button>
-          </Box>
-          <Box sx={{ width: 300, height: 250 }}>
-            <ImageList cols={4} rowHeight={164}>
-              {image.map((item, index) => (
-                <ImageListItem
-                  key={item}
-                  sx={{ cursor: "pointer" }}
-                  onClick={() => setSelectedImage(index)}
-                >
-                  <img src={"/" + item} alt={""} loading="lazy" />
-                </ImageListItem>
-              ))}
-            </ImageList>
-          </Box>
-        </Stack>
-      </DialogContent>
-    </Dialog>
+    <Modal onClose={handleClose} open={open}>
+      <Stack justifyContent={"center"} alignItems={"center"} padding={2}>
+        <Box
+          sx={{
+            borderRadius: 10,
+            objectFit: "cover",
+            objectPosition: "center",
+            cursor: "pointer",
+          }}
+        >
+          <SquareImage src={"/" + image[0]} height={350} width={350} />
+        </Box>
+        <Box justifyContent="space-between" flex={1}>
+          <Button onClick={handlePrev}>
+            <ArrowBackIosIcon />
+          </Button>
+          <Button onClick={handleNext}>
+            <ArrowForwardIosIcon />
+          </Button>
+        </Box>
+        <Box sx={{ width: 300, height: 250 }}>
+          <ImageList cols={4} rowHeight={164}>
+            {image.map((item, index) => (
+              <ImageListItem
+                key={item}
+                sx={{ cursor: "pointer" }}
+                onClick={() => setSelectedImage(index)}
+              >
+                <img src={"/" + item} alt={""} loading="lazy" />
+              </ImageListItem>
+            ))}
+          </ImageList>
+        </Box>
+      </Stack>
+    </Modal>
   );
 };
-export const SquareImage = ({
+const SquareImage = ({
   width,
   height,
   src,
