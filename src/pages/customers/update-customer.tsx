@@ -379,23 +379,24 @@ export function UpdateCustomer({ isFullUpdate }: { isFullUpdate?: boolean }) {
           <Stack>
             <Typography> Uploaded Documents</Typography>
 
-            <Box sx={{ flexWrap: "wrap", flexDirection: "row", gap: 2 }}>
+            <Stack sx={{ flexWrap: "wrap", flexDirection: "row", gap: 2 }}>
               {result.data.attachments.map((img) => (
-                <img
-                  src={"/" + img}
+                <Box
                   onClick={() => setShowImageDialog(true)}
-                  key={img}
-                  alt="profile"
-                  style={{
+                  sx={{
                     borderRadius: 200,
                     width: 200,
                     height: 200,
                     objectFit: "cover",
                     objectPosition: "center",
+                    cursor: "pointer",
                   }}
-                />
+                  key={img}
+                >
+                  <img src={"/" + img} alt="profile" />
+                </Box>
               ))}
-            </Box>
+            </Stack>
           </Stack>
         )}
 

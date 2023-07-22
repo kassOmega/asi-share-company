@@ -97,8 +97,17 @@ export const PictureDialog = (props: ImageProps) => {
           spacing={8}
           padding={2}
         >
-          <Box>
-            <img src={"/" + image[selectedImage]} alt={""} loading="lazy" />
+          <Box
+            sx={{
+              borderRadius: 10,
+              width: 600,
+              height: 600,
+              objectFit: "cover",
+              objectPosition: "center",
+              cursor: "pointer",
+            }}
+          >
+            <img src={"/" + image[0]} alt="profile" />
           </Box>
           <Box justifyContent="space-between">
             <Button onClick={handlePrev}>
