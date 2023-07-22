@@ -1,4 +1,6 @@
 import {
+  Avatar,
+  Badge,
   Box,
   Button,
   CircularProgress,
@@ -13,16 +15,20 @@ import {
   CustomersRequest,
   useDeleteCustomerMutation,
   useGetCustomerByIdQuery,
+  useUpdateCustomerAttachmentsMutation,
   useUpdateCustomerMutation,
   useUpdateCustomerPaymentMutation,
+  useUpdateCustomerProfilePictureMutation,
   useUpdateCustomerResetPaymentMutation,
   useUserToken,
 } from "../../api";
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { ReactComponent as Logo } from "../logo.svg";
 import { CustomerListLayout } from "./common";
-import { DeleteDialog } from "../../common";
+import { DeleteDialog, ImageGrid } from "../../common";
 import { useSnackbar } from "notistack";
+import { AddCircle, Padding } from "@mui/icons-material";
+import { theme } from "../../theme";
 interface updateRequest {
   totalSharePaid: number;
 }
@@ -75,6 +81,17 @@ export function UpdateCustomer({ isFullUpdate }: { isFullUpdate?: boolean }) {
     isLoading: updateLoading,
     error: updateError,
   } = useUpdateCustomerMutation(id ?? "");
+  const {
+    mutateAsync: updateProfile,
+    isLoading: profileLoading,
+    error: profileError,
+  } = useUpdateCustomerProfilePictureMutation(id ?? "");
+
+  const {
+    mutateAsync: updateAttachments,
+    isLoading: attachmentsLoading,
+    error: attachmentsError,
+  } = useUpdateCustomerAttachmentsMutation(id ?? "");
 
   const onPaymentSubmit = async (data: updateRequest) => {
     console.log("data:", data);
@@ -88,6 +105,10 @@ export function UpdateCustomer({ isFullUpdate }: { isFullUpdate?: boolean }) {
       // wrong username or password
     }
   };
+  const [selectedFile, setSelectedFile] = useState<File>();
+  const [attachments, setAttachments] = useState<File[]>([]);
+  const [preview, setPreview] = useState<string[]>([]);
+  console.log("selectedFile", selectedFile);
   const onUpdateSubmit = async (data: CustomersRequest) => {
     console.log("data:", data);
 
@@ -98,6 +119,8 @@ export function UpdateCustomer({ isFullUpdate }: { isFullUpdate?: boolean }) {
         totalSharePaid: parseInt("" + totalSharePaid),
         totalSharePromised: parseInt("" + totalSharePromised),
       });
+      if (selectedFile) await updateProfile(selectedFile);
+      if (attachments.length) await updateAttachments([...attachments]);
       navigate("/customers");
     } catch {
       // wrong username or password
@@ -111,6 +134,22 @@ export function UpdateCustomer({ isFullUpdate }: { isFullUpdate?: boolean }) {
       },
     });
   }
+  const onImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e?.target?.files?.[0];
+    const newImages = [...attachments];
+    if (file) {
+      newImages.push(file);
+      setPreview([...preview, URL.createObjectURL(file)]);
+    }
+
+    setAttachments(newImages);
+  };
+  const handleImageRemove = useCallback((selectedIndex: number) => {
+    setAttachments((prev) =>
+      prev.filter((p, index) => index !== selectedIndex)
+    );
+    setPreview((prev) => prev.filter((p, index) => index !== selectedIndex));
+  }, []);
   const paymentUpdate = (
     <form onSubmit={handleSubmit(onPaymentSubmit)}>
       <Stack
@@ -207,6 +246,23 @@ export function UpdateCustomer({ isFullUpdate }: { isFullUpdate?: boolean }) {
           {result?.data.totalSharePaid} of {result?.data.totalSharePromised}{" "}
           total shares has been previously paid{" "}
         </Typography> */}
+        <Stack alignItems="center">
+          <Avatar src={result?.data.fullName} sx={{ width: 90, height: 90 }} />
+          <input
+            accept="image/*"
+            style={{ display: "none" }}
+            id="raised-button-file"
+            multiple
+            type="file"
+            onChange={(event) => setSelectedFile(event?.target?.files?.[0])}
+          />
+          <label htmlFor="raised-button-file">
+            <Button variant="outlined" component="span">
+              Upload
+            </Button>
+          </label>
+        </Stack>
+
         <Grid container spacing={2}>
           <Grid item md={6} xs={12}>
             <TextField
@@ -315,6 +371,36 @@ export function UpdateCustomer({ isFullUpdate }: { isFullUpdate?: boolean }) {
               })}
             />
           </Grid>
+        </Grid>
+
+        <Stack alignItems="center">
+          <input
+            accept="image/*"
+            style={{ display: "none" }}
+            id="attachments-file"
+            multiple
+            type="file"
+            onChange={onImageChange}
+          />
+          <label htmlFor="attachments-file">
+            <Typography
+              variant="button"
+              component="span"
+              color={"green"}
+              sx={{
+                border: 1,
+                borderRadius: 5,
+                paddingY: 2,
+                px: 8,
+                cursor: "pointer",
+              }}
+            >
+              Upload Documents
+            </Typography>
+          </label>
+        </Stack>
+        <Grid>
+          <ImageGrid images={preview ?? []} onRemove={handleImageRemove} />
         </Grid>
         {!!updateError && (
           <Typography color="red">

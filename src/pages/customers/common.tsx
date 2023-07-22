@@ -44,7 +44,10 @@ export const Display = ({ user }: { user: CustomersResponse }) => {
         </Button>
       </Box>
       <Stack alignItems="center" justifyItems="center" px={4}>
-        <Avatar src={user.fullName} sx={{ m: 2, width: 90, height: 90 }} />
+        <Avatar
+          src={user.profilePicture}
+          sx={{ m: 2, width: 90, height: 90 }}
+        />
         <Grid container>
           <Grid item xs={5} md={4}>
             <Typography sx={{ fontSize: 12 }}>Full Name</Typography>

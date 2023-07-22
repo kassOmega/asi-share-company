@@ -9,6 +9,8 @@ export interface CustomersResponse {
   totalSharePromisedAmount: number;
   totalSharePaidAmount: number;
   fullyPayed: string;
+  profilePicture: string;
+  attachments: string[];
 }
 export interface CustomersRequest {
   customerID: string;
