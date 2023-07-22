@@ -1,6 +1,5 @@
 import {
   Avatar,
-  Badge,
   Box,
   Button,
   CircularProgress,
@@ -27,8 +26,6 @@ import { ReactComponent as Logo } from "../logo.svg";
 import { CustomerListLayout } from "./common";
 import { DeleteDialog, ImageGrid } from "../../common";
 import { useSnackbar } from "notistack";
-import { AddCircle, Padding } from "@mui/icons-material";
-import { theme } from "../../theme";
 interface updateRequest {
   totalSharePaid: number;
 }
