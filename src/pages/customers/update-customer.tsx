@@ -4,6 +4,8 @@ import {
   Button,
   CircularProgress,
   Grid,
+  ImageList,
+  ImageListItem,
   Stack,
   TextField,
   Typography,
@@ -380,22 +382,40 @@ export function UpdateCustomer({ isFullUpdate }: { isFullUpdate?: boolean }) {
             <Typography> Uploaded Documents</Typography>
 
             <Stack sx={{ flexWrap: "wrap", flexDirection: "row", gap: 2 }}>
-              {result.data.attachments.map((img) => (
-                <Box
-                  onClick={() => setShowImageDialog(true)}
-                  sx={{
-                    borderRadius: 200,
-                    width: 200,
-                    height: 200,
-                    objectFit: "cover",
-                    objectPosition: "center",
-                    cursor: "pointer",
-                  }}
-                  key={img}
-                >
-                  <img src={"/" + img} alt="profile" />
-                </Box>
-              ))}
+              <ImageList
+                sx={{ width: 300, height: 250 }}
+                cols={4}
+                rowHeight={164}
+              >
+                {result.data.attachments.map((img) => (
+                  // <Box
+                  //   onClick={() => setShowImageDialog(true)}
+                  //   sx={{
+                  //     borderRadius: 200,
+                  //     width: 200,
+                  //     height: 200,
+                  //     objectFit: "cover",
+                  //     objectPosition: "center",
+                  //     cursor: "pointer",
+                  //   }}
+                  //   key={img}
+                  // >
+                  //   <img src={"/" + img} alt="profile" />
+                  // </Box>
+
+                  <ImageListItem
+                    key={img}
+                    sx={{
+                      cursor: "pointer",
+                      backgroundColor: "#d4d4d4",
+                      borderRadius: 10,
+                    }}
+                    onClick={() => setShowImageDialog(true)}
+                  >
+                    <img src={"/" + img} alt={""} loading="lazy" />
+                  </ImageListItem>
+                ))}
+              </ImageList>
             </Stack>
           </Stack>
         )}
