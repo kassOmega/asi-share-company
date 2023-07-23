@@ -31,7 +31,7 @@ export function AddCustomer() {
       error,
     };
   };
-
+  const promisedBirr = parseInt(watch("totalSharePromised") + "") * 2000;
   const navigate = useNavigate();
   const {
     mutateAsync: registerCustomer,
@@ -39,9 +39,8 @@ export function AddCustomer() {
     error,
   } = useRegisterCustomerMutation();
   const onSubmit = async (data: CustomersRequest) => {
-    console.log("data:", data);
     const { totalSharePaid, totalSharePromised, ...other } = data;
-    if (totalSharePaid > totalSharePromised) {
+    if (parseInt(totalSharePaid + "") > parseInt(totalSharePromised + "")) {
       setError("Paid share should not exceed the promised share");
       return;
     }
@@ -51,6 +50,7 @@ export function AddCustomer() {
         totalSharePaid: parseInt("" + totalSharePaid),
         totalSharePromised: parseInt("" + totalSharePromised),
       });
+
       navigate("/customers");
     } catch {
       // wrong username or password
@@ -78,6 +78,24 @@ export function AddCustomer() {
               }}
               spacing={3}
             >
+              {/* <Stack alignItems="center">
+                <Avatar sx={{ width: 90, height: 90 }} />
+                <input
+                  accept="image/*"
+                  style={{ display: "none" }}
+                  id="raised-button-file"
+                  multiple
+                  type="file"
+                  onChange={(event) =>
+                    setSelectedFile(event?.target?.files?.[0])
+                  }
+                />
+                <label htmlFor="raised-button-file">
+                  <Button variant="outlined" component="span">
+                    Set profile picture
+                  </Button>
+                </label>
+              </Stack> */}
               <Grid container spacing={2}>
                 <Grid item md={6} xs={12}>
                   <TextField
@@ -152,9 +170,7 @@ export function AddCustomer() {
                   <TextField
                     size="small"
                     label="Promised Birr"
-                    defaultValue={
-                      parseInt(watch("totalSharePromised") + "") * 2000
-                    }
+                    value={promisedBirr ?? 0}
                     type="number"
                     {...registerUpgraded("totalSharePromisedAmount", {
                       required: "Promised Share is required",
@@ -175,9 +191,9 @@ export function AddCustomer() {
                       required: "Paid Share is required",
                       validate: {
                         positiveNumber: (value) =>
-                          parseInt(value + "") <=
-                            parseInt(watch("totalSharePromisedAmount") + "") &&
-                          parseInt(value + "") >= 0,
+                          parseInt(value + "") >= 0 ||
+                          parseInt(watch("totalSharePromisedAmount") + "") >=
+                            parseInt(value + ""),
                       },
                     })}
                   />

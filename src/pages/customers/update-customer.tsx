@@ -94,7 +94,6 @@ export function UpdateCustomer({ isFullUpdate }: { isFullUpdate?: boolean }) {
   } = useUpdateCustomerAttachmentsMutation(id ?? "");
 
   const onPaymentSubmit = async (data: updateRequest) => {
-    console.log("data:", data);
     const { totalSharePaid } = data;
     try {
       await updateCustomerPayment({
@@ -109,10 +108,7 @@ export function UpdateCustomer({ isFullUpdate }: { isFullUpdate?: boolean }) {
   const [selectedAttachments, setSelectedAttachments] = useState<File[]>([]);
 
   const [preview, setPreview] = useState<string[]>([]);
-  console.log("selectedFile", selectedFile);
   const onUpdateSubmit = async (data: CustomersRequest) => {
-    console.log("data:", data);
-
     const { totalSharePaid, totalSharePromised, ...other } = data;
     try {
       await updateCustomer({

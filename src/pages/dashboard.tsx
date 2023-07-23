@@ -9,7 +9,6 @@ import { useGetCustomersStatQuery } from "../api";
 
 export const Dashboard = () => {
   const { data: stat, isLoading } = useGetCustomersStatQuery();
-  console.log(stat);
   const data = linearBar(
     stat?.data.totalShareHolders ?? 0,
     stat?.data.totalRequestedShare ?? 0,

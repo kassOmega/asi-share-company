@@ -31,7 +31,6 @@ export function AddBoard() {
     error,
   } = useRegisterBoardMutation();
   const onSubmit = async (data: BoardRequest) => {
-    console.log("data:", data);
     try {
       await registerBoard({
         ...data,
