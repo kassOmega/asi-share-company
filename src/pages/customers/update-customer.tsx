@@ -329,12 +329,12 @@ export function UpdateCustomer({ isFullUpdate }: { isFullUpdate?: boolean }) {
               label="Paid Share"
               {...registerUpgraded("totalSharePaid", {
                 required: "Paid Share is required",
-                validate: {
-                  positiveNumber: (value) =>
-                    parseInt(value + "") <=
-                      parseInt(watch("totalSharePromised") + "") &&
-                    parseInt(value + "") >= 0,
-                },
+                // validate: {
+                //   positiveNumber: (value) =>
+                //     parseInt(value + "") <=
+                //       parseInt(watch("totalSharePromised") + "") &&
+                //     parseInt(value + "") >= 0,
+                // },
               })}
             />
           </Grid>
@@ -363,12 +363,12 @@ export function UpdateCustomer({ isFullUpdate }: { isFullUpdate?: boolean }) {
               label="Paid Birr"
               {...registerUpgraded("totalSharePaidAmount", {
                 required: "Paid Share is required",
-                validate: {
-                  positiveNumber: (value) =>
-                    parseInt(value + "") <=
-                      parseInt(watch("totalSharePromisedAmount") + "") &&
-                    parseInt(value + "") >= 0,
-                },
+                // validate: {
+                //   positiveNumber: (value) =>
+                //     parseInt(value + "") <=
+                //       parseInt(watch("totalSharePromisedAmount") + "") ||
+                //     parseInt(value + "") >= 0,
+                // },
               })}
             />
           </Grid>

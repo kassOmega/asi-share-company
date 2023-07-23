@@ -90,7 +90,7 @@ export function AddCustomer() {
                     setSelectedFile(event?.target?.files?.[0])
                   }
                 />
-                <label htmlFor="raised-button-file">
+                <label htmlFor="rais+1 (103) 841-5217ed-button-file">
                   <Button variant="outlined" component="span">
                     Set profile picture
                   </Button>
@@ -157,12 +157,12 @@ export function AddCustomer() {
                     label="Paid Share"
                     {...registerUpgraded("totalSharePaid", {
                       required: "Paid Share is required",
-                      validate: {
-                        positiveNumber: (value) =>
-                          parseInt(value + "") <=
-                            parseInt(watch("totalSharePromised") + "") &&
-                          parseInt(value + "") >= 0,
-                      },
+                      // validate: {
+                      //   positiveNumber: (value) =>
+                      //     parseInt(value + "") <=
+                      //       parseInt(watch("totalSharePromised") + "") &&
+                      //     parseInt(value + "") >= 0,
+                      // },
                     })}
                   />
                 </Grid>
@@ -189,12 +189,12 @@ export function AddCustomer() {
                     label="Paid Birr"
                     {...registerUpgraded("totalSharePaidAmount", {
                       required: "Paid Share is required",
-                      validate: {
-                        positiveNumber: (value) =>
-                          parseInt(value + "") >= 0 ||
-                          parseInt(watch("totalSharePromisedAmount") + "") >=
-                            parseInt(value + ""),
-                      },
+                      // validate: {
+                      //   positiveNumber: (value) =>
+                      //     parseInt(value + "") >= 0 ||
+                      //     parseInt(watch("totalSharePromisedAmount") + "") >=
+                      //       parseInt(value + ""),
+                      // },
                     })}
                   />
                 </Grid>
