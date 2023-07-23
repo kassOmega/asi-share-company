@@ -447,7 +447,7 @@ export function UpdateCustomer({ isFullUpdate }: { isFullUpdate?: boolean }) {
           disabled={updateLoading}
           fullWidth
         >
-          {updateLoading && profileLoading && attachmentsLoading ? (
+          {updateLoading || profileLoading || attachmentsLoading ? (
             <CircularProgress size="20px" />
           ) : (
             "Update"
