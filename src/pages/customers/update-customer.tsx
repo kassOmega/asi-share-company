@@ -83,13 +83,13 @@ export function UpdateCustomer({ isFullUpdate }: { isFullUpdate?: boolean }) {
   } = useUpdateCustomerMutation(id ?? "");
   const {
     mutateAsync: updateProfile,
-    // isLoading: profileLoading,
+    isLoading: profileLoading,
     // error: profileError,
   } = useUpdateCustomerProfilePictureMutation(id ?? "");
 
   const {
     mutateAsync: updateAttachments,
-    // isLoading: attachmentsLoading,
+    isLoading: attachmentsLoading,
     // error: attachmentsError,
   } = useUpdateCustomerAttachmentsMutation(id ?? "");
 
@@ -447,7 +447,11 @@ export function UpdateCustomer({ isFullUpdate }: { isFullUpdate?: boolean }) {
           disabled={updateLoading}
           fullWidth
         >
-          {updateLoading ? <CircularProgress size="20px" /> : "Update"}
+          {updateLoading && profileLoading && attachmentsLoading ? (
+            <CircularProgress size="20px" />
+          ) : (
+            "Update"
+          )}
         </Button>
       </Stack>
     </form>
