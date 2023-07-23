@@ -142,6 +142,12 @@ export function UpdateCustomer({ isFullUpdate }: { isFullUpdate?: boolean }) {
 
     setSelectedAttachments(newImages);
   };
+  const loader =
+    updateLoading && profileLoading && attachmentsLoading ? (
+      <CircularProgress size="20px" />
+    ) : (
+      "Update"
+    );
   const handleImageRemove = useCallback((selectedIndex: number) => {
     setSelectedAttachments((prev) =>
       prev.filter((p, index) => index !== selectedIndex)
@@ -447,11 +453,7 @@ export function UpdateCustomer({ isFullUpdate }: { isFullUpdate?: boolean }) {
           disabled={updateLoading}
           fullWidth
         >
-          {updateLoading || profileLoading || attachmentsLoading ? (
-            <CircularProgress size="20px" />
-          ) : (
-            "Update"
-          )}
+          {loader}
         </Button>
       </Stack>
     </form>
