@@ -21,8 +21,8 @@ import {
 import { capitalizeFullName } from "../../common";
 
 export const Display = ({ user }: { user: CustomersResponse }) => {
-  const navigate = useNavigate();
-  const { user: userRole } = useUserToken();
+  // const navigate = useNavigate();
+  // const { user: userRole } = useUserToken();
 
   return (
     <Stack
