@@ -123,16 +123,17 @@ export const Display = ({ user }: { user: CustomersResponse }) => {
         >
           Detail
         </Button>
-        {userRole?.role === "admin" && (
+        {/* {userRole?.role === "admin" && (
           <Button
             onClick={() => navigate(`/customers/update-payment/${user.id}`)}
             variant="outlined"
+            
             sx={{ p: 0.5, px: 1, alignSelf: "flex-end" }}
             size="small"
           >
             update payment
           </Button>
-        )}
+        )} */}
       </Stack>
     </Stack>
   );
