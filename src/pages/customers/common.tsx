@@ -107,7 +107,7 @@ export const Display = ({ user }: { user: CustomersResponse }) => {
         <Button
           variant="outlined"
           size="small"
-          sx={{ p: 0.5, alignSelf: "flex-start" }}
+          sx={{  alignSelf: "flex-start" }}
           component={Link}
           to={`/customers/${user.id}`}
         >
