@@ -113,8 +113,8 @@ export const Display = ({ user }: { user: CustomersResponse }) => {
         >
           Detail
         </Button>
-
-      <Box sx={{ position: "absolute", right: 4, top: 2 }} padding={0.5}>
+{/* 
+      <Box sx={{ position: "absolute", right: 4, top: 2 }} padding={0.5}> */}
         <Button
           component={Link}
           to={`/customers/update/${user.id}`}
@@ -123,7 +123,7 @@ export const Display = ({ user }: { user: CustomersResponse }) => {
         >
           Edit
         </Button>
-      </Box>
+      {/* </Box> */}
         {/* {userRole?.role === "admin" && (
           <Button
             onClick={() => navigate(`/customers/update-payment/${user.id}`)}
