@@ -69,14 +69,14 @@ export const Display = ({ user }: { user: CustomersResponse }) => {
             <Typography sx={{ fontSize: 12 }}>{user.phoneNumber}</Typography>
           </Grid>
           <Grid item xs={5} md={4}>
-            <Typography sx={{ fontSize: 12 }}>Remaining Share</Typography>
+            <Typography sx={{ fontSize: 12 }}>Promised Share</Typography>
           </Grid>
           <Grid item xs={1} md={1}>
             <Typography sx={{ fontSize: 12 }}>:</Typography>
           </Grid>
           <Grid item xs={6} md={7}>
             <Typography sx={{ fontSize: 12 }}>
-              {user.totalSharePromised-user.totalSharePaid}
+              {user.totalSharePromised}
             </Typography>
           </Grid>
 
