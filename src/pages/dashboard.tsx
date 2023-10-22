@@ -115,7 +115,7 @@ export const Dashboard = () => {
                   justifyContent="center"
                 >
                   <Typography>Customers Started Payment</Typography>
-                  <Typography>ETB {stat?.data.startedPay}</Typography>
+                  <Typography> {stat?.data.startedPay}</Typography>
                   <LinearProgress value={40} color="success" />
                 </Stack>
               </Grid>
@@ -127,7 +127,7 @@ export const Dashboard = () => {
                   justifyContent="center"
                 >
                   <Typography>Customers Paid 10K And Above</Typography>
-                  <Typography>ETB {stat?.data.paid10kAndAbove}</Typography>
+                  <Typography> {stat?.data.paid10kAndAbove}</Typography>
                   <LinearProgress value={40} color="success" />
                 </Stack>
               </Grid>
