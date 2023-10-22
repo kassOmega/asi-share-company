@@ -271,7 +271,7 @@ export const CustomerListLayout = ({
 setMax?: (e: string) => void,
   isDetail?: boolean;
 }) => {
-  const [params, setParams] = useParams();
+  const [, setParams] = useParams();
   return (
     <Stack sx={{ backgroundColor: "#ffff" }}>
       <Grid container>
