@@ -301,7 +301,6 @@ setMax?: (e: string) => void,
                 size="small"
                 fullWidth
               />
-              <Stack sx={{flexDirection:"row",}} spacing={2}>
                   <TextField
                     placeholder="Min"
                     type="number"
@@ -317,7 +316,7 @@ setMax?: (e: string) => void,
                     fullWidth
                   />
                 
-              </Stack></>
+              </>
             )}
             <FilterMenu />
           </Stack>
