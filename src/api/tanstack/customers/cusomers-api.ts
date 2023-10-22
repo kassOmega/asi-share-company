@@ -15,7 +15,7 @@ export const useGetCustomersQuery = (params?: SearchParams) => {
     queryKey: ["get customer", params?.name],
     queryFn: () =>
       client
-        .get("/api/admin/customers", { params: { name: params?.name } })
+        .get("/api/admin/customers", { params: { name: params?.name,max:params?.max,min:params?.min } })
         .then((res) => res.data),
   });
 };

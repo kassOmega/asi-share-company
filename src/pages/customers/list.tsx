@@ -14,9 +14,15 @@ import { useLocation } from "react-router-dom";
 
 export const CustomerList = () => {
   const [searchText, setSearchText] = useState("");
+  const [min, setMIn] = useState("");
+  const [max, setMax] = useState("");
   const params = useMemo(() => {
-    return { name: searchText };
-  }, [searchText]);
+    return { 
+      name: searchText,
+      min:min,
+      max:max
+    };
+  }, [searchText,max,min]);
   const { data: customers, isLoading } = useGetCustomersQuery(params);
   const location = useLocation();
 
@@ -39,6 +45,17 @@ export const CustomerList = () => {
           setSearchText(e);
           paramsURL.append("name", params.name);
         }}
+
+        setMIn={(e: string) => {
+          setMIn(e);
+          paramsURL.append("min", params.min);
+        }}
+
+        setMax={(e: string) => {
+          setMax(e);
+          paramsURL.append("max", params.max);
+        }}
+
       >
         {isLoading ? (
           <CircularProgress />

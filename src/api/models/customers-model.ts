@@ -40,4 +40,6 @@ export interface CustomersStat {
 }
 export interface SearchParams {
   name?: string;
+  min?:string,
+  max?:string
 }

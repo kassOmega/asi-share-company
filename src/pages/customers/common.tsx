@@ -262,10 +262,14 @@ export const CustomerListLayout = ({
   children,
   onChange,
   isDetail,
+  setMIn,
+setMax
 }: {
   header: string;
   children: ReactNode;
   onChange?: (e: string) => void;
+  setMIn?: (e: string) => void,
+setMax?: (e: string) => void,
   isDetail?: boolean;
 }) => {
   return (
@@ -290,13 +294,30 @@ export const CustomerListLayout = ({
             >
               Register Customer
             </Button>
-            {!isDetail && (
+            {!isDetail && (<>
               <TextField
                 placeholder="Search"
                 onChange={(e) => onChange?.(e.target.value)}
                 size="small"
                 fullWidth
               />
+              <Stack sx={{flexDirection:"row",}} spacing={2}>
+                  <TextField
+                    placeholder="Min"
+                    type="number"
+                    onChange={(e) => setMIn?.(e.target.value)}
+                    size="small"
+                    fullWidth
+                  /> 
+                  <TextField
+                    placeholder="Max"
+                    type="number"
+                    onChange={(e) => setMax?.(e.target.value)}
+                    size="small"
+                    fullWidth
+                  />
+                
+              </Stack></>
             )}
             <FilterMenu />
           </Stack>
