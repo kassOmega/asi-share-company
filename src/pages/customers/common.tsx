@@ -321,7 +321,7 @@ setMax?: (e: string) => void,
         </Grid>
         <Grid item xs={12} md={9} minHeight={"100vh"}>
           <Stack spacing={2}>
-            <Stack direction={"row"} justifyContent={"center"}>
+            <Stack direction={"row"} justifyContent={"center"} zIndex={10}>
               <Typography
                 variant="h4"
                 textAlign="center"
