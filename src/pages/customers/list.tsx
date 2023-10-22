@@ -9,12 +9,10 @@ import { useGetCustomersQuery } from "../../api";
 import ArrowBackIosNewIcon from "@mui/icons-material/ArrowBackIosNew";
 import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 import { CustomerListLayout, Display } from "./common";
-import { useMemo, useState } from "react";
-import { useLocation } from "react-router-dom";
+import { useMemo } from "react";
 import { useParams } from "../../common/search-param";
 
 export const CustomerList = () => {
-  const [searchText, setSearchText] = useState("");
 
   const [params] = useParams();
   const para = useMemo(() => {
@@ -27,27 +25,12 @@ export const CustomerList = () => {
   const { data: customers, isLoading } = useGetCustomersQuery(
    para
     );
-  const location = useLocation();
-
-  const paramsURL = useMemo(
-    () => new URLSearchParams(location.search),
-    [location.search]
-  );
-  // console.table(customers?.data);
-  // const { id } = useParams();
-
-  // const selected = useMemo(
-  //   () => customers?.data.find((p) => p.id === id),
-  //   [customers?.data, id]
-  // );
+ 
   return (
     <Stack padding={2} spacing={2}>
       <CustomerListLayout
         header="Share Holders List"
-        onChange={(e: string) => {
-          setSearchText(e);
-          paramsURL.append("name",searchText);
-        }}
+       
 
         
       >

@@ -261,12 +261,10 @@ export function FilterMenu({ isDetail }: { isDetail?: boolean }) {
 export const CustomerListLayout = ({
   header,
   children,
-  onChange,
   isDetail,
 }: {
   header: string;
   children: ReactNode;
-  onChange?: (e: string) => void;
   setMIn?: (e: string) => void,
 setMax?: (e: string) => void,
   isDetail?: boolean;
