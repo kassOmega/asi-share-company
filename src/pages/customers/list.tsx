@@ -17,8 +17,8 @@ export const CustomerList = () => {
   const [params] = useParams();
   const para = useMemo(() => {
     return { 
-      name:params.get("name")??undefined,
       min:params.get("min")??undefined,
+      name:params.get("name")??undefined,
       max:params.get("max")??undefined
     };
   }, [params]);
