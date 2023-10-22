@@ -261,10 +261,14 @@ export function FilterMenu({ isDetail }: { isDetail?: boolean }) {
 export const CustomerListLayout = ({
   header,
   children,
+  onChange,
   isDetail,
 }: {
   header: string;
   children: ReactNode;
+  onChange?: (e: string) => void;
+  setMIn?: (e: string) => void,
+setMax?: (e: string) => void,
   isDetail?: boolean;
 }) => {
   const [params, setParams] = useParams();
@@ -293,7 +297,7 @@ export const CustomerListLayout = ({
             {!isDetail && (<>
               <TextField
                 placeholder="Search"
-                onChange={(e) => setParams?.("name",e.target.value)}
+                onChange={(e) => onChange?.(e.target.value)}
                 size="small"
                 fullWidth
               />
@@ -307,7 +311,7 @@ export const CustomerListLayout = ({
                   <TextField
                     placeholder="Max"
                     type="number"
-                    onChange={(e) => setParams?.("max",e.target.value)}
+                    onChange={(e) => setParams?.("name",e.target.value)}
                     size="small"
                     fullWidth
                   />

@@ -9,22 +9,30 @@ import { useGetCustomersQuery } from "../../api";
 import ArrowBackIosNewIcon from "@mui/icons-material/ArrowBackIosNew";
 import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 import { CustomerListLayout, Display } from "./common";
-import { useMemo } from "react";
+import { useMemo, useState } from "react";
+import { useLocation } from "react-router-dom";
 import { useParams } from "../../common/search-param";
 
 export const CustomerList = () => {
+  const [searchText, setSearchText] = useState("");
 
   const [params] = useParams();
   const para = useMemo(() => {
     return { 
-      name:params.get("name")??undefined,
+      name:searchText,
       min:params.get("min")??undefined,
-      max:params.get("max")??undefined
+      max:params.get("min")??undefined
     };
-  }, [params]);
-  const { data: customers, isLoading } = useGetCustomersQuery( para);
-  
- 
+  }, [params,searchText]);
+  const { data: customers, isLoading } = useGetCustomersQuery(
+   para
+    );
+  const location = useLocation();
+
+  const paramsURL = useMemo(
+    () => new URLSearchParams(location.search),
+    [location.search]
+  );
   // console.table(customers?.data);
   // const { id } = useParams();
 
@@ -36,7 +44,12 @@ export const CustomerList = () => {
     <Stack padding={2} spacing={2}>
       <CustomerListLayout
         header="Share Holders List"
-    
+        onChange={(e: string) => {
+          setSearchText(e);
+          paramsURL.append("name",searchText);
+        }}
+
+        
       >
         {isLoading ? (
           <CircularProgress />
