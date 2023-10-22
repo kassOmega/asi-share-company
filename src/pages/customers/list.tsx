@@ -19,11 +19,11 @@ export const CustomerList = () => {
   const [params] = useParams();
   const para = useMemo(() => {
     return { 
-      name:searchText,
+      name:params.get("name")??undefined,
       min:params.get("min")??undefined,
       max:params.get("min")??undefined
     };
-  }, [params,searchText]);
+  }, [params]);
   const { data: customers, isLoading } = useGetCustomersQuery(
    para
     );

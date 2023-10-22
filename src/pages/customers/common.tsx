@@ -297,21 +297,21 @@ setMax?: (e: string) => void,
             {!isDetail && (<>
               <TextField
                 placeholder="Search"
-                onChange={(e) => onChange?.(e.target.value)}
+                onChange={(e) => setParams?.("name",e.target.value)}
                 size="small"
                 fullWidth
               />
                   <TextField
-                    placeholder="Min"
+                    placeholder="Min Birr"
                     type="number"
                     onChange={(e) => setParams?.("min",e.target.value)}
                     size="small"
                     fullWidth
                   /> 
                   <TextField
-                    placeholder="Max"
+                    placeholder="Max Birr"
                     type="number"
-                    onChange={(e) => setParams?.("name",e.target.value)}
+                    onChange={(e) => setParams?.("max",e.target.value)}
                     size="small"
                     fullWidth
                   />
