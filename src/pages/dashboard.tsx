@@ -105,6 +105,32 @@ export const Dashboard = () => {
                   <LinearProgress value={40} color="success" />
                 </Stack>
               </Grid>
+
+
+              <Grid item xs={12} md={6}>
+                <Stack
+                  boxShadow={5}
+                  borderRadius={10}
+                  alignItems="center"
+                  justifyContent="center"
+                >
+                  <Typography>Customers Started Payment</Typography>
+                  <Typography>ETB {stat?.data.startedPay}</Typography>
+                  <LinearProgress value={40} color="success" />
+                </Stack>
+              </Grid>
+              <Grid item xs={12} md={6}>
+                <Stack
+                  boxShadow={5}
+                  borderRadius={10}
+                  alignItems="center"
+                  justifyContent="center"
+                >
+                  <Typography>Customers Paid 10K And Above</Typography>
+                  <Typography>ETB {stat?.data.paid10kAndAbove}</Typography>
+                  <LinearProgress value={40} color="success" />
+                </Stack>
+              </Grid>
             </Grid>
           </Stack>
         </>

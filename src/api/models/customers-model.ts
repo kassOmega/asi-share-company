@@ -34,6 +34,8 @@ export interface CustomersStat {
     totalShareHoldersCompletelyPaid: number;
     totalSharePromisedAmount: number;
     totalSharePaidAmount: number;
+    startedPay:number,
+    paid10kAndAbove:number
   };
 }
 export interface SearchParams {
