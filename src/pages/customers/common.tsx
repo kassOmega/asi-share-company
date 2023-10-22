@@ -306,13 +306,13 @@ setMax?: (e: string) => void,
                     size="small"
                     fullWidth
                   /> 
-                  <TextField
+                  {/* <TextField
                     placeholder="Max Birr"
                     type="number"
                     onChange={(e) => setParams?.("max",e.target.value)}
                     size="small"
                     fullWidth
-                  />
+                  /> */}
                 
               </>
             )}
