@@ -19,6 +19,7 @@ import {
   useUserToken,
 } from "../../api";
 import { capitalizeFullName } from "../../common";
+import { useParams } from "../../common/search-param";
 
 export const Display = ({ user }: { user: CustomersResponse }) => {
   // const navigate = useNavigate();
@@ -260,18 +261,13 @@ export function FilterMenu({ isDetail }: { isDetail?: boolean }) {
 export const CustomerListLayout = ({
   header,
   children,
-  onChange,
   isDetail,
-  setMIn,
-setMax
 }: {
   header: string;
   children: ReactNode;
-  onChange?: (e: string) => void;
-  setMIn?: (e: string) => void,
-setMax?: (e: string) => void,
   isDetail?: boolean;
 }) => {
+  const [params, setParams] = useParams();
   return (
     <Stack sx={{ backgroundColor: "#ffff" }}>
       <Grid container>
@@ -297,21 +293,21 @@ setMax?: (e: string) => void,
             {!isDetail && (<>
               <TextField
                 placeholder="Search"
-                onChange={(e) => onChange?.(e.target.value)}
+                onChange={(e) => setParams?.("name",e.target.value)}
                 size="small"
                 fullWidth
               />
                   <TextField
                     placeholder="Min"
                     type="number"
-                    onChange={(e) => setMIn?.(e.target.value)}
+                    onChange={(e) => setParams?.("min",e.target.value)}
                     size="small"
                     fullWidth
                   /> 
                   <TextField
                     placeholder="Max"
                     type="number"
-                    onChange={(e) => setMax?.(e.target.value)}
+                    onChange={(e) => setParams?.("max",e.target.value)}
                     size="small"
                     fullWidth
                   />

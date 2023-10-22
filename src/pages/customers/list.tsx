@@ -9,27 +9,22 @@ import { useGetCustomersQuery } from "../../api";
 import ArrowBackIosNewIcon from "@mui/icons-material/ArrowBackIosNew";
 import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 import { CustomerListLayout, Display } from "./common";
-import { useMemo, useState } from "react";
-import { useLocation } from "react-router-dom";
+import { useMemo } from "react";
+import { useParams } from "../../common/search-param";
 
 export const CustomerList = () => {
-  const [searchText, setSearchText] = useState("");
-  const [min, setMIn] = useState("");
-  const [max, setMax] = useState("");
-  const params = useMemo(() => {
-    return { 
-      name: searchText,
-      min:min,
-      max:max
-    };
-  }, [searchText,max,min]);
-  const { data: customers, isLoading } = useGetCustomersQuery(params);
-  const location = useLocation();
 
-  const paramsURL = useMemo(
-    () => new URLSearchParams(location.search),
-    [location.search]
-  );
+  const [params] = useParams();
+  const para = useMemo(() => {
+    return { 
+      name:params.get("name")??undefined,
+      min:params.get("min")??undefined,
+      max:params.get("max")??undefined
+    };
+  }, [params]);
+  const { data: customers, isLoading } = useGetCustomersQuery( para);
+  
+ 
   // console.table(customers?.data);
   // const { id } = useParams();
 
@@ -41,21 +36,7 @@ export const CustomerList = () => {
     <Stack padding={2} spacing={2}>
       <CustomerListLayout
         header="Share Holders List"
-        onChange={(e: string) => {
-          setSearchText(e);
-          paramsURL.append("name", params.name);
-        }}
-
-        setMIn={(e: string) => {
-          setMIn(e);
-          paramsURL.append("min", params.min);
-        }}
-
-        setMax={(e: string) => {
-          setMax(e);
-          paramsURL.append("max", params.max);
-        }}
-
+    
       >
         {isLoading ? (
           <CircularProgress />
