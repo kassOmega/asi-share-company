@@ -38,7 +38,7 @@ export const CustomerList = () => {
           <CircularProgress />
         ) : !customers?.data.length ? (
           <Typography sx={{ fontSize: 12 }} padding={10}>
-            No Registered Customers Yet
+            No Customers Found
           </Typography>
         ) : (
           <>
