@@ -9,19 +9,19 @@ import { useGetCustomersQuery } from "../../api";
 import ArrowBackIosNewIcon from "@mui/icons-material/ArrowBackIosNew";
 import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 import { CustomerListLayout, Display } from "./common";
-import { useMemo } from "react";
+// import { useMemo } from "react";
 import { useParams } from "../../common/search-param";
 
 export const CustomerList = () => {
 
   const [params] = useParams();
-  const para = useMemo(() => {
-    return { 
-      min:params.get("min")??undefined,
-      name:params.get("name")??undefined,
-      max:params.get("max")??undefined
-    };
-  }, [params]);
+  // const para = useMemo(() => {
+  //   return { 
+  //     min:params.get("min")??undefined,
+  //     name:params.get("name")??undefined,
+  //     max:params.get("max")??undefined
+  //   };
+  // }, [params]);
   const { data: customers, isLoading } = useGetCustomersQuery(
    {
     name:params.get("min")??undefined,
