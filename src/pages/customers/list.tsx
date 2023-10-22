@@ -21,7 +21,7 @@ export const CustomerList = () => {
     return { 
       name:params.get("name")??undefined,
       min:params.get("min")??undefined,
-      max:params.get("min")??undefined
+      max:params.get("max")??undefined
     };
   }, [params]);
   const { data: customers, isLoading } = useGetCustomersQuery(
