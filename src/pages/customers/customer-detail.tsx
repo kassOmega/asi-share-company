@@ -68,11 +68,19 @@ export const CustomerDetail = () => {
                     width: 200,
                     height: 200,
                     objectFit: "cover",
-                    objectPosition: "center",
+                    objectPosition: "center", 
+                    border:`2px ${user.data.fullyPayed?
+                      "green":user.data.totalSharePaid>1?
+                      "yellow":"red"} solid` 
                   }}
+
                 />
               ) : (
-                <Avatar sx={{ width: 200, height: 200 }} />
+                <Avatar sx={{ width: 200, height: 200,
+                  border:`2px ${user?.data.fullyPayed?
+                  "green":user?.data?.totalSharePaid??0>1?
+                  "yellow":"red"} solid`  
+                }} />
               )}
             </Stack>
             <Stack alignItems={"center"} justifyContent={"center"}>
@@ -84,54 +92,54 @@ export const CustomerDetail = () => {
                   "@media (min-width: 600px)": { paddingLeft: 20 },
                 }}
               >
-                <Grid item xs={6} md={6}>
+                <Grid item xs={6} md={4}>
                   <Typography>Full Name</Typography>
                 </Grid>
-                <Grid item xs={6} md={6} left={-8}>
+                <Grid item xs={6} md={4} left={-8}>
                   <Typography>
                     {capitalizeFullName(user?.data.fullName ?? "")}
                   </Typography>
                 </Grid>
-                <Grid item xs={6} md={6}>
+                <Grid item xs={6} md={4}>
                   <Typography>Customer ID</Typography>
                 </Grid>
-                <Grid item xs={6} md={6} left={-8}>
+                <Grid item xs={6} md={4} left={-8}>
                   <Typography>{user?.data.customerID}</Typography>
                 </Grid>
-                <Grid item xs={6} md={6}>
+                <Grid item xs={6} md={4}>
                   <Typography>Address</Typography>
                 </Grid>
-                <Grid item xs={6} md={6}>
+                <Grid item xs={6} md={4}>
                   <Typography>{user?.data.address}</Typography>
                 </Grid>
-                <Grid item xs={6} md={6}>
+                <Grid item xs={6} md={4}>
                   <Typography>Phone Number</Typography>
                 </Grid>
-                <Grid item xs={6} md={6}>
+                <Grid item xs={6} md={4}>
                   <Typography>{user?.data.phoneNumber}</Typography>
                 </Grid>
-                <Grid item xs={6} md={6}>
+                <Grid item xs={6} md={4}>
                   <Typography>Promised Share To Buy</Typography>
                 </Grid>
-                <Grid item xs={6} md={6}>
+                <Grid item xs={6} md={4}>
                   <Typography>{user?.data.totalSharePromised}</Typography>
                 </Grid>
-                <Grid item xs={6} md={6}>
+                <Grid item xs={6} md={4}>
                   <Typography>Paid Share</Typography>
                 </Grid>
-                <Grid item xs={6} md={6}>
+                <Grid item xs={6} md={4}>
                   <Typography>{user?.data.totalSharePaid}</Typography>
                 </Grid>
-                <Grid item xs={6} md={6}>
+                <Grid item xs={6} md={4}>
                   <Typography>Promised Share in Birr</Typography>
                 </Grid>
-                <Grid item xs={6} md={6}>
+                <Grid item xs={6} md={4}>
                   <Typography>{user?.data.totalSharePromisedAmount}</Typography>
                 </Grid>
-                <Grid item xs={6} md={6}>
+                <Grid item xs={6} md={4}>
                   <Typography>Paid Share in Birr</Typography>
                 </Grid>
-                <Grid item xs={6} md={6}>
+                <Grid item xs={6} md={4}>
                   <Typography>{user?.data.totalSharePaidAmount}</Typography>
                 </Grid>
               </Grid>
