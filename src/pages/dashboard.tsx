@@ -143,7 +143,7 @@ export const Dashboard = () => {
                   justifyContent="center"
                 >
                   <Typography>Money Paid 10K And Above</Typography>
-                  <Typography> {stat?.data.moneyPaid10kAndAbove.toLocaleString("en-US")}</Typography>
+                  <Typography>ETB {stat?.data.moneyPaid10kAndAbove.toLocaleString("en-US")}</Typography>
                   <LinearProgress value={40} color="success" />
                 </Stack>
               </Grid>
@@ -156,7 +156,7 @@ export const Dashboard = () => {
                   justifyContent="center"
                 >
                   <Typography>Money Promised 10K And Above</Typography>
-                  <Typography> {stat?.data.promisedMoney10kAndAbove.toLocaleString("en-US")}</Typography>
+                  <Typography> ETB {stat?.data.promisedMoney10kAndAbove.toLocaleString("en-US")}</Typography>
                   <LinearProgress value={40} color="success" />
                 </Stack>
               </Grid>
@@ -211,7 +211,7 @@ export const Dashboard = () => {
                   justifyContent="center"
                 >
                   <Typography>Money Paid Below 10K</Typography>
-                  <Typography> {stat?.data.moneyPaidBelow10k.toLocaleString("en-US")}</Typography>
+                  <Typography>ETB {stat?.data.moneyPaidBelow10k.toLocaleString("en-US")}</Typography>
                   <LinearProgress value={40} color="success" />
                 </Stack>
               </Grid>
@@ -224,7 +224,7 @@ export const Dashboard = () => {
                   justifyContent="center"
                 >
                   <Typography>Money Promised Below 10K</Typography>
-                  <Typography> {stat?.data.promisedMoneyBelow10k.toLocaleString("en-US")}</Typography>
+                  <Typography>ETB {stat?.data.promisedMoneyBelow10k.toLocaleString("en-US")}</Typography>
                   <LinearProgress value={40} color="success" />
                 </Stack>
               </Grid>
