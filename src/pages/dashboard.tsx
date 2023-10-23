@@ -45,7 +45,7 @@ export const Dashboard = () => {
                   alignItems="center"
                   justifyContent="center"
                 >
-                  <Typography>Total Promised Share To Buy</Typography>
+                  <Typography>Total Promised Share</Typography>
                   <Typography>{stat?.data.totalRequestedShare.toLocaleString("en-US")}</Typography>
                 </Stack>
               </Grid>
@@ -57,7 +57,7 @@ export const Dashboard = () => {
                   justifyContent="center"
                 >
                   {" "}
-                  <Typography>Total Paid Share Of Promised Share</Typography>
+                  <Typography>Total Paid Share Of the Promised Share</Typography>
                   <Typography>{stat?.data.totalPaidShare.toLocaleString("en-US")}</Typography>
                   <LinearProgress value={data.totalPaidShare} />
                 </Stack>
@@ -70,7 +70,7 @@ export const Dashboard = () => {
                   justifyContent="center"
                 >
                   <Typography>
-                    Total Share Holders With Completely Payment
+                    Total Share Holders With Complete Payment
                   </Typography>
                   <Typography>
                     {stat?.data.totalShareHoldersCompletelyPaid.toLocaleString("en-US")}
@@ -142,7 +142,7 @@ export const Dashboard = () => {
                   alignItems="center"
                   justifyContent="center"
                 >
-                  <Typography>Money Paid 10K And Above</Typography>
+                  <Typography>Total Money Paid By Customers Who Paid 10K And Above</Typography>
                   <Typography>ETB {stat?.data.moneyPaid10kAndAbove.toLocaleString("en-US")}</Typography>
                   <LinearProgress value={40} color="success" />
                 </Stack>
@@ -155,7 +155,7 @@ export const Dashboard = () => {
                   alignItems="center"
                   justifyContent="center"
                 >
-                  <Typography>Money Promised 10K And Above</Typography>
+                  <Typography>Total Money Promised By Customers Who Paid 10K And Above</Typography>
                   <Typography> ETB {stat?.data.promisedMoney10kAndAbove.toLocaleString("en-US")}</Typography>
                   <LinearProgress value={40} color="success" />
                 </Stack>
@@ -168,7 +168,7 @@ export const Dashboard = () => {
                   alignItems="center"
                   justifyContent="center"
                 >
-                  <Typography>Shares Paid 10K And Above</Typography>
+                  <Typography>Total Shares Paid By Customers Who Paid 10K And Above</Typography>
                   <Typography> {stat?.data.paidShare10kAndAbove.toLocaleString("en-US")}</Typography>
                   <LinearProgress value={40} color="success" />
                 </Stack>
@@ -181,7 +181,7 @@ export const Dashboard = () => {
                   alignItems="center"
                   justifyContent="center"
                 >
-                  <Typography>Promised Share 10K And Above</Typography>
+                  <Typography>Total Promised Share By Customers Who Paid 10K And Above</Typography>
                   <Typography> {stat?.data.promisedShare10kAndAbove.toLocaleString("en-US")}</Typography>
                   <LinearProgress value={40} color="success" />
                 </Stack>
@@ -210,7 +210,7 @@ export const Dashboard = () => {
                   alignItems="center"
                   justifyContent="center"
                 >
-                  <Typography>Money Paid Below 10K</Typography>
+                  <Typography>Total Money Paid By Customers Who Paid Below 10K</Typography>
                   <Typography>ETB {stat?.data.moneyPaidBelow10k.toLocaleString("en-US")}</Typography>
                   <LinearProgress value={40} color="success" />
                 </Stack>
@@ -223,7 +223,7 @@ export const Dashboard = () => {
                   alignItems="center"
                   justifyContent="center"
                 >
-                  <Typography>Money Promised Below 10K</Typography>
+                  <Typography>Total Money Promised By Customers Who Paid Below 10K</Typography>
                   <Typography>ETB {stat?.data.promisedMoneyBelow10k.toLocaleString("en-US")}</Typography>
                   <LinearProgress value={40} color="success" />
                 </Stack>
@@ -236,7 +236,7 @@ export const Dashboard = () => {
                   alignItems="center"
                   justifyContent="center"
                 >
-                  <Typography>Shares Paid Below 10K</Typography>
+                  <Typography>Total Shares Paid By Customers Who Paid Below 10K</Typography>
                   <Typography> {stat?.data.paidShareBelow10k.toLocaleString("en-US")}</Typography>
                   <LinearProgress value={40} color="success" />
                 </Stack>
@@ -249,7 +249,7 @@ export const Dashboard = () => {
                   alignItems="center"
                   justifyContent="center"
                 >
-                  <Typography>Promised Share Below 10K</Typography>
+                  <Typography>Total Promised Share By Customers Who Paid Below 10K</Typography>
                   <Typography> {stat?.data.promisedShareBelow10k.toLocaleString("en-US")}</Typography>
                   <LinearProgress value={40} color="success" />
                 </Stack>
