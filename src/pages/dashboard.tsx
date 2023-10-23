@@ -119,6 +119,9 @@ export const Dashboard = () => {
                   <LinearProgress value={40} color="success" />
                 </Stack>
               </Grid>
+
+
+                  {/* ABOVE 10K  */}
               <Grid item xs={12} md={6}>
                 <Stack
                   boxShadow={5}
@@ -127,10 +130,133 @@ export const Dashboard = () => {
                   justifyContent="center"
                 >
                   <Typography>Customers Paid 10K And Above</Typography>
-                  <Typography> {stat?.data.paid10kAndAbove}</Typography>
+                  <Typography> {stat?.data.customerspaid10kAndAbove}</Typography>
                   <LinearProgress value={40} color="success" />
                 </Stack>
               </Grid>
+
+              <Grid item xs={12} md={6}>
+                <Stack
+                  boxShadow={5}
+                  borderRadius={10}
+                  alignItems="center"
+                  justifyContent="center"
+                >
+                  <Typography>Money Paid 10K And Above</Typography>
+                  <Typography> {stat?.data.moneyPaid10kAndAbove}</Typography>
+                  <LinearProgress value={40} color="success" />
+                </Stack>
+              </Grid>
+
+              <Grid item xs={12} md={6}>
+                <Stack
+                  boxShadow={5}
+                  borderRadius={10}
+                  alignItems="center"
+                  justifyContent="center"
+                >
+                  <Typography>Money Promised 10K And Above</Typography>
+                  <Typography> {stat?.data.promisedMoney10kAndAbove}</Typography>
+                  <LinearProgress value={40} color="success" />
+                </Stack>
+              </Grid>
+
+              <Grid item xs={12} md={6}>
+                <Stack
+                  boxShadow={5}
+                  borderRadius={10}
+                  alignItems="center"
+                  justifyContent="center"
+                >
+                  <Typography>Shares Paid 10K And Above</Typography>
+                  <Typography> {stat?.data.paidShare10kAndAbove}</Typography>
+                  <LinearProgress value={40} color="success" />
+                </Stack>
+              </Grid>
+
+              <Grid item xs={12} md={6}>
+                <Stack
+                  boxShadow={5}
+                  borderRadius={10}
+                  alignItems="center"
+                  justifyContent="center"
+                >
+                  <Typography>Promised Share 10K And Above</Typography>
+                  <Typography> {stat?.data.promisedShare10kAndAbove}</Typography>
+                  <LinearProgress value={40} color="success" />
+                </Stack>
+              </Grid>
+
+
+                  {/* BELOW 10K  */}
+
+                  <Grid item xs={12} md={6}>
+                <Stack
+                  boxShadow={5}
+                  borderRadius={10}
+                  alignItems="center"
+                  justifyContent="center"
+                >
+                  <Typography>Customers Paid Below 10K</Typography>
+                  <Typography> {stat?.data.customersPaidBelow10k}</Typography>
+                  <LinearProgress value={40} color="success" />
+                </Stack>
+              </Grid>
+
+              <Grid item xs={12} md={6}>
+                <Stack
+                  boxShadow={5}
+                  borderRadius={10}
+                  alignItems="center"
+                  justifyContent="center"
+                >
+                  <Typography>Money Paid Below 10K</Typography>
+                  <Typography> {stat?.data.moneyPaidBelow10k}</Typography>
+                  <LinearProgress value={40} color="success" />
+                </Stack>
+              </Grid>
+
+              <Grid item xs={12} md={6}>
+                <Stack
+                  boxShadow={5}
+                  borderRadius={10}
+                  alignItems="center"
+                  justifyContent="center"
+                >
+                  <Typography>Money Promised Below 10K</Typography>
+                  <Typography> {stat?.data.promisedMoneyBelow10k}</Typography>
+                  <LinearProgress value={40} color="success" />
+                </Stack>
+              </Grid>
+
+              <Grid item xs={12} md={6}>
+                <Stack
+                  boxShadow={5}
+                  borderRadius={10}
+                  alignItems="center"
+                  justifyContent="center"
+                >
+                  <Typography>Shares Paid Below 10K</Typography>
+                  <Typography> {stat?.data.paidShareBelow10k}</Typography>
+                  <LinearProgress value={40} color="success" />
+                </Stack>
+              </Grid>
+
+              <Grid item xs={12} md={6}>
+                <Stack
+                  boxShadow={5}
+                  borderRadius={10}
+                  alignItems="center"
+                  justifyContent="center"
+                >
+                  <Typography>Promised Share Below 10K</Typography>
+                  <Typography> {stat?.data.promisedShareBelow10k}</Typography>
+                  <LinearProgress value={40} color="success" />
+                </Stack>
+              </Grid>
+
+
+
             </Grid>
           </Stack>
         </>
