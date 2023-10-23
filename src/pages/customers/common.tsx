@@ -39,7 +39,7 @@ export const Display = ({ user }: { user: CustomersResponse }) => {
           src={"/" + user.profilePicture}
           sx={{ 
             m: 2, width: 90, height: 90,
-            border:`1px ${user.fullyPayed?"green":user.totalSharePaid>1?"yellow":"red"} solid` }}
+            border:`2px ${user.fullyPayed?"green":user.totalSharePaid>1?"yellow":"red"} solid` }}
 
         />
         <Grid container>
