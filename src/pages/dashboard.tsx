@@ -27,7 +27,7 @@ export const Dashboard = () => {
         <>
           <Stack paddingTop={4}>
             <Grid container spacing={2}>
-              <Grid item xs={12} md={3}>
+              <Grid item xs={12} md={4}>
                 <Stack
                   boxShadow={5}
                   borderRadius={10}
@@ -38,7 +38,7 @@ export const Dashboard = () => {
                   <Typography>{stat?.data.totalShareHolders.toLocaleString("en-US")}</Typography>
                 </Stack>
               </Grid>
-              <Grid item xs={12} md={3}>
+              <Grid item xs={12} md={4}>
                 <Stack
                   boxShadow={5}
                   borderRadius={10}
@@ -49,7 +49,7 @@ export const Dashboard = () => {
                   <Typography>{stat?.data.totalRequestedShare.toLocaleString("en-US")}</Typography>
                 </Stack>
               </Grid>
-              <Grid item xs={12} md={3}>
+              <Grid item xs={12} md={4}>
                 <Stack
                   boxShadow={5}
                   borderRadius={10}
@@ -62,7 +62,7 @@ export const Dashboard = () => {
                   <LinearProgress value={data.totalPaidShare} />
                 </Stack>
               </Grid>
-              <Grid item xs={12} md={3}>
+              <Grid item xs={12} md={4}>
                 <Stack
                   boxShadow={5}
                   borderRadius={10}
@@ -79,7 +79,7 @@ export const Dashboard = () => {
                 </Stack>
               </Grid>
 
-              <Grid item xs={12} md={3}>
+              <Grid item xs={12} md={4}>
                 <Stack
                   boxShadow={5}
                   borderRadius={10}
@@ -93,7 +93,7 @@ export const Dashboard = () => {
                   <LinearProgress value={40} color="success" />
                 </Stack>
               </Grid>
-              <Grid item xs={12} md={3}>
+              <Grid item xs={12} md={4}>
                 <Stack
                   boxShadow={5}
                   borderRadius={10}
@@ -107,7 +107,7 @@ export const Dashboard = () => {
               </Grid>
 
 
-              <Grid item xs={12} md={3}>
+              <Grid item xs={12} md={4}>
                 <Stack
                   boxShadow={5}
                   borderRadius={10}
@@ -122,7 +122,7 @@ export const Dashboard = () => {
 
 
                   {/* ABOVE 10K  */}
-              <Grid item xs={12} md={3}>
+              <Grid item xs={12} md={4}>
                 <Stack
                   boxShadow={5}
                   borderRadius={10}
@@ -135,7 +135,7 @@ export const Dashboard = () => {
                 </Stack>
               </Grid>
 
-              <Grid item xs={12} md={3}>
+              <Grid item xs={12} md={4}>
                 <Stack
                   boxShadow={5}
                   borderRadius={10}
@@ -148,7 +148,7 @@ export const Dashboard = () => {
                 </Stack>
               </Grid>
 
-              <Grid item xs={12} md={3}>
+              <Grid item xs={12} md={4}>
                 <Stack
                   boxShadow={5}
                   borderRadius={10}
@@ -161,7 +161,7 @@ export const Dashboard = () => {
                 </Stack>
               </Grid>
 
-              <Grid item xs={12} md={3}>
+              <Grid item xs={12} md={4}>
                 <Stack
                   boxShadow={5}
                   borderRadius={10}
@@ -174,7 +174,7 @@ export const Dashboard = () => {
                 </Stack>
               </Grid>
 
-              <Grid item xs={12} md={3}>
+              <Grid item xs={12} md={4}>
                 <Stack
                   boxShadow={5}
                   borderRadius={10}
@@ -190,7 +190,7 @@ export const Dashboard = () => {
 
                   {/* BELOW 10K  */}
 
-                  <Grid item xs={12} md={3}>
+                  <Grid item xs={12} md={4}>
                 <Stack
                   boxShadow={5}
                   borderRadius={10}
@@ -203,7 +203,7 @@ export const Dashboard = () => {
                 </Stack>
               </Grid>
 
-              <Grid item xs={12} md={3}>
+              <Grid item xs={12} md={4}>
                 <Stack
                   boxShadow={5}
                   borderRadius={10}
@@ -216,7 +216,7 @@ export const Dashboard = () => {
                 </Stack>
               </Grid>
 
-              <Grid item xs={12} md={3}>
+              <Grid item xs={12} md={4}>
                 <Stack
                   boxShadow={5}
                   borderRadius={10}
@@ -229,7 +229,7 @@ export const Dashboard = () => {
                 </Stack>
               </Grid>
 
-              <Grid item xs={12} md={3}>
+              <Grid item xs={12} md={4}>
                 <Stack
                   boxShadow={5}
                   borderRadius={10}
@@ -242,7 +242,7 @@ export const Dashboard = () => {
                 </Stack>
               </Grid>
 
-              <Grid item xs={12} md={3}>
+              <Grid item xs={12} md={4}>
                 <Stack
                   boxShadow={5}
                   borderRadius={10}
