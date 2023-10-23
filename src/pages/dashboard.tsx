@@ -35,7 +35,7 @@ export const Dashboard = () => {
                   justifyContent="center"
                 >
                   <Typography>Total Share Holders</Typography>
-                  <Typography>{stat?.data.totalShareHolders.toLocaleString("en-US")}</Typography>
+                  <Typography fontWeight={8}>{stat?.data.totalShareHolders.toLocaleString("en-US")}</Typography>
                 </Stack>
               </Grid>
               <Grid item xs={12} md={4}>
@@ -46,7 +46,7 @@ export const Dashboard = () => {
                   justifyContent="center"
                 >
                   <Typography>Total Promised Share</Typography>
-                  <Typography>{stat?.data.totalRequestedShare.toLocaleString("en-US")}</Typography>
+                  <Typography fontWeight={8}>{stat?.data.totalRequestedShare.toLocaleString("en-US")}</Typography>
                 </Stack>
               </Grid>
               <Grid item xs={12} md={4}>
@@ -58,7 +58,7 @@ export const Dashboard = () => {
                 >
                   {" "}
                   <Typography>Total Paid Share Of the Promised Share</Typography>
-                  <Typography>{stat?.data.totalPaidShare.toLocaleString("en-US")}</Typography>
+                  <Typography fontWeight={8}>{stat?.data.totalPaidShare.toLocaleString("en-US")}</Typography>
                   <LinearProgress value={data.totalPaidShare} />
                 </Stack>
               </Grid>
@@ -72,8 +72,8 @@ export const Dashboard = () => {
                   <Typography>
                     Total Share Holders With Complete Payment
                   </Typography>
-                  <Typography>
-                    {stat?.data.totalShareHoldersCompletelyPaid.toLocaleString("en-US")}
+                  <Typography fontWeight={8}>
+                     {stat?.data.totalShareHoldersCompletelyPaid.toLocaleString("en-US")}
                   </Typography>
                   <LinearProgress value={40} color="success" />
                 </Stack>
@@ -87,7 +87,7 @@ export const Dashboard = () => {
                   justifyContent="center"
                 >
                   <Typography>Total Amount of Promised Money</Typography>
-                  <Typography>
+                  <Typography fontWeight={8} >
                     ETB {stat?.data.totalSharePromisedAmount.toLocaleString("en-US")}
                   </Typography>
                   <LinearProgress value={40} color="success" />
@@ -101,7 +101,7 @@ export const Dashboard = () => {
                   justifyContent="center"
                 >
                   <Typography>Total Amount of Paid Money</Typography>
-                  <Typography>ETB {stat?.data.totalSharePaidAmount.toLocaleString("en-US")}</Typography>
+                  <Typography fontWeight={8}>ETB  {stat?.data.totalSharePaidAmount.toLocaleString("en-US")}</Typography>
                   <LinearProgress value={40} color="success" />
                 </Stack>
               </Grid>
@@ -115,7 +115,7 @@ export const Dashboard = () => {
                   justifyContent="center"
                 >
                   <Typography>Customers Started Payment</Typography>
-                  <Typography> {stat?.data.startedPay.toLocaleString("en-US")}</Typography>
+                  <Typography fontWeight={8} >{stat?.data.startedPay.toLocaleString("en-US")}</Typography>
                   <LinearProgress value={40} color="success" />
                 </Stack>
               </Grid>
@@ -130,7 +130,7 @@ export const Dashboard = () => {
                   justifyContent="center"
                 >
                   <Typography>Customers Paid 10K And Above</Typography>
-                  <Typography> {stat?.data.customerspaid10kAndAbove.toLocaleString("en-US")}</Typography>
+                  <Typography fontWeight={8} >{stat?.data.customerspaid10kAndAbove.toLocaleString("en-US")}</Typography>
                   <LinearProgress value={40} color="success" />
                 </Stack>
               </Grid>
@@ -143,7 +143,7 @@ export const Dashboard = () => {
                   justifyContent="center"
                 >
                   <Typography>Total Money Paid By Customers Who Paid 10K And Above</Typography>
-                  <Typography>ETB {stat?.data.moneyPaid10kAndAbove.toLocaleString("en-US")}</Typography>
+                  <Typography fontWeight={8}>ETB {stat?.data.moneyPaid10kAndAbove.toLocaleString("en-US")}</Typography>
                   <LinearProgress value={40} color="success" />
                 </Stack>
               </Grid>
@@ -156,7 +156,7 @@ export const Dashboard = () => {
                   justifyContent="center"
                 >
                   <Typography>Total Money Promised By Customers Who Paid 10K And Above</Typography>
-                  <Typography> ETB {stat?.data.promisedMoney10kAndAbove.toLocaleString("en-US")}</Typography>
+                  <Typography fontWeight={8} > ETB {stat?.data.promisedMoney10kAndAbove.toLocaleString("en-US")}</Typography>
                   <LinearProgress value={40} color="success" />
                 </Stack>
               </Grid>
@@ -169,7 +169,7 @@ export const Dashboard = () => {
                   justifyContent="center"
                 >
                   <Typography>Total Shares Paid By Customers Who Paid 10K And Above</Typography>
-                  <Typography> {stat?.data.paidShare10kAndAbove.toLocaleString("en-US")}</Typography>
+                  <Typography fontWeight={8} >{stat?.data.paidShare10kAndAbove.toLocaleString("en-US")}</Typography>
                   <LinearProgress value={40} color="success" />
                 </Stack>
               </Grid>
@@ -182,7 +182,7 @@ export const Dashboard = () => {
                   justifyContent="center"
                 >
                   <Typography>Total Promised Share By Customers Who Paid 10K And Above</Typography>
-                  <Typography> {stat?.data.promisedShare10kAndAbove.toLocaleString("en-US")}</Typography>
+                  <Typography fontWeight={8} >{stat?.data.promisedShare10kAndAbove.toLocaleString("en-US")}</Typography>
                   <LinearProgress value={40} color="success" />
                 </Stack>
               </Grid>
@@ -198,7 +198,7 @@ export const Dashboard = () => {
                   justifyContent="center"
                 >
                   <Typography>Customers Paid Below 10K</Typography>
-                  <Typography> {stat?.data.customersPaidBelow10k.toLocaleString("en-US")}</Typography>
+                  <Typography fontWeight={8}> {stat?.data.customersPaidBelow10k.toLocaleString("en-US")}</Typography>
                   <LinearProgress value={40} color="success" />
                 </Stack>
               </Grid>
@@ -211,7 +211,7 @@ export const Dashboard = () => {
                   justifyContent="center"
                 >
                   <Typography>Total Money Paid By Customers Who Paid Below 10K</Typography>
-                  <Typography>ETB {stat?.data.moneyPaidBelow10k.toLocaleString("en-US")}</Typography>
+                  <Typography fontWeight={8}>ETB {stat?.data.moneyPaidBelow10k.toLocaleString("en-US")}</Typography>
                   <LinearProgress value={40} color="success" />
                 </Stack>
               </Grid>
@@ -224,7 +224,7 @@ export const Dashboard = () => {
                   justifyContent="center"
                 >
                   <Typography>Total Money Promised By Customers Who Paid Below 10K</Typography>
-                  <Typography>ETB {stat?.data.promisedMoneyBelow10k.toLocaleString("en-US")}</Typography>
+                  <Typography fontWeight={8}>ETB {stat?.data.promisedMoneyBelow10k.toLocaleString("en-US")}</Typography>
                   <LinearProgress value={40} color="success" />
                 </Stack>
               </Grid>
@@ -237,7 +237,7 @@ export const Dashboard = () => {
                   justifyContent="center"
                 >
                   <Typography>Total Shares Paid By Customers Who Paid Below 10K</Typography>
-                  <Typography> {stat?.data.paidShareBelow10k.toLocaleString("en-US")}</Typography>
+                  <Typography fontWeight={8} > {stat?.data.paidShareBelow10k.toLocaleString("en-US")}</Typography>
                   <LinearProgress value={40} color="success" />
                 </Stack>
               </Grid>
@@ -250,7 +250,7 @@ export const Dashboard = () => {
                   justifyContent="center"
                 >
                   <Typography>Total Promised Share By Customers Who Paid Below 10K</Typography>
-                  <Typography> {stat?.data.promisedShareBelow10k.toLocaleString("en-US")}</Typography>
+                  <Typography fontWeight={8} >{stat?.data.promisedShareBelow10k.toLocaleString("en-US")}</Typography>
                   <LinearProgress value={40} color="success" />
                 </Stack>
               </Grid>
