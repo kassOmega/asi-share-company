@@ -37,7 +37,9 @@ export const Display = ({ user }: { user: CustomersResponse }) => {
       <Stack alignItems="center" justifyItems="center" px={4}>
         <Avatar
           src={"/" + user.profilePicture}
-          sx={{ m: 2, width: 90, height: 90,border:`${user.fullyPayed?"green":"red"}` }}
+          sx={{ 
+            m: 2, width: 90, height: 90,
+            border:`1px ${user.fullyPayed?"green":"red"} solid` }}
 
         />
         <Grid container>
