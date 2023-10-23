@@ -24,8 +24,8 @@ export const CustomerList = () => {
   // }, [params]);
   const { data: customers, isLoading } = useGetCustomersQuery(
    {
-    name:params.get("min")??undefined,
-   min:params.get("name")??undefined,
+    name:params.get("name")??undefined,
+   min:params.get("min")??undefined,
   }
     );
  
