@@ -265,8 +265,6 @@ export const CustomerListLayout = ({
 }: {
   header: string;
   children: ReactNode;
-  setMIn?: (e: string) => void,
-setMax?: (e: string) => void,
   isDetail?: boolean;
 }) => {
   const [, setParams] = useParams();
