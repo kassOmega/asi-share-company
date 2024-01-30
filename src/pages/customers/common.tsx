@@ -37,10 +37,18 @@ export const Display = ({ user }: { user: CustomersResponse }) => {
       <Stack alignItems="center" justifyItems="center" px={4}>
         <Avatar
           src={"/" + user.profilePicture}
-          sx={{ 
-            m: 2, width: 90, height: 90,
-            border:`2px ${user.fullyPayed?"green":user.totalSharePaid>1?"yellow":"red"} solid` }}
-
+          sx={{
+            m: 2,
+            width: 90,
+            height: 90,
+            border: `2px ${
+              user.fullyPayed
+                ? "green"
+                : user.totalSharePaid > 1
+                ? "yellow"
+                : "red"
+            } solid`,
+          }}
         />
         <Grid container>
           <Grid item xs={5} md={4}>
@@ -55,13 +63,13 @@ export const Display = ({ user }: { user: CustomersResponse }) => {
             </Typography>
           </Grid>
           <Grid item xs={5} md={4}>
-            <Typography sx={{ fontSize: 12 }}>Address</Typography>
+            <Typography sx={{ fontSize: 12 }}>Customer Id</Typography>
           </Grid>
           <Grid item xs={1} md={1}>
             <Typography sx={{ fontSize: 12 }}>:</Typography>
           </Grid>
           <Grid item xs={6} md={7}>
-            <Typography sx={{ fontSize: 12 }}>{user.address}</Typography>
+            <Typography sx={{ fontSize: 12 }}>{user.customerID}</Typography>
           </Grid>
           <Grid item xs={5} md={4}>
             <Typography sx={{ fontSize: 12 }}>Phone Number</Typography>
@@ -111,13 +119,13 @@ export const Display = ({ user }: { user: CustomersResponse }) => {
         <Button
           variant="outlined"
           size="small"
-          sx={{  alignSelf: "flex-start" }}
+          sx={{ alignSelf: "flex-start" }}
           component={Link}
           to={`/customers/${user.id}`}
         >
           Detail
         </Button>
-{/* 
+        {/* 
       <Box sx={{ position: "absolute", right: 4, top: 2 }} padding={0.5}> */}
         <Button
           component={Link}
@@ -127,7 +135,7 @@ export const Display = ({ user }: { user: CustomersResponse }) => {
         >
           Edit
         </Button>
-      {/* </Box> */}
+        {/* </Box> */}
         {/* {userRole?.role === "admin" && (
           <Button
             onClick={() => navigate(`/customers/update-payment/${user.id}`)}
@@ -293,28 +301,28 @@ export const CustomerListLayout = ({
             >
               Register Customer
             </Button>
-            {!isDetail && (<>
-              <TextField
-                placeholder="Search"
-                onChange={(e) => setParams?.("name",e.target.value)}
-                size="small"
-                fullWidth
-              />
-                  <TextField
-                    placeholder="Min Birr"
-                    type="number"
-                    onChange={(e) => setParams?.("min",e.target.value)}
-                    size="small"
-                    fullWidth
-                  /> 
-                  {/* <TextField
+            {!isDetail && (
+              <>
+                <TextField
+                  placeholder="Search"
+                  onChange={(e) => setParams?.("name", e.target.value)}
+                  size="small"
+                  fullWidth
+                />
+                <TextField
+                  placeholder="Min Birr"
+                  type="number"
+                  onChange={(e) => setParams?.("min", e.target.value)}
+                  size="small"
+                  fullWidth
+                />
+                {/* <TextField
                     placeholder="Max Birr"
                     type="number"
                     onChange={(e) => setParams?.("max",e.target.value)}
                     size="small"
                     fullWidth
                   /> */}
-                
               </>
             )}
             <FilterMenu />
