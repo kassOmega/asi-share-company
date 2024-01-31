@@ -184,7 +184,6 @@ export function AddCustomer() {
                   <TextField
                     size="small"
                     label="Service Charge"
-                    type="number"
                     {...registerUpgraded("ServiceCharge", {
                       required: "Service Charge is required",
                       validate: {

@@ -383,7 +383,6 @@ export function UpdateCustomer({ isFullUpdate }: { isFullUpdate?: boolean }) {
               focused
               size="small"
               label="Service Charge"
-              type="number"
               {...registerUpgraded("ServiceCharge", {
                 required: "Service Charge is required",
                 validate: {
