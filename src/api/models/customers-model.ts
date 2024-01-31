@@ -9,6 +9,7 @@ export interface CustomersResponse {
   totalSharePromisedAmount: number;
   totalSharePaidAmount: number;
   fullyPayed: string;
+  ServiceCharge: number;
   profilePicture: string;
   attachments: string[];
 }
@@ -21,6 +22,7 @@ export interface CustomersRequest {
   totalSharePaid: number;
   totalSharePromisedAmount: number;
   totalSharePaidAmount: number;
+  ServiceCharge: number;
 }
 export interface UpdateCustomersRequest {
   CustomersRequest: CustomersRequest;
@@ -28,7 +30,7 @@ export interface UpdateCustomersRequest {
 }
 export interface CustomersStat {
   data: {
-    moneyPaid10kAndAbove : number;
+    moneyPaid10kAndAbove: number;
     moneyPaidBelow10k: number;
     paidShare10kAndAbove: number;
     paidShareBelow10k: number;
@@ -49,6 +51,6 @@ export interface CustomersStat {
 }
 export interface SearchParams {
   name?: string;
-  min?:string,
-  max?:string
+  min?: string;
+  max?: string;
 }

@@ -68,19 +68,30 @@ export const CustomerDetail = () => {
                     width: 200,
                     height: 200,
                     objectFit: "cover",
-                    objectPosition: "center", 
-                    border:`2px ${user.data.fullyPayed?
-                      "green":user.data.totalSharePaid>1?
-                      "yellow":"red"} solid` 
+                    objectPosition: "center",
+                    border: `2px ${
+                      user.data.fullyPayed
+                        ? "green"
+                        : user.data.totalSharePaid > 1
+                        ? "yellow"
+                        : "red"
+                    } solid`,
                   }}
-
                 />
               ) : (
-                <Avatar sx={{ width: 200, height: 200,
-                  border:`2px ${user?.data.fullyPayed?
-                  "green":user?.data?.totalSharePaid??0>1?
-                  "yellow":"red"} solid`  
-                }} />
+                <Avatar
+                  sx={{
+                    width: 200,
+                    height: 200,
+                    border: `2px ${
+                      user?.data.fullyPayed
+                        ? "green"
+                        : user?.data?.totalSharePaid ?? 0 > 1
+                        ? "yellow"
+                        : "red"
+                    } solid`,
+                  }}
+                />
               )}
             </Stack>
             <Stack alignItems={"center"} justifyContent={"center"}>
@@ -141,6 +152,13 @@ export const CustomerDetail = () => {
                 </Grid>
                 <Grid item xs={6} md={6}>
                   <Typography>{user?.data.totalSharePaidAmount}</Typography>
+                </Grid>
+
+                <Grid item xs={6} md={6}>
+                  <Typography>Service Charge</Typography>
+                </Grid>
+                <Grid item xs={6} md={6}>
+                  <Typography>{user?.data.ServiceCharge}</Typography>
                 </Grid>
               </Grid>
             </Stack>

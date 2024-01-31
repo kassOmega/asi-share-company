@@ -378,6 +378,20 @@ export function UpdateCustomer({ isFullUpdate }: { isFullUpdate?: boolean }) {
               })}
             />
           </Grid>
+          <Grid item md={6} xs={12}>
+            <TextField
+              focused
+              size="small"
+              label="Service Charge"
+              type="number"
+              {...registerUpgraded("ServiceCharge", {
+                required: "Service Charge is required",
+                validate: {
+                  positiveNumber: (value) => parseInt(value + "") >= 5,
+                },
+              })}
+            />
+          </Grid>
         </Grid>
         {result?.data.attachments && (
           <Stack>
