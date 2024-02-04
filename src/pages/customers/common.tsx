@@ -24,7 +24,7 @@ import { useParams } from "../../common/search-param";
 export const Display = ({ user }: { user: CustomersResponse }) => {
   // const navigate = useNavigate();
   // const { user: userRole } = useUserToken();
-
+  const navigate = useNavigate();
   return (
     <Stack
       boxShadow={2}
@@ -33,8 +33,7 @@ export const Display = ({ user }: { user: CustomersResponse }) => {
       spacing={2}
       position="relative"
       sx={{ backgroundColor: "#f2f2f2", cursor: "pointer" }}
-      component={Link}
-      to={`/customers/${user.id}`}
+      onClick={() => navigate(`/customers/update/${user.id}`)}
     >
       <Stack alignItems="center" justifyItems="center" px={4}>
         <Avatar
