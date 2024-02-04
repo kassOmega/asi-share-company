@@ -32,7 +32,9 @@ export const Display = ({ user }: { user: CustomersResponse }) => {
       padding={2}
       spacing={2}
       position="relative"
-      sx={{ backgroundColor: "#f2f2f2" }}
+      sx={{ backgroundColor: "#f2f2f2", cursor: "pointer" }}
+      component={Link}
+      to={`/customers/${user.id}`}
     >
       <Stack alignItems="center" justifyItems="center" px={4}>
         <Avatar
@@ -126,7 +128,7 @@ export const Display = ({ user }: { user: CustomersResponse }) => {
           Detail
         </Button>
         {/* 
-      <Box sx={{ position: "absolute", right: 4, top: 2 }} padding={0.5}> */}
+        <Box sx={{ position: "absolute", right: 4, top: 2 }} padding={0.5}> */}
         <Button
           component={Link}
           to={`/customers/update/${user.id}`}
