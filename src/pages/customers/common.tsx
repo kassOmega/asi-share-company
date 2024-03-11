@@ -33,7 +33,6 @@ export const Display = ({ user }: { user: CustomersResponse }) => {
       spacing={2}
       position="relative"
       sx={{ backgroundColor: "#f2f2f2", cursor: "pointer" }}
-      onClick={() => navigate(`/customers/${user.id}`)}
     >
       <Stack alignItems="center" justifyItems="center" px={4}>
         <Avatar
