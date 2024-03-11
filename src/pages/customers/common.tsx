@@ -23,8 +23,7 @@ import { useParams } from "../../common/search-param";
 
 export const Display = ({ user }: { user: CustomersResponse }) => {
   // const navigate = useNavigate();
-  // const { user: userRole } = useUserToken();
-  const navigate = useNavigate();
+  // const { user: userRole } = useUserToken();update
   return (
     <Stack
       boxShadow={2}
